@@ -175,13 +175,13 @@
             break;
         }
         case PlayStateStopState:{
-            [_btn_play setImage:[UIImage imageNamed:@"btn_toyHome_play.png"] forState:UIControlStateNormal];
-            [_btn_play setImage:[UIImage imageNamed:@"btn_toyHome_play"] forState:UIControlStateHighlighted];
+            [_btn_play setImage:[UIImage imageNamed:@"btn_toyHome_parse"] forState:UIControlStateNormal];
+            [_btn_play setImage:[UIImage imageNamed:@"btn_toyHome_parse"] forState:UIControlStateHighlighted];
             break;
         }
         case PlayStatePlayState:{
-            [_btn_play setImage:[UIImage imageNamed:@"btn_toyHome_parse"] forState:UIControlStateNormal];
-            [_btn_play setImage:[UIImage imageNamed:@"btn_toyHome_parse"] forState:UIControlStateHighlighted];
+            [_btn_play setImage:[UIImage imageNamed:@"btn_toyHome_play"] forState:UIControlStateNormal];
+            [_btn_play setImage:[UIImage imageNamed:@"btn_toyHome_play"] forState:UIControlStateHighlighted];
             break;
         }
         default:
