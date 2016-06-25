@@ -13,6 +13,7 @@
 #import "ToyWifiFirstVC.h"
 #import "GroupAddVC.h"
 #import "NDGroupAPI.h"
+#import "ExplainVC.h"
 
 @interface ToyGuideToBindVC ()
 
@@ -182,8 +183,9 @@
 
 - (IBAction)btnHelpAction:(id)sender {
     
-    
-    
+    ExplainVC *vc = [[ExplainVC alloc]init];
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
+    [self presentViewController:nav animated:YES completion:nil];
     
 }
 

@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		4738167720B96B2840EC112D /* Pods_LittleMonkey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA0B581428229F7F6864252F /* Pods_LittleMonkey.framework */; };
+		ACC76BCB1D1EC4C60017FA42 /* ExplainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ACC76BC91D1EC4C60017FA42 /* ExplainVC.m */; };
+		ACC76BCC1D1EC4C60017FA42 /* ExplainVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACC76BCA1D1EC4C60017FA42 /* ExplainVC.xib */; };
+		ACC76BCE1D1EC6610017FA42 /* instructions.plist in Resources */ = {isa = PBXBuildFile; fileRef = ACC76BCD1D1EC6610017FA42 /* instructions.plist */; };
+		ACC76BD21D1ECA790017FA42 /* DescVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ACC76BD01D1ECA790017FA42 /* DescVC.m */; };
+		ACC76BD31D1ECA790017FA42 /* DescVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACC76BD11D1ECA790017FA42 /* DescVC.xib */; };
 		CE21DDCA1D0409A300D12E89 /* DownloadMediaInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CE21DDC91D0409A300D12E89 /* DownloadMediaInfo.m */; };
 		CE21DDCD1D0409B500D12E89 /* DownloadAlbumInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CE21DDCC1D0409B500D12E89 /* DownloadAlbumInfo.m */; };
 		CE21DDD01D0409E600D12E89 /* ToyDownloadInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CE21DDCF1D0409E600D12E89 /* ToyDownloadInfo.m */; };
@@ -355,6 +360,13 @@
 
 /* Begin PBXFileReference section */
 		2EAAF69CFEFD064224ECE324 /* Pods-LittleMonkey.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LittleMonkey.release.xcconfig"; path = "Pods/Target Support Files/Pods-LittleMonkey/Pods-LittleMonkey.release.xcconfig"; sourceTree = "<group>"; };
+		ACC76BC81D1EC4C60017FA42 /* ExplainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExplainVC.h; sourceTree = "<group>"; };
+		ACC76BC91D1EC4C60017FA42 /* ExplainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExplainVC.m; sourceTree = "<group>"; };
+		ACC76BCA1D1EC4C60017FA42 /* ExplainVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExplainVC.xib; sourceTree = "<group>"; };
+		ACC76BCD1D1EC6610017FA42 /* instructions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = instructions.plist; sourceTree = "<group>"; };
+		ACC76BCF1D1ECA790017FA42 /* DescVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescVC.h; sourceTree = "<group>"; };
+		ACC76BD01D1ECA790017FA42 /* DescVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescVC.m; sourceTree = "<group>"; };
+		ACC76BD11D1ECA790017FA42 /* DescVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DescVC.xib; sourceTree = "<group>"; };
 		CE21DDC81D0409A300D12E89 /* DownloadMediaInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadMediaInfo.h; sourceTree = "<group>"; };
 		CE21DDC91D0409A300D12E89 /* DownloadMediaInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadMediaInfo.m; sourceTree = "<group>"; };
 		CE21DDCB1D0409B500D12E89 /* DownloadAlbumInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadAlbumInfo.h; sourceTree = "<group>"; };
@@ -1160,6 +1172,12 @@
 				CE5D796C1D1522C300F53034 /* MessageListVC.m */,
 				CE5D796D1D1522C300F53034 /* MessageListVC.xib */,
 				CE297F691D02B97F009F62E0 /* View */,
+				ACC76BC81D1EC4C60017FA42 /* ExplainVC.h */,
+				ACC76BC91D1EC4C60017FA42 /* ExplainVC.m */,
+				ACC76BCA1D1EC4C60017FA42 /* ExplainVC.xib */,
+				ACC76BCF1D1ECA790017FA42 /* DescVC.h */,
+				ACC76BD01D1ECA790017FA42 /* DescVC.m */,
+				ACC76BD11D1ECA790017FA42 /* DescVC.xib */,
 			);
 			path = More;
 			sourceTree = "<group>";
@@ -1411,6 +1429,7 @@
 		CE297FC41D02B97F009F62E0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				ACC76BCD1D1EC6610017FA42 /* instructions.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -2367,6 +2386,7 @@
 				CE6E935F1D04815F007B39DC /* ToyNightModelVC.xib in Resources */,
 				CE58711F1D16CDE800FDD39B /* TranceiverDetailVC.xib in Resources */,
 				CE5871701D16E71F00FDD39B /* DownloadedVC.xib in Resources */,
+				ACC76BCC1D1EC4C60017FA42 /* ExplainVC.xib in Resources */,
 				CE5871A51D16EE5B00FDD39B /* PortDownloadedVC.xib in Resources */,
 				CE58717F1D16E9CE00FDD39B /* ChildMoreView.xib in Resources */,
 				CE2980661D02C721009F62E0 /* ChooseInMiddleCell.xib in Resources */,
@@ -2377,11 +2397,13 @@
 				CE5D796F1D1522C300F53034 /* MessageListVC.xib in Resources */,
 				CE2980151D02B97F009F62E0 /* ToyMoreVC.xib in Resources */,
 				CE58711A1D16CDC500FDD39B /* AlbumListVC.xib in Resources */,
+				ACC76BCE1D1EC6610017FA42 /* instructions.plist in Resources */,
 				CEFC6AE31D03243F00BE2DA8 /* ToyChoice.xib in Resources */,
 				CE5D79741D1522DB00F53034 /* ApplyCell.xib in Resources */,
 				CE6E938C1D0486A0007B39DC /* AddAlarmEvent.xib in Resources */,
 				CE2980721D02CEDA009F62E0 /* PersonalCenterCell.xib in Resources */,
 				CECFCA721D03329700C241D5 /* ToyGuideToBindVC.xib in Resources */,
+				ACC76BD31D1ECA790017FA42 /* DescVC.xib in Resources */,
 				CE5871291D16CE3500FDD39B /* HaloSquareCell.xib in Resources */,
 				CE4716901D16AFD8002A3F29 /* ChildMusicVC.xib in Resources */,
 				CE653EAE1D1BFABB00A414A5 /* ChildCustomizeDetailVC.xib in Resources */,
@@ -2527,6 +2549,7 @@
 				CE80EEE91D0759EF007046F3 /* AFAudioRouter.m in Sources */,
 				CE29802A1D02B97F009F62E0 /* LogViewController.m in Sources */,
 				CE5871C81D16F12F00FDD39B /* ChildCustomizeVC.m in Sources */,
+				ACC76BD21D1ECA790017FA42 /* DescVC.m in Sources */,
 				CE653EAF1D1BFABB00A414A5 /* ChildCustomizeAddVC.m in Sources */,
 				CE29802E1D02B97F009F62E0 /* ShareValue.m in Sources */,
 				CE2980711D02CEDA009F62E0 /* PersonalCenterCell.m in Sources */,
@@ -2542,6 +2565,7 @@
 				CE2980031D02B97F009F62E0 /* NDUserAPI.m in Sources */,
 				CE5871141D16CD9100FDD39B /* ChildAlbumDetailVC.m in Sources */,
 				CE58716F1D16E71F00FDD39B /* DownloadedVC.m in Sources */,
+				ACC76BCB1D1EC4C60017FA42 /* ExplainVC.m in Sources */,
 				CE5871361D16D1B100FDD39B /* HaloSquareRecommendInfoView.m in Sources */,
 				CE2980331D02B97F009F62E0 /* ImageFileInfo.m in Sources */,
 				CE5871B81D16EEFB00FDD39B /* ChildSearchVC.m in Sources */,

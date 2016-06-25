@@ -30,8 +30,15 @@
     self.navigationController.navigationBar.translucent = NO;
     
     if([self canBack]){
+        if (self.navigationController.viewControllers.count == 1) {
+            
+            [self showLeftBarButtonItemWithImage:@"down" target:self action:@selector(handleBtnBackClicked)];
+            
+        }else{
+            [self showLeftBarButtonItemWithImage:@"icon_back" target:self action:@selector(handleBtnBackClicked)];
+        }
+
         
-        [self showLeftBarButtonItemWithImage:@"icon_back" target:self action:@selector(handleBtnBackClicked)];
         
     }else {
         

@@ -617,39 +617,38 @@
         
         User *user = [ShareValue sharedShareValue].user;
         GroupDetail *groupDetail = [ShareValue sharedShareValue].groupDetail;
+        NSString* userNickname = user.nickname;
+        WXMediaMessage *message = [WXMediaMessage message];
+        message.title = [NSString stringWithFormat:@"%@邀请你加入\"%@\"(群号:%@)",userNickname,groupDetail.name,groupDetail.group_id];
+        NSString* url = @"http://wuxiaokong.imich.cn/wxk";
         
-        NDGroupInviteCodeParams *params = [[NDGroupInviteCodeParams alloc] init];
-        params.group_id = groupDetail.group_id;
-        [NDGroupAPI groupInviteCodeWithParams:params completionBlockWithSuccess:^(NDGroupInviteCodeResult *data) {
-            if (data) {
-                NSString *code = data.inviteCode;
-                NSString* userNickname = user.nickname;
-                WXMediaMessage *message = [WXMediaMessage message];
-                message.title = [NSString stringWithFormat:@"%@邀请你加入\"%@\"(群号:%@)",userNickname,groupDetail.name,groupDetail.group_id];
-                NSString* url = [NSString stringWithFormat:@"%@download?code=%@",NDDOWNLOAD_SERVERURL,code];
-                
-                message.description = NSLocalizedString(@"悟小空智能故事机。史上最强，接入喜马拉雅海量故事，更多惊喜，等你发现，点我立刻下载(必看)", nil);
-                [message setThumbImage:[UIImage imageNamed:@"icon_app.png"]];
-                
-                
-                WXWebpageObject *ext = [WXWebpageObject object];
-                
-                ext.webpageUrl = url;
-                message.mediaObject = ext;
-                
-                SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
-                req.bText = NO;
-                req.message = message;
-                req.scene = WXSceneSession;
-                
-                [WXApi sendReq:req];
-            }
-            
-            
-        } Fail:^(int code, NSString *failDescript) {
-            [ShowHUD showError:failDescript configParameter:^(ShowHUD *config) {
-            } duration:1.5f inView:self.view];
-        }];
+        message.description = NSLocalizedString(@"悟小空智能故事机。史上最强，接入喜马拉雅海量故事，更多惊喜，等你发现，点我立刻下载(必看)", nil);
+        [message setThumbImage:[UIImage imageNamed:@"icon_app"]];
+        
+        
+        WXWebpageObject *ext = [WXWebpageObject object];
+        
+        ext.webpageUrl = url;
+        message.mediaObject = ext;
+        
+        SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
+        req.bText = NO;
+        req.message = message;
+        req.scene = WXSceneSession;
+        
+        [WXApi sendReq:req];
+//        NDGroupInviteCodeParams *params = [[NDGroupInviteCodeParams alloc] init];
+//        params.group_id = groupDetail.group_id;
+//        [NDGroupAPI groupInviteCodeWithParams:params completionBlockWithSuccess:^(NDGroupInviteCodeResult *data) {
+//            if (data) {
+//                NSString *code = data.inviteCode;
+//                            }
+//            
+//            
+//        } Fail:^(int code, NSString *failDescript) {
+//            [ShowHUD showError:failDescript configParameter:^(ShowHUD *config) {
+//            } duration:1.5f inView:self.view];
+//        }];
         
     }
     

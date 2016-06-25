@@ -126,6 +126,20 @@
 
 #pragma mark - privateMethods
 
+-(void)startAnimate{
+    CABasicAnimation* rotationAnimation;
+    rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    rotationAnimation.toValue = [NSNumber numberWithFloat: M_PI * 2.0 ];
+    rotationAnimation.duration = 3.0;
+    rotationAnimation.cumulative = YES;
+    rotationAnimation.repeatCount = 10000;
+    [_imageV_icon.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
+}
+
+-(void)stopAnimate{
+    [_imageV_icon.layer removeAllAnimations];
+}
+
 - (void)initView{
 
     if ([ShareValue sharedShareValue].toyDetail) {
@@ -182,6 +196,8 @@
         case PlayStatePlayState:{
             [_btn_play setImage:[UIImage imageNamed:@"btn_toyHome_play"] forState:UIControlStateNormal];
             [_btn_play setImage:[UIImage imageNamed:@"btn_toyHome_play"] forState:UIControlStateHighlighted];
+            
+            
             break;
         }
         default:
@@ -246,7 +262,7 @@
         case ToyStateOnlineState:{
             
             _v_unLink.hidden = YES;
-            [self stopAnimation];
+            
             
             _lb_status.text = @"已连接";
             
@@ -303,7 +319,6 @@
         case ToyStatePartnerState:{
             
             _v_unLink.hidden = YES;
-            [self stopAnimation];
             
             _lb_status.text = @"已连接";
             self.lb_statusLink.text = @"智能聊天模式";
@@ -316,11 +331,11 @@
                     if ([_toyStatus.status isEqualToString:@"1"]) {
                         
                         self.playState = PlayStatePlayState;
-                        
+                       
                     }else{
                         
                         self.playState = PlayStateStopState;
-                        
+                       
                     }
                     
                 }
@@ -339,11 +354,10 @@
         case ToyStateTalkState:{
             
             _v_unLink.hidden = YES;
-            [self stopAnimation];
             
             _lb_status.text = @"已连接";
             self.lb_statusLink.text = @"语音对讲模式";
-            self.lb_statusTip.text = @"悟小空正处于语音模式，您可以试试进入我的家语音通话哦";
+            self.lb_statusTip.text = @"悟小空正处于语音模式，快给小宝贝发送语音消息吧";
            
             if ([self isPlayOneMedia]) {
                 
@@ -375,7 +389,6 @@
         case ToyStateMusicState:{
             
             _v_unLink.hidden = YES;
-            [self stopAnimation];
             
             _lb_status.text = @"已连接";
             self.lb_statusLink.text = @"音乐模式";
@@ -386,11 +399,11 @@
                 if ([_toyStatus.status isEqualToString:@"1"]) {
                     
                     self.playState = PlayStatePlayState;
-                    
+                     [self startAnimate];
                 }else{
                     
                     self.playState = PlayStateStopState;
-                    
+                     [self stopAnimate];
                 }
                 
             }
@@ -402,7 +415,7 @@
         case ToyStateStoryState:{
             
             _v_unLink.hidden = YES;
-            [self stopAnimation];
+            
             
             _lb_status.text = @"已连接";
             self.lb_statusLink.text = @"故事模式";
@@ -411,13 +424,11 @@
             if(_toyStatus.status){
                 
                 if ([_toyStatus.status isEqualToString:@"1"]) {
-                    
+                    [self startAnimate];
                     self.playState = PlayStatePlayState;
-                    
                 }else{
-                    
+                    [self stopAnimate];
                     self.playState = PlayStateStopState;
-                    
                 }
                 
             }
@@ -442,11 +453,9 @@
                     if ([_toyStatus.status isEqualToString:@"1"]) {
                         
                         self.playState = PlayStatePlayState;
-                        
                     }else{
                         
                         self.playState = PlayStateStopState;
-                        
                     }
                     
                 }
@@ -680,7 +689,7 @@
 - (void)loadMusicDetail{
     
     __weak typeof(self) weakSelf = self;
-    
+    [weakSelf stopAnimation];
     if ([self isPlayOneMedia]) {
         
         
@@ -691,8 +700,7 @@
         [[GCDQueue globalQueue] execute:^{
             [weakSelf queryMediaInfoWithMediaId:[NSNumber numberWithLongLong:[_toyStatus.mediaid longLongValue]]];
         }];
-        
-        
+        [weakSelf startAnimate];
         
     }else{
         
@@ -707,9 +715,7 @@
         }else{
             
             [self setPlayState:PlayStateStopState];
-            
         }
-        
         [[GCDQueue globalQueue] execute:^{
             
             [weakSelf queryAlbumInfoWithAlbumId:[NSNumber numberWithLongLong:[_toyStatus.albumid longLongValue]]];

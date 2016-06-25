@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>title</key>
+		<string>快速上手</string>
+		<key>content</key>
+		<string>1.请保持玩具处于开机状态，打开悟小空App，进入连接向导，输入您当前的Wi-Fi密码。
+2. 用顶针长按配置键5秒，直到听到玩具提示配置开始后松开。
+3.返回玩具配套App，点击下一步，等待玩具自动完成连接。
+4.配置过程中玩具指示灯会快速闪烁，听到玩具提示wifi连接成功后。
+5.返回玩具配置App进行设置操作。</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>玩具连不上网怎么办？</string>
+		<key>content</key>
+		<string>1. 检查家庭wifi信号是否稳定，玩具与路由器这间的物理距离应保持在路由器信号覆盖的范围内。
+2. 尝试按照快速连接向导重新进行wi-fi配置
+3. 检测路由器设置，确认已开启DHCP及UPnP服务，确认没有设置MAC地址白名单等限制行为。
+4. 检查路由kkkdj否开启了5G模式，快速配置网络目前不支持5G路由器
+5. 查看手机连接的路由器是否启用了企业级的加密模式(EnterpriseWPA)，玩具不支持此加密模式。</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>为什么玩具每隔几分钟就会自动断网？</string>
+		<key>content</key>
+		<string>玩具在非播放状态下超过5分钟，分自动休眠。按下机身任意键可唤醒玩具。唤醒后玩具会自动重新连接网络。</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>换了网络环境怎么办？</string>
+		<key>content</key>
+		<string>1.请保持玩具处于开机状态，打开悟小空App，在对应的玩具操作界面点击设置键，进入宝宝信息界面，点击Wifi配置进入配置向导，输入您当前的wi-fi密码。
+2.解开玩具外套，长按配置键5秒，直到听到玩具提示配置开始后松开。
+3.返回玩具配套App，点击下一步，等待玩具自动完成连接。
+4.配置过程中玩具指示灯会快速闪烁，听到玩具提示wifi连接成功后。</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>我能加入多个家庭圈吗？</string>
+		<key>content</key>
+		<string>当前版本下，一个帐号只能加入一个家庭圈，一台玩具也只能加入一个家庭圈</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>如果玩具在家里，我在不同地方，还可以跟孩子通过玩具对话吗？</string>
+		<key>content</key>
+		<string>可以，只要手机和玩具都连上了wifi，就能正常使用家庭圈功能。</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>手机给玩具发送语音消息无声音怎么办？</string>
+		<key>content</key>
+		<string>请先确认悟小空App已获取您的系统麦克风使用权限。若未开启此权限，请进行手机操作。具体方法如下：
+1. IOS系统：设置－隐私－麦克风选项中开启悟小空的语音权限
+2. 安卓系统（以魅族手机为例）： 设置-应用控制中开启本地/通话录音权限</string>
+	</dict>
+</array>
+</plist>

@@ -16,6 +16,7 @@
 #import "NDUserAPI.h"
 #import "MessageListVC.h"
 #import "NDGroupAPI.h"
+#import "ExplainVC.h"
 
 @interface ToyMoreVC ()<ToyChoiceDelegate>{
     
@@ -95,17 +96,20 @@
     
     [_mArr_data addObject:t_dic];
     
-    t_dic = [[NSMutableDictionary alloc] init];
-    [t_dic setValue:@"意见反馈" forKey:@"name"];
-    [t_dic setValue:@"icon_faceBack" forKey:@"icon"];
-    
-    [_mArr_data addObject:t_dic];
     
     t_dic = [[NSMutableDictionary alloc] init];
     [t_dic setValue:@"软件版本" forKey:@"name"];
     [t_dic setValue:@"icon_appUpdate" forKey:@"icon"];
     
     [_mArr_data addObject:t_dic];
+    
+    
+        t_dic = [[NSMutableDictionary alloc] init];
+        [t_dic setValue:@"意见反馈" forKey:@"name"];
+        [t_dic setValue:@"icon_faceBack" forKey:@"icon"];
+    
+        [_mArr_data addObject:t_dic];
+
     
     t_dic = [[NSMutableDictionary alloc] init];
     [t_dic setValue:@"消息中心" forKey:@"name"];
@@ -268,7 +272,7 @@
     
     if (section == 0) {
         
-        return 3;
+        return 2;
         
     } else {
         
@@ -340,6 +344,7 @@
     cell.imageView.image = [UIImage imageNamed:str_image];
     cell.textLabel.text  = str_name;
     
+    
     UIImageView *t_imagePoint = [cell viewWithTag:11];
     
     if (indexPath.section == 1 && indexPath.row == 0) {
@@ -373,14 +378,11 @@
     if (indexPath.section == 0) {
         switch (indexPath.row) {
             case 0:{
-                
+                ExplainVC *vc = [[ExplainVC alloc]init];
+                [self.navigationController pushViewController:vc animated:YES];
                 break;
             }
             case 1:{
-                
-                break;
-            }
-            case 2:{
                 
                 AppVersionVC *vc = [[AppVersionVC alloc] init];
                 [self.navigationController pushViewController:vc animated:YES];
