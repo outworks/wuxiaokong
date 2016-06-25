@@ -151,7 +151,16 @@
 #pragma mark - UITableViewDelegate
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    if (_dataList.count == 0) {
+        _v_info.hidden = NO;
+    }else{
+        _v_info.hidden = YES;
+    }
+    
     return [_dataList count];
+    
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

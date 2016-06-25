@@ -190,7 +190,6 @@
     
 }
 
-
 -(void)updataMusicPlayerBtn{
     
     if (!_toyStatus.mediaid || [_toyStatus.mediaid isEqual:@"0"] || ![_toyStatus.isonline isEqual:@"1"]) {
