@@ -231,317 +231,317 @@
     NSString *failDescription = @"";
     switch (errorCode) {
         case 1000:
-            failDescription = NSLocalizedString(@"ServiceNotFind", nil);
+            failDescription = NSLocalizedString(@"服务找不到", nil);
             break;
         case 1001:
-            failDescription = NSLocalizedString(@"ParameterWrong", nil);
+            failDescription = NSLocalizedString(@"参数有误", nil);
             break;
         case 1002:
-            failDescription = NSLocalizedString(@"InsufficientParameters", nil);
+            failDescription = NSLocalizedString(@"参数不足", nil);
             break;
         case 1003:
-            failDescription = NSLocalizedString(@"IPNotAllowedToLogin", nil);
+            failDescription = NSLocalizedString(@"ip不允许登录", nil);
             break;
         case 1012:
-            failDescription = NSLocalizedString(@"VerificationCodeNotSend", nil);
+            failDescription = NSLocalizedString(@"验证码未发送", nil);
             break;
         case 1011:
-            failDescription = NSLocalizedString(@"PasswordNotMatch", nil);
+            failDescription = NSLocalizedString(@"新旧密码不能一致", nil);
             break;
         case 1021:
-            failDescription = NSLocalizedString(@"OldPasswordWrong", nil);
+            failDescription = NSLocalizedString(@"旧密码错误", nil);
             break;
         case 2021:
-            failDescription = NSLocalizedString(@"DatabaseError", nil);
+            failDescription = NSLocalizedString(@"数据库错误", nil);
             break;
         case 2101:
-            failDescription = NSLocalizedString(@"GroupNotExist", nil);
+            failDescription = NSLocalizedString(@"群不存在", nil);
             break;
         case 2102:
-            failDescription = NSLocalizedString(@"InviteNotExist", nil);
+            failDescription = NSLocalizedString(@"邀请不存在", nil);
             break;
         case 2103:
-            failDescription = NSLocalizedString(@"NotGroupOwners", nil);
+            failDescription = NSLocalizedString(@"不是群所有者", nil);
             break;
         case 2104:
-            failDescription = NSLocalizedString(@"UserNotExist", nil);
+            failDescription = NSLocalizedString(@"用户不存在", nil);
             break;
         case 2105:
-            failDescription = NSLocalizedString(@"EquipmentNotExist", nil);
+            failDescription = NSLocalizedString(@"设备不存在", nil);
             break;
         case 2106:
-            failDescription = NSLocalizedString(@"DatabaseError", nil);
+            failDescription = NSLocalizedString(@"数据库错误", nil);
             break;
         case 2107:
-            failDescription = NSLocalizedString(@"ApplyExist", nil);
+            failDescription = NSLocalizedString(@"申请已存在", nil);
             break;
         case 2108:
-            failDescription = NSLocalizedString(@"ApplyNotExist", nil);
+            failDescription = NSLocalizedString(@"申请不存在", nil);
             break;
         case 2109:
-            failDescription = NSLocalizedString(@"JoinedOtherFamilyCircle", nil);
+            failDescription = NSLocalizedString(@"对方已加入其它家庭圈", nil);
             break;
         case 2110:
-            failDescription = NSLocalizedString(@"NotFindEmail", nil);
+            failDescription = NSLocalizedString(@"找不到邮件", nil);
             break;
         case 2111:
         {
             if ([ShareValue sharedShareValue].cur_toyState == ToyStateDormancyState) {
-               failDescription = NSLocalizedString(@"EquipmentOffline1", nil);
+               failDescription = NSLocalizedString(@"设备离线,请手动唤醒", nil);
             }else{
-                failDescription = NSLocalizedString(@"EquipmentOffline", nil);
+                failDescription = NSLocalizedString(@"设备休眠,请手动唤醒", nil);
             }
         }
             break;
         case 2112:
-            failDescription = NSLocalizedString(@"NoUpdate", nil);
+            failDescription = NSLocalizedString(@"没有更新", nil);
             break;
         case 2113:
-            failDescription = NSLocalizedString(@"ContactFailure", nil);
+            failDescription = NSLocalizedString(@"联系人失效", nil);
             break;
         case 2115:
-            failDescription = NSLocalizedString(@"EquipmentBusying", nil);
+            failDescription = NSLocalizedString(@"设备正忙", nil);
             break;
         case 2116:
-            failDescription = NSLocalizedString(@"TopicNotExist", nil);
+            failDescription = NSLocalizedString(@"主题不存在，请下载", nil);
             break;
         case 2117:
-            failDescription = NSLocalizedString(@"CurrentAlbumIDError", nil);
+            failDescription = NSLocalizedString(@"当前专辑ID不正确", nil);
             break;
         case 2118:
             failDescription = NSLocalizedString(@"ExistingPownloadsPleaseWait", nil);
             break;
         case 2119:
-            failDescription = NSLocalizedString(@"NotFindGroup", nil);
+            failDescription = NSLocalizedString(@"找不到群", nil);
             break;
         case 2120:
-            failDescription = NSLocalizedString(@"MediaUsedNotDelete", nil);
+            failDescription = NSLocalizedString(@"媒体被使用，不能删除", nil);
             break;
         case 2121:
-            failDescription = NSLocalizedString(@"FriendsHaveReachedMax", nil);
+            failDescription = NSLocalizedString(@"小伙伴达最大值，无法增加小伙伴", nil);
             break;
         case 2122:
-            failDescription = NSLocalizedString(@"SubscribedRadioTimeConflict", nil);
+            failDescription = NSLocalizedString(@"和其他订阅的电台时间冲突", nil);
             break;
         case 2123:
-            failDescription = NSLocalizedString(@"RadioNotExist", nil);
+            failDescription = NSLocalizedString(@"电台不存在", nil);
             break;
         case 2124:
-            failDescription = NSLocalizedString(@"ToysInTheTimesSubscribedAnotherStation", nil);
+            failDescription = NSLocalizedString(@"玩具在该时段订阅了其它电台", nil);
             break;
         case 2125:
-            failDescription = NSLocalizedString(@"RadioContentDateError", nil);
+            failDescription = NSLocalizedString(@"电台内容日期有误", nil);
             break;
         case 2126:
-            failDescription = NSLocalizedString(@"MediaDownloadingPleaseWait", nil);
+            failDescription = NSLocalizedString(@"媒体正在下载，请稍候", nil);
             break;
         case 2127:
-            failDescription = NSLocalizedString(@"DiskFulledNotDownload", nil);
+            failDescription = NSLocalizedString(@"磁盘已满，无法下载媒体", nil);
             break;
         case 2128:
-            failDescription = NSLocalizedString(@"AlbumNotDownloadFinishPleaseWait", nil);
+            failDescription = NSLocalizedString(@"专辑还未下载完成，请稍候", nil);
             break;
         case 3000:
-            failDescription = NSLocalizedString(@"MySqlDirectionError", nil);
+            failDescription = NSLocalizedString(@"mysql方问错误", nil);
             break;
         case 3001:
-            failDescription = NSLocalizedString(@"ParameterError", nil);
+            failDescription = NSLocalizedString(@"参数错误", nil);
             break;
         case 3002:
-            failDescription = NSLocalizedString(@"UserPermissionError", nil);
+            failDescription = NSLocalizedString(@"用户权限错误", nil);
             break;
         case 3003:
-            failDescription = NSLocalizedString(@"ScriptCountTooMore", nil);
+            failDescription = NSLocalizedString(@"脚本数量太多", nil);
             break;
         case 3004:
-            failDescription = NSLocalizedString(@"TimerCountTooMore", nil);
+            failDescription = NSLocalizedString(@"定时器数量太多", nil);
             break;
         case 3005:
-            failDescription = NSLocalizedString(@"MediaUsedUnableDelete", nil);
+            failDescription = NSLocalizedString(@"媒体被使用，无法删除", nil);
             break;
         case 3006:
-            failDescription = NSLocalizedString(@"EquipmentCountTooMore", nil);
+            failDescription = NSLocalizedString(@"设备数量太多", nil);
             break;
         case 3007:
-            failDescription = NSLocalizedString(@"UserNumTooMore", nil);
+            failDescription = NSLocalizedString(@"用户数量太多", nil);
             break;
         case 3008:
-            failDescription = NSLocalizedString(@"RoomNotExist", nil);
+            failDescription = NSLocalizedString(@"房间不存在", nil);
             break;
         case 3009:
-            failDescription = NSLocalizedString(@"TimerParameterError", nil);
+            failDescription = NSLocalizedString(@"定时器参数有误", nil);
             break;
         case 3010:
-            failDescription = NSLocalizedString(@"TimerNotExist", nil);
+            failDescription = NSLocalizedString(@"定时器不存在", nil);
             break;
         case 3011:
-            failDescription = NSLocalizedString(@"ScriptNotExist", nil);
+            failDescription = NSLocalizedString(@"脚本不存在", nil);
             break;
         case 3012:
-            failDescription = NSLocalizedString(@"HomeNumberTooMore", nil);
+            failDescription = NSLocalizedString(@"家的个数太多", nil);
             break;
         case 3013:
-            failDescription = NSLocalizedString(@"NotHomeOwner", nil);
+            failDescription = NSLocalizedString(@"不是家的拥有者", nil);
             break;
         case 3014:
-            failDescription = NSLocalizedString(@"HomeNotExist", nil);
+            failDescription = NSLocalizedString(@"家不存在", nil);
             break;
         case 3015:
-            failDescription = NSLocalizedString(@"AuthorizationRoleError", nil);
+            failDescription = NSLocalizedString(@"授权角色不对", nil);
             break;
         case 3016:
-            failDescription = NSLocalizedString(@"PermissionInadequate", nil);
+            failDescription = NSLocalizedString(@"权限不足", nil);
             break;
         case 5000:
-            failDescription = NSLocalizedString(@"SMSSendFailure", nil);
+            failDescription = NSLocalizedString(@"短信发送失败", nil);
             break;
         case 5001:
-            failDescription = NSLocalizedString(@"SMSSendedNotRequestAgain", nil);
+            failDescription = NSLocalizedString(@"短信已发送，请勿重复请求", nil);
             break;
         case 5002:
-            failDescription = NSLocalizedString(@"PhoneNumWrong", nil);
+            failDescription = NSLocalizedString(@"手机号码不正确", nil);
             break;
         case 5003:
-            failDescription = NSLocalizedString(@"AuthorizationFailure", nil);
+            failDescription = NSLocalizedString(@"授权失败", nil);
             break;
         case 5004:
-            failDescription = NSLocalizedString(@"UserNameFormatError", nil);
+            failDescription = NSLocalizedString(@"用户名格式错误", nil);
             break;
         case 5005:
-            failDescription = NSLocalizedString(@"PasswordError", nil);
+            failDescription = NSLocalizedString(@"密码错误", nil);
             break;
         case 5006:
-            failDescription = NSLocalizedString(@"UserNameNotExist", nil);
+            failDescription = NSLocalizedString(@"用户名不存在", nil);
             break;
         case 5007:
-            failDescription = NSLocalizedString(@"UserNotLogin", nil);
+            failDescription = NSLocalizedString(@"用户未登录", nil);
             break;
         case 5008:
-            failDescription = NSLocalizedString(@"RequestError", nil);
+            failDescription = NSLocalizedString(@"请求错误", nil);
             break;
         case 5009:
         case 5019:
-            failDescription = NSLocalizedString(@"ServerException", nil);
+            failDescription = NSLocalizedString(@"服务器异常", nil);
             break;
         case 5010:
-            failDescription = NSLocalizedString(@"UnbindPhone", nil);
+            failDescription = NSLocalizedString(@"未绑定手机", nil);
             break;
         case 5011:
-            failDescription = NSLocalizedString(@"PasswordFormatError", nil);
+            failDescription = NSLocalizedString(@"密码格式错误", nil);
             break;
         case 5012:
-            failDescription = NSLocalizedString(@"AccountError", nil);
+            failDescription = NSLocalizedString(@"账号错误", nil);
             break;
         case 5013:
-            failDescription = NSLocalizedString(@"ResetPasswordHasSame", nil);
+            failDescription = NSLocalizedString(@"重置的密码相同", nil);
             break;
         case 5014:
-            failDescription = NSLocalizedString(@"PhoneNumBound", nil);
+            failDescription = NSLocalizedString(@"手机号码已被绑定", nil);
             break;
         case 5015:
-            failDescription = NSLocalizedString(@"VerificationCodeFailure", nil);
+            failDescription = NSLocalizedString(@"验证码已失效", nil);
             break;
         case 5016:
-            failDescription = NSLocalizedString(@"VerificationCodeError", nil);
+            failDescription = NSLocalizedString(@"验证码错误,请重新输入", nil);
             break;
         case 5017:
-            failDescription = NSLocalizedString(@"UserLogined", nil);
+            failDescription = NSLocalizedString(@"用户已经登录", nil);
             break;
         case 5018:
-            failDescription = NSLocalizedString(@"UserFormatError", nil);
+            failDescription = NSLocalizedString(@"用户名格式错误", nil);
             break;
         case 5020:
-            failDescription = NSLocalizedString(@"UserNameExist", nil);
+            failDescription = NSLocalizedString(@"用户名已经存在", nil);
             break;
         case 5021:
-            failDescription = NSLocalizedString(@"EquipmentNotExist", nil);
+            failDescription = NSLocalizedString(@"设备不存在", nil);
             break;
         case 5022:
-            failDescription = NSLocalizedString(@"ThirdAPINotOpen", nil);
+            failDescription = NSLocalizedString(@"第三方接口未开放", nil);
             break;
         case 5023:
-            failDescription = NSLocalizedString(@"ThirdLoginFail", nil);
+            failDescription = NSLocalizedString(@"第三方登录失败", nil);
             break;
         case 5024:
-            failDescription = NSLocalizedString(@"UserIdNotExist", nil);
+            failDescription = NSLocalizedString(@"用户Id不存在", nil);
             break;
         case 5025:
-            failDescription = NSLocalizedString(@"ServerError", nil);
+            failDescription = NSLocalizedString(@"后端服务有误", nil);
             break;
         case 5026:
-            failDescription = NSLocalizedString(@"EquipmentNotOnline", nil);
+            failDescription = NSLocalizedString(@"设备不在线", nil);
             break;
         case 5200:
-            failDescription = NSLocalizedString(@"UpdateUserInfoFail", nil);
+            failDescription = NSLocalizedString(@"更新用户信息失败", nil);
             break;
         case 5201:
-            failDescription = NSLocalizedString(@"GetUserInfoFail", nil);
+            failDescription = NSLocalizedString(@"获取用户信息失败", nil);
             break;
         case 5202:
-            failDescription = NSLocalizedString(@"CommercialTenantsNotExist", nil);
+            failDescription = NSLocalizedString(@"商户不存在", nil);
             break;
         case 5203:
-            failDescription = NSLocalizedString(@"LoginOuttime", nil);
+            failDescription = NSLocalizedString(@"登录超时", nil);
             break;
         case 5204:
-            failDescription = NSLocalizedString(@"CommercialTenantsNotLogin", nil);
+            failDescription = NSLocalizedString(@"商户未登录", nil);
             break;
         case 5205:
-            failDescription = NSLocalizedString(@"RegistFail", nil);
+            failDescription = NSLocalizedString(@"注册失败", nil);
             break;
         case 5206:
-            failDescription = NSLocalizedString(@"CommercialTenantsNameNotStandard", nil);
+            failDescription = NSLocalizedString(@"商户名字不规范", nil);
             break;
         case 5207:
-            failDescription = NSLocalizedString(@"CommercialTenantsPasswordError", nil);
+            failDescription = NSLocalizedString(@"商户密码错误", nil);
             break;
         case 5208:
-            failDescription = NSLocalizedString(@"FileUploadError", nil);
+            failDescription = NSLocalizedString(@"文件上传有误", nil);
             break;
         case 5209:
-            failDescription = NSLocalizedString(@"CommercialTenantsInfoError", nil);
+            failDescription = NSLocalizedString(@"商户信息有误", nil);
             break;
         case 5210:
-            failDescription = NSLocalizedString(@"CommercialTenantsNameError", nil);
+            failDescription = NSLocalizedString(@"商户名有误", nil);
             break;
         case 5211:
-            failDescription = NSLocalizedString(@"CommercialTenantsBrandError", nil);
+            failDescription = NSLocalizedString(@"商户品牌有误", nil);
             break;
         case 5212:
-            failDescription = NSLocalizedString(@"CommercialTenantsExist", nil);
+            failDescription = NSLocalizedString(@"商户已经存在", nil);
             break;
         case 5213:
-            failDescription = NSLocalizedString(@"UserNotBelongToCommercialTenants", nil);
+            failDescription = NSLocalizedString(@"用户不属于商户", nil);
             break;
         case 6000:
-            failDescription = NSLocalizedString(@"ControlTimeout", nil);
+            failDescription = NSLocalizedString(@"控制超时", nil);
             break;
         case 6001:
-            failDescription = NSLocalizedString(@"EquipmentNotOnline", nil);
+            failDescription = NSLocalizedString(@"设备不在线", nil);
             break;
         case 6002:
-            failDescription = NSLocalizedString(@"TokenOutDate", nil);
+            failDescription = NSLocalizedString(@"token过期", nil);
             break;
         case 6003:
-            failDescription = NSLocalizedString(@"ServerHandleError", nil);
+            failDescription = NSLocalizedString(@"服务器处理错误", nil);
             break;
         case 6004:
-            failDescription = NSLocalizedString(@"AuthCheckNotPass", nil);
+            failDescription = NSLocalizedString(@"auth校验不通过", nil);
             break;
         case 6005:
-            failDescription = NSLocalizedString(@"DataSignatureError", nil);
+            failDescription = NSLocalizedString(@"数据签名不对", nil);
             break;
         case 6006:
-            failDescription = NSLocalizedString(@"TimeError", nil);
+            failDescription = NSLocalizedString(@"时间不对，请同步服务器时间", nil);
             break;
         case 6007:
-            failDescription = NSLocalizedString(@"HousekeeperPasswordError", nil);
+            failDescription = NSLocalizedString(@"管家密码不对", nil);
             break;
         case 6008:
-            failDescription = NSLocalizedString(@"HousekeeperNotBelongToYour", nil);
+            failDescription = NSLocalizedString(@"管家不属于你的", nil);
             break;
         case 7001:
-            failDescription = NSLocalizedString(@"UserPointInsufficient", nil);
+            failDescription = NSLocalizedString(@"用户积分不足", nil);
             break;
         default:
             break;

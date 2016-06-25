@@ -118,7 +118,7 @@
     }
     
     if (_page == 1) {
-        _hud = [ShowHUD showText:NSLocalizedString(@"Requesting", nil) configParameter:^(ShowHUD *config) {
+        _hud = [ShowHUD showText:NSLocalizedString(@"请求中...", nil) configParameter:^(ShowHUD *config) {
         } inView:self.view];
     }
     
@@ -351,12 +351,12 @@
 
 - (IBAction)handleSaveDidClick:(id)sender {
     if (_textField.text.length == 0) {
-        [ShowHUD showTextOnly:NSLocalizedString(@"PleaseEnterAlbumName", nil) configParameter:^(ShowHUD *config) {
+        [ShowHUD showTextOnly:NSLocalizedString(@"请输入专辑名称", nil) configParameter:^(ShowHUD *config) {
         } duration:1.5f inView:[[UIApplication sharedApplication] windows].firstObject];
         return;
     }
     if (_textField.text.length > 16) {
-        [ShowHUD showError:NSLocalizedString(@"AlbumNameTooLong", nil) configParameter:^(ShowHUD *config) {
+        [ShowHUD showError:NSLocalizedString(@"专辑名称超过16位咯~", nil) configParameter:^(ShowHUD *config) {
         } duration:1.5f inView:[[UIApplication sharedApplication] windows].firstObject];
         return;
     }

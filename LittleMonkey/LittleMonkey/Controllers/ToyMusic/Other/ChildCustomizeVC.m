@@ -342,7 +342,7 @@
 /*改变删除按钮的title*/
 -(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return NSLocalizedString(@"Delete", nil);
+    return NSLocalizedString(@"删除", nil);
 }
 
 /*删除用到的函数*/
@@ -357,12 +357,12 @@
         NDAlbumDeleteParams *params = [[NDAlbumDeleteParams alloc] init];
         params.album_id = t_albumInfo.album_id;
         
-        ShowHUD *hud = [ShowHUD showText:NSLocalizedString(@"Deleting", nil) configParameter:^(ShowHUD *config) {
+        ShowHUD *hud = [ShowHUD showText:NSLocalizedString(@"删除中...", nil) configParameter:^(ShowHUD *config) {
         } inView:self.view];
         
         [NDAlbumAPI albumDeleteWithParams:params completionBlockWithSuccess:^{
             [hud hide];
-            [ShowHUD showSuccess:NSLocalizedString(@"DeletedSuccess", nil) configParameter:^(ShowHUD *config) {
+            [ShowHUD showSuccess:NSLocalizedString(@"删除成功", nil) configParameter:^(ShowHUD *config) {
             } duration:1.5f inView:weakSelf.view];
             
             [weakSelf.arr_currentData removeObject:t_albumInfo];
@@ -391,12 +391,12 @@
 
 - (IBAction)handleSaveDidClick:(id)sender {
     if (_textField.text.length == 0) {
-        [ShowHUD showTextOnly:NSLocalizedString(@"PleaseEnterAlbumName", nil) configParameter:^(ShowHUD *config) {
+        [ShowHUD showTextOnly:NSLocalizedString(@"请输入专辑名称", nil) configParameter:^(ShowHUD *config) {
         } duration:1.5f inView:[[UIApplication sharedApplication] windows].firstObject];
         return;
     }
     if (_textField.text.length > 16) {
-        [ShowHUD showError:NSLocalizedString(@"AlbumNameTooLong", nil) configParameter:^(ShowHUD *config) {
+        [ShowHUD showError:NSLocalizedString(@"专辑名称超过16位咯~", nil) configParameter:^(ShowHUD *config) {
         } duration:1.5f inView:[[UIApplication sharedApplication] windows].firstObject];
         return;
     }

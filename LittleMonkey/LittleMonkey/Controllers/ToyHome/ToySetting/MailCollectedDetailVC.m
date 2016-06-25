@@ -40,7 +40,7 @@
     
     if (_isContact) {
         
-        self.navigationItem.title = NSLocalizedString(@"ChatRecord", nil);
+        self.navigationItem.title = NSLocalizedString(@"聊天记录", nil);
         
         __weak MailCollectedDetailVC *weakSelf = self;
         [self.tableView addPullScrollingWithActionHandler:^{

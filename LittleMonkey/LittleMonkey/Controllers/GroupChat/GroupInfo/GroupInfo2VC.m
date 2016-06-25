@@ -112,19 +112,19 @@
         [weakSelf.tfNickName resignFirstResponder];
         
         if ([weakSelf.tfNickName.text isEqualToString:@""]) {
-            [ShowHUD showWarning:NSLocalizedString(@"PleaseEnterTheGroupName", nil) configParameter:^(ShowHUD *config) {
+            [ShowHUD showWarning:NSLocalizedString(@"请输入群名", nil) configParameter:^(ShowHUD *config) {
             } duration:1.5f inView:[[UIApplication sharedApplication] windows].firstObject];
             
             return ;
         }
         
         if (_tfNickName.text.length > NickName_MaxLen) {
-            [ShowHUD showError:NSLocalizedString(@"GroupNameTooLong", nil) configParameter:^(ShowHUD *config) {
+            [ShowHUD showError:NSLocalizedString(@"群名超过16位咯~", nil) configParameter:^(ShowHUD *config) {
             } duration:1.5f inView:[[UIApplication sharedApplication] windows].firstObject];
             return;
         }
         
-        ShowHUD *hud = [ShowHUD showText:NSLocalizedString(@"Saving", nil) configParameter:^(ShowHUD *config) {
+        ShowHUD *hud = [ShowHUD showText:NSLocalizedString(@"保存中...", nil) configParameter:^(ShowHUD *config) {
         } inView:[[UIApplication sharedApplication] windows].firstObject];
         
         NDGroupUpdateParams *params = [[NDGroupUpdateParams alloc] init];
@@ -135,7 +135,7 @@
         [NDGroupAPI groupUpdateWithParams:params
                completionBlockWithSuccess:^(GroupDetail *data) {
                    [hud hide];
-                   [ShowHUD showSuccess:NSLocalizedString(@"ChangeSuccess", nil) configParameter:^(ShowHUD *config) {
+                   [ShowHUD showSuccess:NSLocalizedString(@"修改成功", nil) configParameter:^(ShowHUD *config) {
                    } duration:1.5f inView:[[UIApplication sharedApplication] windows].firstObject];
                    _groupDetail.name = weakSelf.tfNickName.text;
                    [self updateNickNameViewHiddenAnimateIfNeed];

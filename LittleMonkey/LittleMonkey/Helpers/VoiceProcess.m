@@ -59,7 +59,7 @@ static VoiceProcess* _instance;
         NSLog(@"volume:%f",volume);
     };
     meterObserver.errorBlock = ^(NSError *error,MLAudioMeterObserver *meterObserver){
-        [[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Error", nil) message:error.userInfo[NSLocalizedDescriptionKey] delegate:nil cancelButtonTitle:nil otherButtonTitles:@"sure", nil]show];
+        [[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"错误", nil) message:error.userInfo[NSLocalizedDescriptionKey] delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil]show];
     };
     self.meterObserver = meterObserver;
     
@@ -72,7 +72,7 @@ static VoiceProcess* _instance;
     recorder.receiveErrorBlock = ^(NSError *error){
         weakSelf.meterObserver.audioQueue = nil;
         
-        [[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Error", nil) message:error.userInfo[NSLocalizedDescriptionKey] delegate:nil cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Sure", nil), nil]show];
+        [[[UIAlertView alloc]initWithTitle:NSLocalizedString(@"错误", nil) message:error.userInfo[NSLocalizedDescriptionKey] delegate:nil cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"确定", nil), nil]show];
     };
     
     recorder.fileWriterDelegate = mp3Writer;
@@ -255,7 +255,7 @@ static VoiceProcess* _instance;
         
     } errorBlock:^(BOOL NotReachable) {
         if (self.delegate &&[self.delegate respondsToSelector:@selector(onSendFail:)]) {
-            [self.delegate onSendFail:NSLocalizedString(@"NetworkNotToForce", nil)];
+            [self.delegate onSendFail:NSLocalizedString(@"网络不给力", nil)];
         }
     }];
     return YES;
@@ -294,7 +294,7 @@ static VoiceProcess* _instance;
         
     } errorBlock:^(BOOL NotReachable) {
         if (self.delegate &&[self.delegate respondsToSelector:@selector(onSendFail:)]) {
-            [self.delegate onSendFail:NSLocalizedString(@"NetworkNotToForce", nil)];
+            [self.delegate onSendFail:NSLocalizedString(@"网络不给力", nil)];
         }
     }];
     return YES;

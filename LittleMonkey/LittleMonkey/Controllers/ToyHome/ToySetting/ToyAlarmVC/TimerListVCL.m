@@ -132,7 +132,7 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
         _waitDelete = _timerList[indexPath.row];
-        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"Tips", nil) message:NSLocalizedString(@"是否确定要删除定时?", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"取消", nil) otherButtonTitles:NSLocalizedString(@"确定", nil), nil];
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"提示", nil) message:NSLocalizedString(@"是否确定要删除定时?", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"取消", nil) otherButtonTitles:NSLocalizedString(@"确定", nil), nil];
         [alertView show];
     }
 }

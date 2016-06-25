@@ -15,24 +15,24 @@
     
     if (self.msg_from.intValue == 0) {
         
-        return NSLocalizedString(@"MessageCenter", nil);
+        return NSLocalizedString(@"消息中心", nil);
         
     }
     
     if (self.msg_from.intValue == 1) {
         
-        return NSLocalizedString(@"FriendsNotice", nil);
+        return NSLocalizedString(@"好友通知", nil);
         
     }
     
     if (self.msg_from.intValue == 431) {
         
-        return NSLocalizedString(@"OfficialDynamic", nil);
+        return NSLocalizedString(@"官方动态", nil);
         
     }
     if (self.msg_from.intValue == 432) {
         
-        return NSLocalizedString(@"ParentingKnowledge", nil);
+        return NSLocalizedString(@"育儿知识", nil);
         
     }
     

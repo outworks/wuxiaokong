@@ -185,7 +185,7 @@
         
         if (_page_album == 1) {
             
-            _hud = [ShowHUD showText:NSLocalizedString(@"Requesting", nil) configParameter:^(ShowHUD *config) {
+            _hud = [ShowHUD showText:NSLocalizedString(@"请求中...", nil) configParameter:^(ShowHUD *config) {
             } inView:self.view];
             
         }
@@ -243,7 +243,7 @@
     
     __weak typeof(self) weakSelf = self;
     
-    _hud = [ShowHUD showText:NSLocalizedString(@"Requesting", nil) configParameter:^(ShowHUD *config) {
+    _hud = [ShowHUD showText:NSLocalizedString(@"请求中...", nil) configParameter:^(ShowHUD *config) {
     } inView:self.view];
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
@@ -343,13 +343,13 @@
         
         if (_type == 0) {
             
-            _hud = [ShowHUD showText:NSLocalizedString(@"Requesting", nil) configParameter:^(ShowHUD *config) {
+            _hud = [ShowHUD showText:NSLocalizedString(@"请求中...", nil) configParameter:^(ShowHUD *config) {
             } inView:self.view];
             
         }else{
             if (_page_album == 1) {
                 
-                _hud = [ShowHUD showText:NSLocalizedString(@"Requesting", nil) configParameter:^(ShowHUD *config) {
+                _hud = [ShowHUD showText:NSLocalizedString(@"请求中...", nil) configParameter:^(ShowHUD *config) {
                 } inView:self.view];
                 
             }
@@ -420,7 +420,7 @@
         
         __weak typeof(self) weakSelf = self;
         
-        _hud = [ShowHUD showText:NSLocalizedString(@"Requesting", nil) configParameter:^(ShowHUD *config) {
+        _hud = [ShowHUD showText:NSLocalizedString(@"请求中...", nil) configParameter:^(ShowHUD *config) {
         } inView:self.view];
         
         NDAlbumDetailParams *params = [[NDAlbumDetailParams alloc] init];
@@ -903,11 +903,11 @@
                 
                 [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFCATION_DOWNLOADSTATUSARR object:nil userInfo:nil];
                 if ([ShareValue sharedShareValue].cur_toyState == ToyStateMusicState || [ShareValue sharedShareValue].cur_toyState == ToyStateStoryState) {
-                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:NSLocalizedString(@"AddDownloadQueue2", nil) delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"忽略", nil];
+                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:NSLocalizedString(@"已添加到下载队列，切换至对讲模式开始下载，是否马上切换？", nil) delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"忽略", nil];
                     alert.tag = 11;
                     [alert show];
                 }else{
-                    [ShowHUD showSuccess:NSLocalizedString(@"AddDownloadQueue", nil) configParameter:^(ShowHUD *config) {
+                    [ShowHUD showSuccess:NSLocalizedString(@"已添加到下载队列", nil) configParameter:^(ShowHUD *config) {
                     } duration:2.0f inView:ApplicationDelegate.window];
                 }
                 
@@ -938,14 +938,14 @@
         //params.album_type =@0;
         params.medialist = [self gainMediaList:_arr_selectedData];
         
-        _hud = [ShowHUD showText:NSLocalizedString(@"Changing", nil) configParameter:^(ShowHUD *config) {
+        _hud = [ShowHUD showText:NSLocalizedString(@"切换中...", nil) configParameter:^(ShowHUD *config) {
         } inView:self.view];
         
         [NDToyAPI toyChangeAlbumWithParams:params completionBlockWithSuccess:^{
             
             if (_hud)  [_hud hide];
             
-            [ShowHUD showSuccess:NSLocalizedString(@"ChangeSuccessful", nil) configParameter:^(ShowHUD *config) {
+            [ShowHUD showSuccess:NSLocalizedString(@"切换成功", nil) configParameter:^(ShowHUD *config) {
             } duration:1.5f inView:self.view];
             
         } Fail:^(int code, NSString *failDescript) {
@@ -994,7 +994,7 @@
             
             _v_info.hidden = NO;
             
-            _lb_info.text = NSLocalizedString(@"CurrentAlbumNotSongs", nil);
+            _lb_info.text = NSLocalizedString(@"当前专辑暂无歌曲", nil);
             
         }else{
             _v_info.hidden = YES;
@@ -1233,16 +1233,16 @@
         [NDToyAPI toyChangeModeWithParams:params completionBlockWithSuccess:^(NDToyChangeModeResult *result) {
             if (result.isonline) {
                 if ([result.isonline boolValue]) {
-                    [ShowHUD showSuccess:NSLocalizedString(@"ChangeSuccessful", nil) configParameter:^(ShowHUD *config) {
+                    [ShowHUD showSuccess:NSLocalizedString(@"切换成功", nil) configParameter:^(ShowHUD *config) {
                     } duration:1.5f inView:self.view];
                 }else{
-                    [ShowHUD showSuccess:NSLocalizedString(@"EquipmentNotOnlineFiveMinuteEffect", nil)
+                    [ShowHUD showSuccess:NSLocalizedString(@"设备不在线，五分钟内生效", nil)
                          configParameter:^(ShowHUD *config) {
                          } duration:1.5f inView:self.view];
                 }
                 return ;
             }
-            [ShowHUD showSuccess:NSLocalizedString(@"ChangeSuccessful", nil) configParameter:^(ShowHUD *config) {
+            [ShowHUD showSuccess:NSLocalizedString(@"切换成功", nil) configParameter:^(ShowHUD *config) {
             } duration:1.5f inView:self.view];
         } Fail:^(int code, NSString *failDescript) {
             [ShowHUD showError:failDescript configParameter:^(ShowHUD *config) {

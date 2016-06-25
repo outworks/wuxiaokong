@@ -18,7 +18,7 @@
     self = [super init];
     if (self) {
         self.imageView.image = [UIImage imageNamed:@"icon_nonInfo"];
-        self.lbTitle.text = NSLocalizedString(@"NoData", nil);
+        self.lbTitle.text = NSLocalizedString(@"当前暂无数据", nil);
     }
     return self;
 }
