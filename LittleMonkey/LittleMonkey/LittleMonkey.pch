@@ -1,0 +1,49 @@
+//
+//  LittleMonkey.pch
+//  LittleMonkey
+//
+//  Created by huanglurong on 16/4/5.
+//  Copyright © 2016年 NDHcat. All rights reserved.
+//
+
+#ifndef LittleMonkey_pch
+#define LittleMonkey_pch
+
+/*------------------------------------------------- 
+ * $(SRCROOT)/$(PROJECT_NAME)/LittleMonkey.pch 
+ * -------------------------------------------------*/
+
+
+#ifndef __IPHONE_4_0
+
+#warning "This project uses features only available in iOS SDK 4.0 and later." 
+
+#endif 
+
+#ifdef __OBJC__ 
+
+/* Add your header file here. */
+
+#import <Availability.h>
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+#import "PureLayout.h"
+#import "YXGCD.h"
+
+#import "UtilsMacro.h"
+#import "ARCSingletonTemplate.h"
+#import "NoticeMacro.h"
+#import "URLMacro.h"
+#import "ExtMacro.h"
+
+#import "ShareValue.h"
+#import "ShareFun.h"
+
+#import "NDConfig.h" //地址管理
+#import "ShowHUD.h"
+
+#import "AppDelegate.h"
+
+#endif
+#endif /* LittleMonkey_pch */

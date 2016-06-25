@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1713" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="70" id="KGk-i7-Jjw" customClass="ChildMediaBatCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pLg-Zx-owM">
+                        <rect key="frame" x="0.0" y="68" width="320" height="1"/>
+                        <color key="backgroundColor" red="0.8980392157" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="4fA-WI-NmF"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="黄金脆皮鸡黄金脆皮鸡黄金脆皮鸡黄金脆皮鸡黄金脆皮鸡黄金脆皮鸡黄金脆皮鸡黄金脆皮鸡" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4b7-ww-3RV">
+                        <rect key="frame" x="8" y="14" width="238" height="41"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3.66M" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qms-GY-ow6">
+                        <rect key="frame" x="273" y="18" width="39" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YJe-Zw-iX9">
+                        <rect key="frame" x="274" y="22" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="R2w-QR-duB"/>
+                            <constraint firstAttribute="width" constant="40" id="kF3-EX-Ckz"/>
+                        </constraints>
+                        <state key="normal" image="checkbox_uncheck_1"/>
+                        <state key="selected" image="checkbox_check_1"/>
+                        <connections>
+                            <action selector="btnCheckAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="6ZG-y7-h8R"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottomMargin" secondItem="pLg-Zx-owM" secondAttribute="bottom" constant="-8" id="13V-Uu-J3K"/>
+                    <constraint firstItem="YJe-Zw-iX9" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="7" id="96o-hw-sNC"/>
+                    <constraint firstItem="YJe-Zw-iX9" firstAttribute="top" secondItem="Qms-GY-ow6" secondAttribute="bottom" constant="-12" id="ID8-7R-6ny"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Qms-GY-ow6" secondAttribute="trailing" id="Kiu-ha-uhN"/>
+                    <constraint firstItem="4b7-ww-3RV" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="LoG-Wv-QYH"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="pLg-Zx-owM" secondAttribute="trailing" constant="-8" id="M9b-SP-64H"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="YJe-Zw-iX9" secondAttribute="trailing" constant="-2" id="MsQ-3n-DlO"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="4b7-ww-3RV" secondAttribute="leading" id="Sn5-S9-hob"/>
+                    <constraint firstItem="YJe-Zw-iX9" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4b7-ww-3RV" secondAttribute="trailing" constant="22" id="Y03-2g-Lrj"/>
+                    <constraint firstItem="pLg-Zx-owM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="n7t-kD-Ox8"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="btn_check" destination="YJe-Zw-iX9" id="Mia-D1-CPG"/>
+                <outlet property="lb_size" destination="Qms-GY-ow6" id="Tlj-K5-JZH"/>
+                <outlet property="lb_title" destination="4b7-ww-3RV" id="Ylk-o2-NuX"/>
+            </connections>
+            <point key="canvasLocation" x="198" y="388"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="checkbox_check_1" width="19" height="19"/>
+        <image name="checkbox_uncheck_1" width="19" height="19"/>
+    </resources>
+</document>

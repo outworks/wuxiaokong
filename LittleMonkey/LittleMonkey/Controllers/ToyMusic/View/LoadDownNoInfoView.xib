@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1713" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="LoadDownNoInfoView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loaddown_music" translatesAutoresizingMaskIntoConstraints="NO" id="ywt-De-HR3">
+                    <rect key="frame" x="129" y="100" width="62" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="62" id="Xno-d0-jgK"/>
+                        <constraint firstAttribute="height" constant="60" id="jD0-a8-XP6"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hJl-Eb-oIp">
+                    <rect key="frame" x="160" y="180" width="0.0" height="0.0"/>
+                    <constraints>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" id="TfE-Gs-nLL"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" id="bh1-2b-orK"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" red="0.67450980392156867" green="0.67450980392156867" blue="0.68235294117647061" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sgn-eX-1un" userLabel="按钮">
+                    <rect key="frame" x="145" y="200" width="30" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="9cY-mE-gsa"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" id="Vwx-MY-kh4"/>
+                    </constraints>
+                    <state key="normal">
+                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="handleAddDidClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="C8Y-gc-Ohf"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="ywt-De-HR3" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="1hS-rc-x4f"/>
+                <constraint firstItem="sgn-eX-1un" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="5v6-sA-XYC"/>
+                <constraint firstItem="hJl-Eb-oIp" firstAttribute="top" secondItem="ywt-De-HR3" secondAttribute="bottom" constant="20" id="Agb-oz-7mJ"/>
+                <constraint firstItem="sgn-eX-1un" firstAttribute="top" secondItem="hJl-Eb-oIp" secondAttribute="bottom" constant="20" id="Dw1-Sy-Irg"/>
+                <constraint firstItem="ywt-De-HR3" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="100" id="LhZ-5t-wsR"/>
+                <constraint firstItem="hJl-Eb-oIp" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="wgk-5e-q31"/>
+            </constraints>
+            <connections>
+                <outlet property="addButton" destination="sgn-eX-1un" id="79c-En-yWi"/>
+                <outlet property="imageView" destination="ywt-De-HR3" id="diN-Og-HLX"/>
+                <outlet property="textLabel" destination="hJl-Eb-oIp" id="hCi-C8-NFD"/>
+            </connections>
+            <point key="canvasLocation" x="304" y="352"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="loaddown_music" width="62" height="60"/>
+    </resources>
+</document>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1713" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ToyModelVC">
+            <connections>
+                <outlet property="tableView" destination="EzG-n7-8tz" id="0C8-BN-3Us"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="EzG-n7-8tz">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="ZlE-iF-fm3"/>
+                        <outlet property="delegate" destination="-1" id="RQF-eU-fCG"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="EzG-n7-8tz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="6uL-1J-qGd"/>
+                <constraint firstAttribute="bottom" secondItem="EzG-n7-8tz" secondAttribute="bottom" id="Mpj-VV-nIV"/>
+                <constraint firstAttribute="trailing" secondItem="EzG-n7-8tz" secondAttribute="trailing" id="cCJ-Gd-Bt4"/>
+                <constraint firstItem="EzG-n7-8tz" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ljK-Eu-brk"/>
+            </constraints>
+            <point key="canvasLocation" x="264" y="474"/>
+        </view>
+    </objects>
+</document>

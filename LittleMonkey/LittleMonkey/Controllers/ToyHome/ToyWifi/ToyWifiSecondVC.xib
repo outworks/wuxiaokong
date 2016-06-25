@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1713" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ToyWifiSecondVC">
+            <connections>
+                <outlet property="imageV_tip" destination="HkE-er-McF" id="fm2-oP-Otf"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VdR-RT-zm6">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hcY-ZR-r9O">
+                            <rect key="frame" x="0.0" y="19" width="53" height="46"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="53" id="6ss-T0-ZWc"/>
+                                <constraint firstAttribute="height" constant="46" id="pV7-Wf-k3C"/>
+                            </constraints>
+                            <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="8" maxY="0.0"/>
+                            <state key="normal" image="icon_back"/>
+                            <connections>
+                                <action selector="btnBackAction:" destination="-1" eventType="touchUpInside" id="yaf-5k-eVc"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="进入连接模式" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F6Q-9d-mVQ">
+                            <rect key="frame" x="106" y="31" width="108" height="22"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="22" id="JQb-lF-0NR"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="F6Q-9d-mVQ" firstAttribute="centerX" secondItem="VdR-RT-zm6" secondAttribute="centerX" id="223-Ii-Vch"/>
+                        <constraint firstItem="hcY-ZR-r9O" firstAttribute="leading" secondItem="VdR-RT-zm6" secondAttribute="leading" id="Obr-C8-fx7"/>
+                        <constraint firstItem="F6Q-9d-mVQ" firstAttribute="top" secondItem="VdR-RT-zm6" secondAttribute="top" constant="31" id="Umo-4C-mNV"/>
+                        <constraint firstItem="hcY-ZR-r9O" firstAttribute="centerY" secondItem="F6Q-9d-mVQ" secondAttribute="centerY" id="W2y-7X-w1j"/>
+                        <constraint firstAttribute="height" constant="64" id="yHm-vB-QF5"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a79-ve-EaW">
+                    <rect key="frame" x="0.0" y="64" width="320" height="55"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="开机状态下按住玩具重置直到听到进入设置模式" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KbM-Xn-dOZ">
+                            <rect key="frame" x="60" y="8" width="240" height="36"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" red="1" green="0.41176470590000003" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="icon_wifinumber2" translatesAutoresizingMaskIntoConstraints="NO" id="wIU-s2-lAW">
+                            <rect key="frame" x="20" y="8" width="35" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="35" id="3UE-xk-vl4"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="55" id="7hc-jU-7T5"/>
+                        <constraint firstItem="KbM-Xn-dOZ" firstAttribute="top" secondItem="wIU-s2-lAW" secondAttribute="top" id="I5E-LX-37W"/>
+                        <constraint firstAttribute="trailing" secondItem="KbM-Xn-dOZ" secondAttribute="trailing" constant="20" id="TdY-Rc-VkM"/>
+                        <constraint firstItem="KbM-Xn-dOZ" firstAttribute="leading" secondItem="wIU-s2-lAW" secondAttribute="trailing" constant="5" id="UfY-TR-lLV"/>
+                        <constraint firstItem="wIU-s2-lAW" firstAttribute="leading" secondItem="a79-ve-EaW" secondAttribute="leading" constant="20" id="l93-ms-hrK"/>
+                        <constraint firstItem="wIU-s2-lAW" firstAttribute="top" secondItem="a79-ve-EaW" secondAttribute="top" constant="8" id="wix-N3-GHd"/>
+                    </constraints>
+                </view>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="icon_wifiTip" translatesAutoresizingMaskIntoConstraints="NO" id="HkE-er-McF">
+                    <rect key="frame" x="50" y="127" width="220" height="220"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="220" id="Edf-B3-GRo"/>
+                        <constraint firstAttribute="width" constant="220" id="geK-u1-5pk"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="br2-Rg-gMu">
+                    <rect key="frame" x="20" y="367" width="280" height="35"/>
+                    <color key="backgroundColor" red="1" green="0.41176470590000003" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="YVi-AW-tlV"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" title="下一步"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <real key="value" value="17.5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="btnToNextConfigAction:" destination="-1" eventType="touchUpInside" id="iJj-lz-doa"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="br2-Rg-gMu" secondAttribute="trailing" constant="20" id="5BI-Ea-MGE"/>
+                <constraint firstItem="HkE-er-McF" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="CaB-Y8-o3g"/>
+                <constraint firstItem="HkE-er-McF" firstAttribute="top" secondItem="a79-ve-EaW" secondAttribute="bottom" constant="8" id="MyT-Dx-8S6"/>
+                <constraint firstAttribute="trailing" secondItem="VdR-RT-zm6" secondAttribute="trailing" id="Y1G-zv-0VK"/>
+                <constraint firstAttribute="trailing" secondItem="a79-ve-EaW" secondAttribute="trailing" id="Zot-oU-4dz"/>
+                <constraint firstItem="br2-Rg-gMu" firstAttribute="top" secondItem="HkE-er-McF" secondAttribute="bottom" constant="20" id="dPz-Hb-jJd"/>
+                <constraint firstItem="br2-Rg-gMu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="gxG-4A-NFq"/>
+                <constraint firstItem="VdR-RT-zm6" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="nL8-MV-QQn"/>
+                <constraint firstItem="a79-ve-EaW" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="r68-sR-TgP"/>
+                <constraint firstItem="a79-ve-EaW" firstAttribute="top" secondItem="VdR-RT-zm6" secondAttribute="bottom" id="u8b-TN-h5U"/>
+                <constraint firstItem="VdR-RT-zm6" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="uI4-Gu-bMA"/>
+            </constraints>
+            <point key="canvasLocation" x="236" y="297"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_back" width="25" height="25"/>
+        <image name="icon_wifiTip" width="204" height="204"/>
+        <image name="icon_wifinumber2" width="25" height="25"/>
+    </resources>
+</document>

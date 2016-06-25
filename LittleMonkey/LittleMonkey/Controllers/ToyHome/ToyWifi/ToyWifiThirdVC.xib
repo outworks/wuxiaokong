@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1713" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ToyWifiThirdVC">
+            <connections>
+                <outlet property="imageV_tip" destination="pwO-r6-8Lp" id="K2T-to-iPj"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Atf-cH-iaE">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gzI-dy-I8Q">
+                            <rect key="frame" x="0.0" y="19" width="53" height="46"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="46" id="8Hf-dx-YGF"/>
+                                <constraint firstAttribute="width" constant="53" id="KNp-ca-01b"/>
+                            </constraints>
+                            <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="8" maxY="0.0"/>
+                            <state key="normal" image="icon_back"/>
+                            <connections>
+                                <action selector="handleBtnCancelClicked:" destination="-1" eventType="touchUpInside" id="6mn-ws-t2d"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请稍后" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ruw-2t-4lv">
+                            <rect key="frame" x="133" y="31" width="54" height="22"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="22" id="iiP-az-QpL"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="ruw-2t-4lv" firstAttribute="top" secondItem="Atf-cH-iaE" secondAttribute="top" constant="31" id="Ez5-0f-GAJ"/>
+                        <constraint firstAttribute="height" constant="64" id="MVr-l7-PIk"/>
+                        <constraint firstItem="gzI-dy-I8Q" firstAttribute="leading" secondItem="Atf-cH-iaE" secondAttribute="leading" id="V8r-C0-71w"/>
+                        <constraint firstItem="ruw-2t-4lv" firstAttribute="centerX" secondItem="Atf-cH-iaE" secondAttribute="centerX" id="Zan-kB-SFn"/>
+                        <constraint firstItem="gzI-dy-I8Q" firstAttribute="centerY" secondItem="ruw-2t-4lv" secondAttribute="centerY" id="meU-O8-1My"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AOO-1y-H6D">
+                    <rect key="frame" x="0.0" y="64" width="320" height="40"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="正在连接..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6rA-e4-bcH">
+                            <rect key="frame" x="50" y="11" width="73" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" red="1" green="0.41176470590000003" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="icon_wifinumber3" translatesAutoresizingMaskIntoConstraints="NO" id="qJb-xk-Wdo">
+                            <rect key="frame" x="20" y="8" width="25" height="25"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="6rA-e4-bcH" firstAttribute="centerY" secondItem="qJb-xk-Wdo" secondAttribute="centerY" id="StE-E8-088"/>
+                        <constraint firstItem="qJb-xk-Wdo" firstAttribute="leading" secondItem="AOO-1y-H6D" secondAttribute="leading" constant="20" id="TRw-jT-bDe"/>
+                        <constraint firstAttribute="height" constant="40" id="bed-XZ-ah5"/>
+                        <constraint firstItem="6rA-e4-bcH" firstAttribute="leading" secondItem="qJb-xk-Wdo" secondAttribute="trailing" constant="5" id="dsA-sW-rKu"/>
+                        <constraint firstItem="qJb-xk-Wdo" firstAttribute="top" secondItem="AOO-1y-H6D" secondAttribute="top" constant="8" id="x8L-jJ-Kws"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oz4-xG-cRE">
+                    <rect key="frame" x="20" y="381" width="280" height="35"/>
+                    <color key="backgroundColor" red="1" green="0.41176470590000003" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="MfW-58-sXI"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" title="取消"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <real key="value" value="17.5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="handleBtnCancelClicked:" destination="-1" eventType="touchUpInside" id="Ik3-Vf-Dvp"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="连接过程中请不要操作玩具，耐心等待连接完成一般情况下连接会在60秒内完成" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aeN-xc-1NU" userLabel="Label ">
+                    <rect key="frame" x="50" y="104" width="220" height="27"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="如果听到玩具的错误提示,请返回并重新开始" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5yn-qv-Pcc" userLabel="Label ">
+                    <rect key="frame" x="54" y="424" width="213" height="14"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="icon_wifiLink2" translatesAutoresizingMaskIntoConstraints="NO" id="pwO-r6-8Lp">
+                    <rect key="frame" x="50" y="141" width="220" height="220"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="220" id="8Fg-iQ-kI8"/>
+                        <constraint firstAttribute="width" constant="220" id="qMW-XF-xGt"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="aeN-xc-1NU" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="2sb-Sn-Ima"/>
+                <constraint firstItem="AOO-1y-H6D" firstAttribute="top" secondItem="Atf-cH-iaE" secondAttribute="bottom" id="5BJ-e2-8ei"/>
+                <constraint firstItem="aeN-xc-1NU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="50" id="5iS-bi-vPq"/>
+                <constraint firstItem="aeN-xc-1NU" firstAttribute="top" secondItem="AOO-1y-H6D" secondAttribute="bottom" id="6Q3-3X-y4s"/>
+                <constraint firstItem="Atf-cH-iaE" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="AaN-Pa-x2O"/>
+                <constraint firstAttribute="trailing" secondItem="Atf-cH-iaE" secondAttribute="trailing" id="Dru-K4-vaa"/>
+                <constraint firstItem="5yn-qv-Pcc" firstAttribute="top" secondItem="oz4-xG-cRE" secondAttribute="bottom" constant="8" id="HXH-VR-Tzy"/>
+                <constraint firstAttribute="trailing" secondItem="oz4-xG-cRE" secondAttribute="trailing" constant="20" id="I92-5k-sn7"/>
+                <constraint firstItem="pwO-r6-8Lp" firstAttribute="top" secondItem="aeN-xc-1NU" secondAttribute="bottom" constant="10" id="Ivc-cO-1lV"/>
+                <constraint firstItem="oz4-xG-cRE" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="MJ2-Eb-eej"/>
+                <constraint firstItem="pwO-r6-8Lp" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="WSV-0z-s2i"/>
+                <constraint firstItem="AOO-1y-H6D" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Yda-Yw-C0P"/>
+                <constraint firstItem="oz4-xG-cRE" firstAttribute="top" secondItem="pwO-r6-8Lp" secondAttribute="bottom" constant="20" id="Zdm-MO-wHe"/>
+                <constraint firstItem="5yn-qv-Pcc" firstAttribute="centerX" secondItem="oz4-xG-cRE" secondAttribute="centerX" id="aFz-Cd-7tQ"/>
+                <constraint firstAttribute="trailing" secondItem="aeN-xc-1NU" secondAttribute="trailing" constant="50" id="fwU-wv-yhk"/>
+                <constraint firstAttribute="trailing" secondItem="AOO-1y-H6D" secondAttribute="trailing" id="mgI-gI-gbY"/>
+                <constraint firstItem="Atf-cH-iaE" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="s0i-Ji-xlt"/>
+                <constraint firstItem="oz4-xG-cRE" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="zUw-Xv-eAw"/>
+            </constraints>
+            <point key="canvasLocation" x="236" y="311"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_back" width="25" height="25"/>
+        <image name="icon_wifiLink2" width="164" height="164"/>
+        <image name="icon_wifinumber3" width="25" height="25"/>
+    </resources>
+</document>

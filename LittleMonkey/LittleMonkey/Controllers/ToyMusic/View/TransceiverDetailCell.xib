@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1713" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="73" id="KGk-i7-Jjw" customClass="TransceiverDetailCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="72"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="71"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fDB-Kc-agC">
+                        <rect key="frame" x="8" y="10" width="51" height="53"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="51" id="C7M-Ob-c7H"/>
+                            <constraint firstAttribute="height" constant="53" id="dHH-tt-fyC"/>
+                        </constraints>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WRw-hP-raK">
+                        <rect key="frame" x="7" y="9" width="52" height="54"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <state key="normal" image="btn_musicPlay_n"/>
+                        <state key="selected" image="btn_musicPause_h"/>
+                        <state key="highlighted" image="btn_musicPlay_h"/>
+                        <connections>
+                            <action selector="playAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="nBd-OF-9kz"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Ec-ON-SpH">
+                        <rect key="frame" x="76" y="10" width="0.0" height="0.0"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" id="K5R-Fh-KQP"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tU7-Y4-Gob">
+                        <rect key="frame" x="81" y="10" width="231" height="0.0"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" id="uOU-4o-1Dl"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.65327175414364635" green="0.65327175414364635" blue="0.65327175414364635" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vsg-n1-BoY">
+                        <rect key="frame" x="76" y="23" width="236" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="9Wk-wb-y5z"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.65327175410000005" green="0.65327175410000005" blue="0.65327175410000005" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VCI-uf-WOt">
+                        <rect key="frame" x="76" y="43" width="10" height="14"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <state key="normal" image="icon_transceiver_save_count">
+                            <color key="titleColor" red="0.65327175410000005" green="0.65327175410000005" blue="0.65327175410000005" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CBD-nW-q4r">
+                        <rect key="frame" x="94" y="43" width="9" height="14"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <state key="normal" image="icon_transceiver_comment_count">
+                            <color key="titleColor" red="0.65327175410000005" green="0.65327175410000005" blue="0.65327175410000005" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oxw-my-4ba">
+                        <rect key="frame" x="111" y="50" width="8" height="14"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <state key="normal" image="icon_transceiver_time_length">
+                            <color key="titleColor" red="0.65327175410000005" green="0.65327175410000005" blue="0.65327175410000005" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yEd-HM-Jxb">
+                        <rect key="frame" x="266" y="49" width="46" height="22"/>
+                        <state key="normal" image="icon_transceiver_download"/>
+                        <state key="highlighted" image="icon_transceiver_download_h"/>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="tU7-Y4-Gob" secondAttribute="trailing" id="1Ec-36-VMU"/>
+                    <constraint firstItem="yEd-HM-Jxb" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" constant="8" id="1Xg-JX-o0z"/>
+                    <constraint firstItem="vsg-n1-BoY" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="3Ih-ly-ESV"/>
+                    <constraint firstItem="tU7-Y4-Gob" firstAttribute="leading" secondItem="7Ec-ON-SpH" secondAttribute="trailing" constant="5" id="4zF-6X-wEo"/>
+                    <constraint firstItem="yEd-HM-Jxb" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="6LD-vk-MzV"/>
+                    <constraint firstItem="tU7-Y4-Gob" firstAttribute="leading" secondItem="7Ec-ON-SpH" secondAttribute="trailing" constant="-6" id="CNq-9u-8ND"/>
+                    <constraint firstItem="CBD-nW-q4r" firstAttribute="top" secondItem="vsg-n1-BoY" secondAttribute="bottom" constant="-1" id="Dl5-4f-BpC"/>
+                    <constraint firstItem="CBD-nW-q4r" firstAttribute="leading" secondItem="VCI-uf-WOt" secondAttribute="trailing" constant="8" id="HPB-uB-FD8"/>
+                    <constraint firstItem="WRw-hP-raK" firstAttribute="bottom" secondItem="fDB-Kc-agC" secondAttribute="bottom" id="KwB-K8-jkU"/>
+                    <constraint firstItem="vsg-n1-BoY" firstAttribute="leading" secondItem="fDB-Kc-agC" secondAttribute="trailing" constant="17" id="KzZ-rw-fo6"/>
+                    <constraint firstItem="VCI-uf-WOt" firstAttribute="top" secondItem="vsg-n1-BoY" secondAttribute="bottom" constant="-1" id="Oyb-Lv-LSR"/>
+                    <constraint firstItem="Oxw-my-4ba" firstAttribute="leading" secondItem="CBD-nW-q4r" secondAttribute="trailing" constant="8" id="Q4t-ss-fED"/>
+                    <constraint firstItem="fDB-Kc-agC" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="1" id="Qze-IN-PSV"/>
+                    <constraint firstItem="tU7-Y4-Gob" firstAttribute="leading" secondItem="7Ec-ON-SpH" secondAttribute="trailing" constant="-6" id="Rht-1l-oSS"/>
+                    <constraint firstItem="Oxw-my-4ba" firstAttribute="top" secondItem="vsg-n1-BoY" secondAttribute="bottom" constant="6" id="Uwr-ME-WmR"/>
+                    <constraint firstItem="VCI-uf-WOt" firstAttribute="leading" secondItem="fDB-Kc-agC" secondAttribute="trailing" constant="17" id="Ym1-r1-Fui"/>
+                    <constraint firstItem="fDB-Kc-agC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="h0b-wQ-Z3C"/>
+                    <constraint firstItem="WRw-hP-raK" firstAttribute="centerX" secondItem="fDB-Kc-agC" secondAttribute="centerX" id="k0y-kM-nTC"/>
+                    <constraint firstItem="WRw-hP-raK" firstAttribute="centerY" secondItem="fDB-Kc-agC" secondAttribute="centerY" id="kHd-Gt-Bbi"/>
+                    <constraint firstItem="7Ec-ON-SpH" firstAttribute="leading" secondItem="fDB-Kc-agC" secondAttribute="trailing" constant="17" id="kSA-eL-weS"/>
+                    <constraint firstItem="7Ec-ON-SpH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="2" id="mF4-pP-Zdm"/>
+                    <constraint firstItem="tU7-Y4-Gob" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="2" id="mUN-HN-u64"/>
+                    <constraint firstItem="WRw-hP-raK" firstAttribute="trailing" secondItem="fDB-Kc-agC" secondAttribute="trailing" id="opt-97-4Cg"/>
+                    <constraint firstItem="yEd-HM-Jxb" firstAttribute="leading" secondItem="vsg-n1-BoY" secondAttribute="trailing" constant="-46" id="oyZ-af-1SA"/>
+                    <constraint firstItem="vsg-n1-BoY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="15" id="qUH-VO-un1"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="CNq-9u-8ND"/>
+                        <exclude reference="Rht-1l-oSS"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="byL" destination="vsg-n1-BoY" id="sgZ-5U-jaK"/>
+                <outlet property="commentCountB" destination="CBD-nW-q4r" id="HlH-AJ-NMc"/>
+                <outlet property="downloadB" destination="yEd-HM-Jxb" id="Bg2-Cj-h4a"/>
+                <outlet property="iconIV" destination="fDB-Kc-agC" id="3gZ-tL-Smb"/>
+                <outlet property="nameL" destination="7Ec-ON-SpH" id="haa-05-s1i"/>
+                <outlet property="playB" destination="WRw-hP-raK" id="pzg-UB-448"/>
+                <outlet property="saveCountB" destination="VCI-uf-WOt" id="iRw-0N-SBj"/>
+                <outlet property="timeL" destination="tU7-Y4-Gob" id="tHa-BI-erK"/>
+                <outlet property="timeLengthL" destination="Oxw-my-4ba" id="973-9f-Agi"/>
+            </connections>
+            <point key="canvasLocation" x="278" y="205"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="btn_musicPause_h" width="62" height="62"/>
+        <image name="btn_musicPlay_h" width="62" height="62"/>
+        <image name="btn_musicPlay_n" width="62" height="62"/>
+        <image name="icon_transceiver_comment_count" width="9" height="8"/>
+        <image name="icon_transceiver_download" width="25" height="19"/>
+        <image name="icon_transceiver_download_h" width="25" height="19"/>
+        <image name="icon_transceiver_save_count" width="10" height="8"/>
+        <image name="icon_transceiver_time_length" width="8" height="8"/>
+    </resources>
+</document>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1713" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MailCollectedDetailVC">
+            <connections>
+                <outlet property="tableView" destination="AUC-Ra-DMy" id="7Xj-Bb-IxB"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9vk-Yq-CP0" userLabel="底部视图">
+                    <rect key="frame" x="0.0" y="519" width="320" height="49"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fwu-Qe-l90">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
+                            <color key="backgroundColor" red="0.65490196079999996" green="0.65490196079999996" blue="0.65490196079999996" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="U6q-o7-Jgf"/>
+                            </constraints>
+                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OTw-PG-PRA">
+                            <rect key="frame" x="-8" y="9" width="337" height="32"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <state key="normal" title="连续播放" backgroundImage="btn_login_normal">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted" title="连续播放" backgroundImage="btn_login_highlighted">
+                                <color key="titleColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="handleBtnContinuousPlayClicked" destination="-1" eventType="touchUpInside" id="3rw-F7-n5d"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="OTw-PG-PRA" firstAttribute="top" secondItem="fwu-Qe-l90" secondAttribute="bottom" constant="9" id="85p-z2-fNL"/>
+                        <constraint firstAttribute="trailing" secondItem="OTw-PG-PRA" secondAttribute="trailing" constant="20" id="8TM-l1-WyI"/>
+                        <constraint firstAttribute="trailing" secondItem="fwu-Qe-l90" secondAttribute="trailing" id="BxK-O1-iHs"/>
+                        <constraint firstAttribute="bottom" secondItem="OTw-PG-PRA" secondAttribute="bottom" constant="9" id="UlM-rU-b5n"/>
+                        <constraint firstItem="fwu-Qe-l90" firstAttribute="top" secondItem="9vk-Yq-CP0" secondAttribute="top" id="aAF-I5-CmG"/>
+                        <constraint firstAttribute="height" constant="49" id="aZb-zn-9mn"/>
+                        <constraint firstItem="OTw-PG-PRA" firstAttribute="leading" secondItem="9vk-Yq-CP0" secondAttribute="leading" constant="20" id="dO1-pV-Hb2"/>
+                        <constraint firstItem="fwu-Qe-l90" firstAttribute="leading" secondItem="9vk-Yq-CP0" secondAttribute="leading" id="znO-06-YVE"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AUC-Ra-DMy">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="oMo-78-mVc"/>
+                        <outlet property="delegate" destination="-1" id="geE-LK-Xo6"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="AUC-Ra-DMy" secondAttribute="trailing" id="136-jb-iqD"/>
+                <constraint firstAttribute="trailing" secondItem="9vk-Yq-CP0" secondAttribute="trailing" id="3gm-VS-jgU"/>
+                <constraint firstItem="AUC-Ra-DMy" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="N0t-Qp-RTO"/>
+                <constraint firstItem="9vk-Yq-CP0" firstAttribute="top" secondItem="AUC-Ra-DMy" secondAttribute="bottom" id="OSR-Jm-lAs"/>
+                <constraint firstAttribute="bottom" secondItem="9vk-Yq-CP0" secondAttribute="bottom" id="dwg-La-fk4"/>
+                <constraint firstItem="9vk-Yq-CP0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="i4V-un-JgQ"/>
+                <constraint firstItem="AUC-Ra-DMy" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="qGX-52-qdD"/>
+            </constraints>
+            <point key="canvasLocation" x="230" y="452"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="btn_login_highlighted" width="285" height="32"/>
+        <image name="btn_login_normal" width="285" height="32"/>
+    </resources>
+</document>

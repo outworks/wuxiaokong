@@ -1,0 +1,103 @@
+PODS:
+  - AFNetworking (2.6.3):
+    - AFNetworking/NSURLConnection (= 2.6.3)
+    - AFNetworking/NSURLSession (= 2.6.3)
+    - AFNetworking/Reachability (= 2.6.3)
+    - AFNetworking/Security (= 2.6.3)
+    - AFNetworking/Serialization (= 2.6.3)
+    - AFNetworking/UIKit (= 2.6.3)
+  - AFNetworking/NSURLConnection (2.6.3):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.6.3):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.6.3)
+  - AFNetworking/Security (2.6.3)
+  - AFNetworking/Serialization (2.6.3)
+  - AFNetworking/UIKit (2.6.3):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - BlocksKit (2.2.5):
+    - BlocksKit/All (= 2.2.5)
+  - BlocksKit/All (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+    - BlocksKit/MessageUI
+    - BlocksKit/UIKit
+  - BlocksKit/Core (2.2.5)
+  - BlocksKit/DynamicDelegate (2.2.5)
+  - BlocksKit/MessageUI (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+  - BlocksKit/UIKit (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+  - CWStatusBarNotification (2.3.4)
+  - DZNEmptyDataSet (1.8.1)
+  - FMDB (2.6.2):
+    - FMDB/standard (= 2.6.2)
+  - FMDB/standard (2.6.2)
+  - FreeStreamer (3.5.6):
+    - Reachability (~> 3.0)
+  - IQKeyboardManager (3.2.0.3)
+  - JSPatch (1.0):
+    - JSPatch/Core (= 1.0)
+  - JSPatch/Core (1.0)
+  - LKDBHelper (2.1.9):
+    - FMDB
+  - Masonry (1.0.1)
+  - MBProgressHUD (0.9.2)
+  - NSDate+TimeAgo (1.0.6)
+  - PureLayout (3.0.1)
+  - Reachability (3.2)
+  - RESideMenu (4.0.7)
+  - SDWebImage (3.7.6):
+    - SDWebImage/Core (= 3.7.6)
+  - SDWebImage/Core (3.7.6)
+  - SocketRocket (0.3.1-beta2)
+  - ZBarSDK (1.3.1)
+
+DEPENDENCIES:
+  - AFNetworking (~> 2.6.0)
+  - BlocksKit (~> 2.2.5)
+  - CWStatusBarNotification (~> 2.3.4)
+  - DZNEmptyDataSet
+  - FreeStreamer
+  - IQKeyboardManager (~> 3.2.0.3)
+  - JSPatch
+  - LKDBHelper (~> 2.1.1)
+  - Masonry
+  - MBProgressHUD (~> 0.9)
+  - NSDate+TimeAgo (~> 1.0.3)
+  - PureLayout
+  - RESideMenu (~> 4.0.7)
+  - SDWebImage (~> 3.7.1)
+  - SocketRocket (~> 0.3.1-beta2)
+  - ZBarSDK (~> 1.3.1)
+
+SPEC CHECKSUMS:
+  AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
+  BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
+  CWStatusBarNotification: 3fec41edcb0ae3677d9febfcb9632d8bdf52294c
+  DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
+  FreeStreamer: 4907b628e65b1a95a5beb66737a9bef01a683929
+  IQKeyboardManager: 7b071d1284b47b1c0c19891a042c2c65f118fa85
+  JSPatch: c689ea4dde17441f2f4a95d40dfedb8900c20099
+  LKDBHelper: 78e6c0de99f45375892223a334535d745a123dbd
+  Masonry: a1a931a0d08870ed8ae415a2ea5ea68ebcac77df
+  MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
+  NSDate+TimeAgo: 35601c619b2d59290055e4fe76e61d97677a2360
+  PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
+  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
+  RESideMenu: f24c508404b49c667344c54aba7e590883533958
+  SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
+  SocketRocket: 7284ab9370a06c99aba92b2fe3a32aedd0f9a6fa
+  ZBarSDK: 4c1b5daeb7d6cc67dc9355e690af0230a661f6ec
+
+PODFILE CHECKSUM: 362e4084dc390e663cce973b273f928a6926f572
+
+COCOAPODS: 1.0.1
