@@ -28,7 +28,7 @@
                                 <constraint firstAttribute="height" constant="44" id="Lee-cy-Oan"/>
                                 <constraint firstAttribute="width" constant="44" id="b9R-yB-TIu"/>
                             </constraints>
-                            <state key="normal" image="btn_toySetting"/>
+                            <state key="normal" image="icon_more_toy_menu"/>
                             <connections>
                                 <action selector="btnShowToyListAction:" destination="-1" eventType="touchUpInside" id="gnl-3R-Y0E"/>
                             </connections>
@@ -85,7 +85,6 @@
                     </state>
                     <connections>
                         <action selector="btnHelpAction:" destination="-1" eventType="touchUpInside" id="CoR-y1-Uiu"/>
-                        <action selector="btnUnToyBingAction:" destination="-1" eventType="touchUpInside" id="Wo1-am-k3K"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cM3-Aa-P2F">
@@ -130,7 +129,7 @@
         </view>
     </objects>
     <resources>
-        <image name="btn_toySetting" width="25" height="25"/>
+        <image name="icon_more_toy_menu" width="20" height="15"/>
         <image name="icon_wifiBing" width="162" height="162"/>
     </resources>
 </document>

@@ -367,6 +367,8 @@
 		ACC76BCF1D1ECA790017FA42 /* DescVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescVC.h; sourceTree = "<group>"; };
 		ACC76BD01D1ECA790017FA42 /* DescVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescVC.m; sourceTree = "<group>"; };
 		ACC76BD11D1ECA790017FA42 /* DescVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DescVC.xib; sourceTree = "<group>"; };
+		ACF403231D2027A500B47F08 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		ACF403251D2027AB00B47F08 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		CE21DDC81D0409A300D12E89 /* DownloadMediaInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadMediaInfo.h; sourceTree = "<group>"; };
 		CE21DDC91D0409A300D12E89 /* DownloadMediaInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadMediaInfo.m; sourceTree = "<group>"; };
 		CE21DDCB1D0409B500D12E89 /* DownloadAlbumInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadAlbumInfo.h; sourceTree = "<group>"; };
@@ -2254,6 +2256,8 @@
 		E8C1B361975FA8E5B600A9E2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ACF403251D2027AB00B47F08 /* AudioToolbox.framework */,
+				ACF403231D2027A500B47F08 /* AVFoundation.framework */,
 				CE2980561D02BDB8009F62E0 /* UIKit.framework */,
 				CE2980541D02BDB1009F62E0 /* Foundation.framework */,
 				CE2980521D02BDA9009F62E0 /* MobileCoreServices.framework */,
@@ -2851,6 +2855,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/LittleMonkey/Extra/YWFramework",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/LittleMonkey.pch";
 				INFOPLIST_FILE = LittleMonkey/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -2916,6 +2924,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/LittleMonkey/Extra/YWFramework",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/LittleMonkey.pch";
 				INFOPLIST_FILE = LittleMonkey/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

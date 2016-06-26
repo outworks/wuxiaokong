@@ -29,6 +29,7 @@
 #import "ToyGuideToBindVC.h"
 #import "DownloadedVC.h"
 #import "CWStatusBarNotification.h"
+#import "MessageListVC.h"
 
 @interface AppDelegate ()<WXApiDelegate,MiPushSDKDelegate>
 
@@ -69,6 +70,8 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(groupDismiss:) name:NOTIFICATION_REMOTE_DISMISS object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(groupQuit:) name:NOTIFICATION_REMOTE_QUIT object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(showMessage:) name:NOTIFICATION_REMOTE_DOWNLOAD object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(showApplyMessage:) name:NOTIFICATION_REMOTE_APPLY object:nil];
+    
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     
     return YES;
@@ -480,6 +483,44 @@
     
 }
 
+
+-(void)showApplyMessage:(NSNotification *)note{
+    __weak typeof(self) weakself = self;
+    NSDictionary *dictionary =  note.userInfo;
+    if (dictionary) {
+        NSDictionary *apply = [dictionary objectForKey:@"apply"];
+        if (apply) {
+            NSString *nickname = [apply objectForKey:@"nickname"];
+            
+            if (!_notificationView) {
+                _notificationView = [[CWStatusBarNotification alloc]init];
+                _notificationView.notificationLabelBackgroundColor = UIColorFromRGB(0xff6948);
+                _notificationView.notificationLabelTextColor = [UIColor whiteColor];
+                _notificationView.notificationStyle = CWNotificationStyleNavigationBarNotification;
+            }
+            [self.notificationView displayNotificationWithMessage:[NSString stringWithFormat:@"'%@' 请求加入你的家庭圈,点击查看",nickname]
+                                                      forDuration:3.0f];
+            self.notificationView.notificationTappedBlock = ^(void) {
+                MessageListVC *vc = [[MessageListVC alloc]init];
+                vc.msg_from = [dictionary objectForKey:@"msg_from"];
+                if (weakself.tabBarController.presentedViewController) {
+                    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
+                    [weakself.tabBarController.presentedViewController presentViewController:nav animated:YES completion:^{
+                        
+                    }];
+                    
+                }else{
+                    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
+                    [weakself.tabBarController presentViewController:nav animated:YES completion:^{
+                        
+                    }];
+                }
+               
+            };
+        }
+    }
+}
+
 -(void)showMessage:(NSNotification *)note{
     __weak typeof(self) weakself = self;
     NSDictionary *dictionary =  note.userInfo;
@@ -498,10 +539,18 @@
                 // more code here
                 DownloadedVC *vc = [[ DownloadedVC alloc]init];
                 vc.index = 1;
-                UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
-                [weakself.tabBarController presentViewController:nav animated:YES completion:^{
+                if (weakself.tabBarController.presentedViewController) {
+                    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
+                    [weakself.tabBarController.presentedViewController presentViewController:nav animated:YES completion:^{
+                        
+                    }];
                     
-                }];
+                }else{
+                    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
+                    [weakself.tabBarController presentViewController:nav animated:YES completion:^{
+                        
+                    }];
+                }
             };
         }
     }
