@@ -118,7 +118,9 @@
         [_btn_down setTitle:@"立即发送" forState:UIControlStateNormal];
         
         if (_albumInfo) {
-            
+            self.mediaCount = [_albumInfo.number integerValue];
+            _lb_musicNumber.text = [NSString stringWithFormat:@"总共%ld首",_mediaCount];
+            [self.btn_selected setTitle:[NSString stringWithFormat:@"选集(%ld~%ld)",(_page_album-1)*20+1,_page_album*20 > _mediaCount ? _mediaCount : _page_album*20] forState:UIControlStateNormal];
             [self loadAlbumMedia];
             
         }else if(_downloadAlbumInfo){
@@ -382,7 +384,9 @@
                 [weakSelf.tb_content reloadData];
                 
                 weakSelf.page_album ++;
-
+                
+                [weakSelf btnSelectAllAction:nil];
+            
             }else{
                 
                 if ([weakSelf.arr_currentData count] > 0) {
@@ -401,7 +405,7 @@
                 [weakSelf queryMediaStatus:data];
                 
                 [weakSelf.tb_content reloadData];
-            
+                [weakSelf btnSelectAllAction:nil];
             }
         
         } Fail:^(int code, NSString *failDescript) {
@@ -446,7 +450,8 @@
             [weakSelf queryMediaStatus:data];
             
             [weakSelf.tb_content reloadData];
-            
+            [weakSelf btnSelectAllAction:nil];
+        
         } Fail:^(int code, NSString *failDescript) {
             
             if (_hud) [_hud hide];
@@ -769,7 +774,7 @@
 
 - (IBAction)btnDownAction:(id)sender {
     __weak typeof(self) weakself = self;
-    if (_downloadMediaCount > 10) {
+    if (_downloadMediaCount > 10 && _type == 0) {
         [UIAlertView bk_showAlertViewWithTitle:@"提示" message:@"玩具正在下载的资源过多，全部完成需要一定的时间，是否确定继续添加资源？" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
             if (buttonIndex) {
                 [weakself downloadMedias];
@@ -931,7 +936,7 @@
             params.album_type = self.downloadAlbumInfo.album_type;
         }else{
             params.album_id = self.albumInfo.album_id;
-            params.album_type = self.downloadAlbumInfo.album_type;
+            params.album_type = self.albumInfo.album_type;
         }
 
         

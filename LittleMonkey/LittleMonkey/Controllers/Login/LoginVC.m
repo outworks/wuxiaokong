@@ -75,7 +75,9 @@
 #pragma mark - private
 
 - (void)initView{
-    
+    if (![WXApi isWXAppInstalled]) {
+        [_btn_wxLogin setHidden:YES];
+    }
     _btn_wxLogin.layer.borderColor = [RGB(148, 219, 148) CGColor];
 
     [_tf_account addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];

@@ -712,9 +712,9 @@
 }
 
 - (IBAction)btnBatDownAction:(id)sender {
-    
+    UIButton *btn = (UIButton *)sender;
     ChildMediaBatVC *t_vc = [[ChildMediaBatVC alloc] init];
-    t_vc.type = 0;
+    t_vc.type = btn.tag;
     if (_albumInfo){
         
         t_vc.albumInfo = self.albumInfo;

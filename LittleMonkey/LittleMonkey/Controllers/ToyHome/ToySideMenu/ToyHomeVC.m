@@ -70,7 +70,7 @@
 @property (weak, nonatomic) IBOutlet UIView *v_unLink;
 @property (weak, nonatomic) IBOutlet UIView *v_unlinkClock;
 
-
+@property(strong,nonatomic) CABasicAnimation *rotationAnimation;
 
 
 
@@ -127,13 +127,13 @@
 #pragma mark - privateMethods
 
 -(void)startAnimate{
-    CABasicAnimation* rotationAnimation;
-    rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-    rotationAnimation.toValue = [NSNumber numberWithFloat: M_PI * 2.0 ];
-    rotationAnimation.duration = 3.0;
-    rotationAnimation.cumulative = YES;
-    rotationAnimation.repeatCount = 10000;
-    [_imageV_icon.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
+    self.rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    self.rotationAnimation.toValue = [NSNumber numberWithFloat: M_PI * 2.0 ];
+    self.rotationAnimation.duration = 3.0;
+    self.rotationAnimation.cumulative = YES;
+    self.rotationAnimation.repeatCount = INT_MAX;
+    self.rotationAnimation.removedOnCompletion = NO;
+    [_imageV_icon.layer addAnimation:self.rotationAnimation forKey:@"rotationAnimation"];
 }
 
 -(void)stopAnimate{
@@ -771,7 +771,7 @@
         weakSelf.cur_albumMedia = data;
         
         weakSelf.lb_mediaName.text = weakSelf.cur_albumMedia.name;
-        if (!data.icon) {
+        if (data.icon) {
             [weakSelf.imageV_bg sd_setImageWithURL:[NSURL URLWithString:data.icon] placeholderImage:[UIImage imageNamed:@"icon_defaultuser"]];
             [weakSelf.imageV_icon sd_setImageWithURL:[NSURL URLWithString:data.icon] placeholderImage:[UIImage imageNamed:@"icon_defaultuser"]];
         }else{
