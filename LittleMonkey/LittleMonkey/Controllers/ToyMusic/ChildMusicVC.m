@@ -77,7 +77,7 @@
     vc_childRecomVC.title = @"喜马拉雅";
     
     PortDownloadedVC *vc_portDownloadedVC     = [[PortDownloadedVC alloc] init];
-    vc_portDownloadedVC.title = @"玩具";
+    vc_portDownloadedVC.title = @"下载";
 
     NSArray * arr_controllers = @[vc_childRecom,vc_childRecomVC,vc_portDownloadedVC];
     

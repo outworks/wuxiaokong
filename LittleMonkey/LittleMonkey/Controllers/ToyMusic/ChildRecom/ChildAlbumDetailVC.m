@@ -118,7 +118,7 @@
     if (![ShareValue sharedShareValue].toyDetail.toy_id) {
         [_btn_batDownload setHidden:YES];
     }else{
-        [self showRightBarButtonItemWithTitle:@"玩具下载" target:self action:@selector(btnDownloadListentAction:)];
+        [self showRightBarButtonItemWithTitle:@"下载" target:self action:@selector(btnDownloadListentAction:)];
     }
     
     self.blurView.blurRadius = 30.0;

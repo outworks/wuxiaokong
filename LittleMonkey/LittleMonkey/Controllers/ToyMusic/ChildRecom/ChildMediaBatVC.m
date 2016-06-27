@@ -74,7 +74,7 @@
 
     if (_type == 0) {
         
-        self.navigationItem.title = @"下载至玩具";
+        self.navigationItem.title = @"下载到玩具";
         [_btn_down setTitle:@"立即下载" forState:UIControlStateNormal];
         if (_album_xima) {
             _mediaCount = _album_xima.includeTrackCount;
@@ -114,7 +114,7 @@
     
     }else{
         
-        self.navigationItem.title = @"玩具批量播放";
+        self.navigationItem.title = @"切换玩具专辑";
         [_btn_down setTitle:@"立即发送" forState:UIControlStateNormal];
         
         if (_albumInfo) {

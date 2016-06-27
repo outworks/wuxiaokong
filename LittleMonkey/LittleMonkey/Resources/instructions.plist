@@ -57,5 +57,24 @@
 1. IOS系统：设置－隐私－麦克风选项中开启悟小空的语音权限
 2. 安卓系统（以魅族手机为例）： 设置-应用控制中开启本地/通话录音权限</string>
 	</dict>
+    <dict>
+        <key>title</key>
+        <string>什么是歌单</string>
+        <key>content</key>
+        <string>歌单是可以自己定义的媒体专辑，可以添加自己喜欢的歌。访问路径为：浏览故事儿歌－右上角在弹出功能菜单中选择歌单</string>
+    </dict>
+    <dict>
+        <key>title</key>
+        <string>遇到喜欢的音乐、故事该怎么做？</string>
+        <key>content</key>
+        <string>先下载媒体到玩具 － 下载完成后，点击功能键选择添加－在歌单页面选择要加入的歌单</string>
+    </dict>
+    <dict>
+        <key>title</key>
+        <string>怎样替换玩具默认音乐\故事专辑</string>
+        <key>content</key>
+        <string>1. 浏览故事儿歌－在下载中选择专辑或点击更多进入专辑列表－选择专辑进入专辑详细界面－切换玩具专辑
+2. 浏览故事儿歌－右上角在弹出功能中选择歌单－选择专辑进入专辑详情界面－切换玩具专辑</string>
+    </dict>
 </array>
 </plist>

@@ -346,9 +346,9 @@
             
             _isLocal = NO;
             
-            [_btn_status setImage:[UIImage imageNamed:@"t_play"] forState:UIControlStateNormal];
-            [_btn_status setTitle:@"手机上试听" forState:UIControlStateNormal];
-            _btn_status.userInteractionEnabled = NO;
+            [_btn_status setImage:[UIImage imageNamed:@"child_下载"] forState:UIControlStateNormal];
+            [_btn_status setTitle:@"下载到玩具" forState:UIControlStateNormal];
+            _btn_status.userInteractionEnabled = YES;
             
             
         }else if ([_downloadStatus.download isEqualToNumber:@1]){

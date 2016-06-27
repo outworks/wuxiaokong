@@ -134,7 +134,7 @@
         if (_ablumDatas.count > 0) {
             [_ablumDatas removeAllObjects];
         }
-        NSInteger count = MIN(data.count, 3) ;
+        NSInteger count = MIN(data.count, 5) ;
         [_ablumDatas addObjectsFromArray:[data subarrayWithRange:NSMakeRange(0, count)]];
         NSIndexSet  *set = [[NSIndexSet alloc]initWithIndex:0];
         [weakSelf.tableView reloadSections:set withRowAnimation:UITableViewRowAnimationNone];
@@ -157,7 +157,7 @@
         if (_downloadedDatas.count > 0) {
             [_downloadedDatas removeAllObjects];
         }
-        NSInteger count = MIN(data.count, 3) ;
+        NSInteger count = MIN(data.count, 5) ;
         [_downloadedDatas addObjectsFromArray:[data subarrayWithRange:NSMakeRange(0, count)]];
         NSIndexSet  *set = [[NSIndexSet alloc]initWithIndex:1];
         [weakSelf.tableView reloadSections:set withRowAnimation:UITableViewRowAnimationNone];
@@ -180,7 +180,7 @@
         if (_downloadingDatas.count > 0) {
             [_downloadingDatas removeAllObjects];
         }
-        NSInteger count = MIN(data.count, 3) ;
+        NSInteger count = MIN(data.count, 5) ;
         [_downloadingDatas addObjectsFromArray:[data subarrayWithRange:NSMakeRange(0, count)]];
         NSIndexSet  *set = [[NSIndexSet alloc]initWithIndex:2];
         [weakSelf.tableView reloadSections:set withRowAnimation:UITableViewRowAnimationNone];
