@@ -30,6 +30,7 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(LoadToyListNotification:) name:NOTIFICATION_LOADTOYLISY object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setToyInfoSucess:) name:NOTIFICATION_SETTOYINFOSUCESS object:nil]; //玩具绑定成功通知
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(toyQuit:) name:NOTIFICATION_REMOTE_QUIT object:nil]; //玩具退出群通知
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(addToyListNotification:) name:NOTIFICATION_REMOTE_DATAS object:nil];
     _isLoadToyList = NO;
     
 }
@@ -232,6 +233,19 @@
         }
     }
 
+}
+
+-(void)addToyListNotification:(NSNotification *)note{
+    
+    
+    GroupDetail *groupDetail = [ShareValue sharedShareValue].groupDetail;
+    
+    if (groupDetail.toy_list.count == 0) {
+        
+       [self juageGroup];
+        
+    }
+    
 }
 
 

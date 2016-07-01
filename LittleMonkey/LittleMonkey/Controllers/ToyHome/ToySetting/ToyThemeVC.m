@@ -45,6 +45,7 @@
 
     NDToyThemeListParams *params = [[NDToyThemeListParams alloc] init];
     params.toy_id = [ShareValue sharedShareValue].toyDetail.toy_id;
+    params.trp_id = @20081;
     ShowHUD *hud = [ShowHUD showText:NSLocalizedString(@"请求中...", nil) configParameter:^(ShowHUD *config) {
     } inView:self.view];
     [NDToyAPI toyThemeListWithParams:params completionBlockWithSuccess:^(NSArray *data) {

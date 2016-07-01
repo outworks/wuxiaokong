@@ -66,7 +66,7 @@
         } duration:1.5f inView:self.view];
     }
     [_tf_wifi setText:[EASYLINK ssidForConnectedNetwork]];
-    [_tf_password setText:@"39816723981672"];
+//    [_tf_password setText:@"39816723981672"];
 }
 
 

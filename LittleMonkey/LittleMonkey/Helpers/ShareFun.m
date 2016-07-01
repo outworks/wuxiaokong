@@ -156,9 +156,15 @@
 //进入群
 +(void)enterGroup:(GroupDetail *)group{
     
+     NSInteger count = [ShareValue sharedShareValue].groupDetail.toy_list.count;
+    
     [ShareValue sharedShareValue].groupDetail = group;
     [ShareValue sharedShareValue].group_id = group.group_id;
     [ShareValue sharedShareValue].group_owner_id = group.owner_id;
+    
+    if ([ShareValue sharedShareValue].groupDetail.toy_list.count != count) {
+        [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_LOADTOYLISY object:nil];
+    }
     
 }
 

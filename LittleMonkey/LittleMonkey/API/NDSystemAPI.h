@@ -21,7 +21,7 @@
 @property(nonatomic,strong) NSNumber *type; //建议类型
 @property(nonatomic,strong) NSString *content; //建议内容
 @property(nonatomic,strong) NSString *picture; //图片
-
+@property(nonatomic,strong) NSNumber *app_id; //app_id
 
 @end
 

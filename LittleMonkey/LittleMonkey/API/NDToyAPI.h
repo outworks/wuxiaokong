@@ -201,6 +201,8 @@
 @interface NDToyThemeListParams : NSObject
 
 @property(nonatomic,strong) NSNumber *toy_id;
+@property(nonatomic,strong) NSNumber *trp_id;
+
 
 @end
 

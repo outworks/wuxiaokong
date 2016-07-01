@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ToyHomeVC">
@@ -80,11 +79,8 @@
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HmF-iy-3Hl">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="376"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="376" id="SMH-k3-ymS"/>
-                            </constraints>
                         </imageView>
-                        <view alpha="0.75" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yy6-nb-KqO">
+                        <view alpha="0.75" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yy6-nb-KqO">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="315"/>
                             <color key="backgroundColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
                         </view>
@@ -129,9 +125,6 @@
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xxv-9O-8GV">
                             <rect key="frame" x="145" y="387" width="30" height="30"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="30" id="gaL-g9-B0H"/>
-                            </constraints>
                             <state key="normal" image="btn_toyHome_alarm"/>
                             <connections>
                                 <action selector="handleToyAlarmAction:" destination="-1" eventType="touchUpInside" id="Fe9-a8-BlC"/>
@@ -146,10 +139,6 @@
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="76y-Jw-jYZ">
                             <rect key="frame" x="35" y="387" width="30" height="30"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="30" id="KLO-Om-Msn"/>
-                                <constraint firstAttribute="height" constant="30" id="reA-VT-hBa"/>
-                            </constraints>
                             <state key="normal" image="btn_toyHome_add"/>
                             <connections>
                                 <action selector="handleToyAddAction:" destination="-1" eventType="touchUpInside" id="BO6-MS-JXI"/>
@@ -179,32 +168,25 @@
                         <constraint firstItem="f8Q-4w-rLn" firstAttribute="centerX" secondItem="XvU-Qv-MGQ" secondAttribute="centerX" id="2cf-l7-fgf"/>
                         <constraint firstItem="NE4-t2-fyw" firstAttribute="height" secondItem="HmF-iy-3Hl" secondAttribute="height" id="3xA-xI-FH0"/>
                         <constraint firstItem="f8Q-4w-rLn" firstAttribute="top" secondItem="XvU-Qv-MGQ" secondAttribute="bottom" constant="12" id="4s1-R4-eFi"/>
-                        <constraint firstAttribute="trailing" secondItem="Xxv-9O-8GV" secondAttribute="trailing" constant="145" id="9Ag-pl-Jwk"/>
+                        <constraint firstItem="76y-Jw-jYZ" firstAttribute="top" secondItem="HmF-iy-3Hl" secondAttribute="bottom" constant="15" id="82f-ra-7R2"/>
                         <constraint firstItem="kYc-ne-igb" firstAttribute="centerY" secondItem="XvU-Qv-MGQ" secondAttribute="centerY" id="9Jk-Zb-Q7L"/>
                         <constraint firstItem="HST-3i-mIC" firstAttribute="centerY" secondItem="XvU-Qv-MGQ" secondAttribute="centerY" id="Bbf-0P-2i5"/>
                         <constraint firstItem="NE4-t2-fyw" firstAttribute="centerX" secondItem="HmF-iy-3Hl" secondAttribute="centerX" id="Ehr-6I-pVB"/>
                         <constraint firstItem="yy6-nb-KqO" firstAttribute="centerX" secondItem="HmF-iy-3Hl" secondAttribute="centerX" id="FfV-fh-1hQ"/>
                         <constraint firstAttribute="trailing" secondItem="HmF-iy-3Hl" secondAttribute="trailing" id="FgU-tB-43B"/>
                         <constraint firstItem="HmF-iy-3Hl" firstAttribute="leading" secondItem="tqI-dc-4bm" secondAttribute="leading" id="Jao-HT-Mbw"/>
-                        <constraint firstItem="76y-Jw-jYZ" firstAttribute="firstBaseline" secondItem="Xxv-9O-8GV" secondAttribute="firstBaseline" id="KET-G4-uoa"/>
-                        <constraint firstItem="76y-Jw-jYZ" firstAttribute="baseline" secondItem="Xxv-9O-8GV" secondAttribute="baseline" id="M9c-QS-XIv"/>
-                        <constraint firstItem="ELw-IH-0n6" firstAttribute="leading" secondItem="Xxv-9O-8GV" secondAttribute="trailing" constant="80" id="ZFd-UE-b1x"/>
                         <constraint firstItem="Xxv-9O-8GV" firstAttribute="top" secondItem="76y-Jw-jYZ" secondAttribute="top" id="bfd-Fq-Mwr"/>
                         <constraint firstItem="ELw-IH-0n6" firstAttribute="top" secondItem="76y-Jw-jYZ" secondAttribute="top" id="byp-S5-JR4"/>
-                        <constraint firstItem="yy6-nb-KqO" firstAttribute="height" secondItem="HmF-iy-3Hl" secondAttribute="height" constant="-61" id="coQ-Yb-B5x"/>
                         <constraint firstItem="XvU-Qv-MGQ" firstAttribute="centerY" secondItem="tqI-dc-4bm" secondAttribute="centerY" constant="-31" id="gKN-ye-fQH"/>
                         <constraint firstItem="NE4-t2-fyw" firstAttribute="centerY" secondItem="HmF-iy-3Hl" secondAttribute="centerY" id="guD-Gd-g5p"/>
-                        <constraint firstItem="76y-Jw-jYZ" firstAttribute="firstBaseline" secondItem="ELw-IH-0n6" secondAttribute="firstBaseline" id="hkE-r7-vHS"/>
-                        <constraint firstItem="76y-Jw-jYZ" firstAttribute="baseline" secondItem="ELw-IH-0n6" secondAttribute="baseline" id="l3g-aC-9DZ"/>
+                        <constraint firstAttribute="bottom" secondItem="HmF-iy-3Hl" secondAttribute="bottom" constant="62" id="mDp-Nx-Lhy"/>
                         <constraint firstItem="HST-3i-mIC" firstAttribute="centerX" secondItem="XvU-Qv-MGQ" secondAttribute="centerX" id="mwT-u2-wyJ"/>
                         <constraint firstItem="NE4-t2-fyw" firstAttribute="width" secondItem="HmF-iy-3Hl" secondAttribute="width" id="nGR-n1-Yep"/>
                         <constraint firstItem="XvU-Qv-MGQ" firstAttribute="centerX" secondItem="tqI-dc-4bm" secondAttribute="centerX" id="nLH-Wb-YQ1"/>
                         <constraint firstItem="yy6-nb-KqO" firstAttribute="width" secondItem="HmF-iy-3Hl" secondAttribute="width" id="qLw-ge-zK5"/>
                         <constraint firstItem="nSc-DT-EFa" firstAttribute="centerX" secondItem="tqI-dc-4bm" secondAttribute="centerX" constant="116" id="qs2-RM-NPO"/>
-                        <constraint firstItem="yy6-nb-KqO" firstAttribute="centerY" secondItem="HmF-iy-3Hl" secondAttribute="centerY" constant="-30.5" id="qxd-i6-KWa"/>
                         <constraint firstItem="nSc-DT-EFa" firstAttribute="centerY" secondItem="XvU-Qv-MGQ" secondAttribute="centerY" id="uJb-nf-NOZ"/>
                         <constraint firstItem="kYc-ne-igb" firstAttribute="centerX" secondItem="tqI-dc-4bm" secondAttribute="centerX" constant="-116" id="xwa-wW-3Q5"/>
-                        <constraint firstItem="76y-Jw-jYZ" firstAttribute="trailing" secondItem="kYc-ne-igb" secondAttribute="trailing" id="yPn-aL-KfU"/>
                     </constraints>
                 </view>
                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="icon_electricity" translatesAutoresizingMaskIntoConstraints="NO" id="AO7-TR-VNp">

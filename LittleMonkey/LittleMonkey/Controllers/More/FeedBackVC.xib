@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FeedBackVC">
+            <connections>
+                <outlet property="tableView" destination="aN2-EY-OA0" id="JoO-2B-P35"/>
+                <outlet property="v_info" destination="8u3-d6-VGv" id="AVA-d7-Orh"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8u3-d6-VGv">
+                    <rect key="frame" x="58" y="150" width="204" height="204"/>
+                    <subviews>
+                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="打招呼图" translatesAutoresizingMaskIntoConstraints="NO" id="5Oo-Pz-nTt">
+                            <rect key="frame" x="0.0" y="0.0" width="204" height="172"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="172" id="Glx-We-XwH"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="提点意见吧~" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iuv-No-mGB">
+                            <rect key="frame" x="59" y="181" width="88" height="23"/>
+                            <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="16"/>
+                            <color key="textColor" red="0.7843137255" green="0.7843137255" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="5Oo-Pz-nTt" secondAttribute="trailing" id="1AM-I5-2Q0"/>
+                        <constraint firstAttribute="bottom" secondItem="Iuv-No-mGB" secondAttribute="bottom" id="JYH-HW-lBp"/>
+                        <constraint firstAttribute="height" constant="204" id="Mcw-qN-Ru3"/>
+                        <constraint firstItem="5Oo-Pz-nTt" firstAttribute="top" secondItem="8u3-d6-VGv" secondAttribute="top" id="ONd-LA-ac1"/>
+                        <constraint firstAttribute="centerX" secondItem="Iuv-No-mGB" secondAttribute="centerX" constant="-0.5" id="ewT-N6-N5F"/>
+                        <constraint firstItem="5Oo-Pz-nTt" firstAttribute="leading" secondItem="8u3-d6-VGv" secondAttribute="leading" id="lk2-kr-lKO"/>
+                        <constraint firstAttribute="width" constant="204" id="mlB-lg-WJw"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="aN2-EY-OA0">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="454"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="wc9-rX-mpN"/>
+                        <outlet property="delegate" destination="-1" id="jnr-UP-nMN"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="0.96672933750000001" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="aN2-EY-OA0" secondAttribute="trailing" id="5jg-Is-DTP"/>
+                <constraint firstItem="aN2-EY-OA0" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="7a5-Wb-Pak"/>
+                <constraint firstAttribute="centerX" secondItem="8u3-d6-VGv" secondAttribute="centerX" id="C2X-6t-Wvn"/>
+                <constraint firstAttribute="centerY" secondItem="8u3-d6-VGv" secondAttribute="centerY" id="Dzj-ID-gV5"/>
+                <constraint firstItem="aN2-EY-OA0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="FPa-KJ-KwT"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+            <point key="canvasLocation" x="319" y="514"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="打招呼图" width="204" height="172"/>
+    </resources>
+</document>

@@ -17,6 +17,7 @@
 #import "MessageListVC.h"
 #import "NDGroupAPI.h"
 #import "ExplainVC.h"
+#import "FeedBackVC.h"
 
 @interface ToyMoreVC ()<ToyChoiceDelegate>{
     
@@ -103,14 +104,13 @@
     
     [_mArr_data addObject:t_dic];
     
+    t_dic = [[NSMutableDictionary alloc] init];
+    [t_dic setValue:@"意见反馈" forKey:@"name"];
+    [t_dic setValue:@"icon_faceBack" forKey:@"icon"];
     
-        t_dic = [[NSMutableDictionary alloc] init];
-        [t_dic setValue:@"意见反馈" forKey:@"name"];
-        [t_dic setValue:@"icon_faceBack" forKey:@"icon"];
-    
-        [_mArr_data addObject:t_dic];
+    [_mArr_data addObject:t_dic];
 
-    
+
     t_dic = [[NSMutableDictionary alloc] init];
     [t_dic setValue:@"消息中心" forKey:@"name"];
     [t_dic setValue:@"icon_tab_groupChat_selected" forKey:@"icon"];
@@ -272,7 +272,7 @@
     
     if (section == 0) {
         
-        return 2;
+        return 3;
         
     } else {
         
@@ -389,6 +389,15 @@
                 
                 break;
             }
+            case 2:{
+                
+                FeedBackVC *feedBackVC = [[FeedBackVC alloc]init];
+                [self.navigationController pushViewController:feedBackVC animated:YES];
+                
+                break;
+            }
+                
+               
             
             default:
                 break;
