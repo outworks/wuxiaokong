@@ -103,11 +103,11 @@
         
     } inGroup:group];
     
-    [[GCDQueue globalQueue] execute:^{
-        
-        [weakSelf getRecommendRequest];
-        
-    } inGroup:group];
+//    [[GCDQueue globalQueue] execute:^{
+//        
+//        [weakSelf getRecommendRequest];
+//        
+//    } inGroup:group];
     
     [[GCDQueue mainQueue] notify:^{
         [weakSelf.tableView setHidden:NO];
@@ -314,7 +314,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        return 2;
+        return 1;
     } else {
         return _typeNameArray.count;
     }
@@ -347,10 +347,6 @@
         cell.delegate = self;
         
         if (indexPath.row == 0) {
-            if (_recommendFMMuArray.count > 0) {
-                [cell resetRecommendCellData:_recommendFMMuArray];
-            }
-        } else {
             if (_hotAlbumMuArray.count > 0) {
                 [cell resetAlbumCellData:_hotAlbumMuArray];
             }
@@ -365,12 +361,7 @@
     if (indexPath.section == 1) {
         return [HaloSquareCell resetCellHeight];
     } else {
-        if (indexPath.row == 0) {
-            return [HaloSquareRecommendCell resetCellHeight:3];
-        }else{
-            return [HaloSquareRecommendCell resetCellHeight:_hotAlbumMuArray.count];
-        }
-        
+        return [HaloSquareRecommendCell resetCellHeight:_hotAlbumMuArray.count];
 //        return [HaloCell resetCellHeight];
     }
 }

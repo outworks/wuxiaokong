@@ -74,7 +74,7 @@
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7nR-bp-ZbU">
-                                    <rect key="frame" x="105" y="79" width="108" height="22"/>
+                                    <rect key="frame" x="105" y="76" width="108" height="27"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="108" id="d29-Ry-r6l"/>
                                     </constraints>

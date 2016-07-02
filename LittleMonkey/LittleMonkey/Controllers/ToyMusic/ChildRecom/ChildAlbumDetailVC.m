@@ -130,7 +130,7 @@
     if (_albumInfo && _albumInfo.source.intValue != 100) {
         
         [self.btn_batPlay setHidden:YES];
-        self.navigationItem.title = _albumInfo.name;
+//        self.navigationItem.title = _albumInfo.name;
 
         [_imgv_icon sd_setImageWithURL:[NSURL URLWithString:_albumInfo.icon] placeholderImage:[UIImage imageNamed:@"icon_defaultuser"]];
         [_imgv_background sd_setImageWithURL:[NSURL URLWithString:_albumInfo.icon] placeholderImage:[UIImage imageNamed:@"icon_defaultuser"]];
@@ -165,13 +165,13 @@
         [self.btn_batPlay setHidden:YES];
        
         if (_albumInfo.source.intValue == 100) {
-            self.navigationItem.title = _albumInfo.name;
+//            self.navigationItem.title = _albumInfo.name;
             [_imgv_icon sd_setImageWithURL:[NSURL URLWithString:_albumInfo.icon] placeholderImage:[UIImage imageNamed:@"icon_defaultuser"]];
             [_imgv_background sd_setImageWithURL:[NSURL URLWithString:_albumInfo.icon] placeholderImage:[UIImage imageNamed:@"icon_defaultuser"]];
             _lb_title.text = _albumInfo.name;
             _lb_desc.text = _albumInfo.desc;
         }else{
-            self.navigationItem.title = _album_xima.albumTitle;
+//            self.navigationItem.title = _album_xima.albumTitle;
             [_imgv_icon sd_setImageWithURL:[NSURL URLWithString:_album_xima.coverUrlMiddle] placeholderImage:[UIImage imageNamed:@"icon_defaultuser"]];
             [_imgv_background sd_setImageWithURL:[NSURL URLWithString:_album_xima.coverUrlMiddle] placeholderImage:[UIImage imageNamed:@"icon_defaultuser"]];
             _lb_title.text = _album_xima.albumTitle;
@@ -206,10 +206,11 @@
         self.layout_play.constant = 10;
         [self.btn_batDownload setHidden:YES];
         
-        self.navigationItem.title = _downloadAlbumInfo.name;
+//        self.navigationItem.title = _downloadAlbumInfo.name;
         
         [self showRightBarButtonItemWithTitle:@"添加" target:self action:@selector(btnBatchDownloadAction:)];
-        
+        UIButton *btn = self.navigationItem.rightBarButtonItem.customView;
+        [btn setTitleColor:UIColorFromRGB(0xff6948) forState:UIControlStateNormal];
         [_imgv_icon sd_setImageWithURL:[NSURL URLWithString:_downloadAlbumInfo.icon] placeholderImage:[UIImage imageNamed:@"icon_defaultuser"]];
         [_imgv_background sd_setImageWithURL:[NSURL URLWithString:_downloadAlbumInfo.icon] placeholderImage:[UIImage imageNamed:@"icon_defaultuser"]];
         _lb_title.text = _downloadAlbumInfo.name;
@@ -233,6 +234,7 @@
         }];
         
     }
+    self.title = @"专辑详情";
     
 }
 
@@ -437,7 +439,7 @@
                 NSDictionary *dict = result;
                 _album_xima = [[XMAlbum alloc] initWithDictionary:result];
                 _album_xima.albumId = _albumInfo.third_id.intValue;
-                self.navigationItem.title = _album_xima.albumTitle;
+//                self.navigationItem.title = _album_xima.albumTitle;
                 [_imgv_icon sd_setImageWithURL:[NSURL URLWithString:_album_xima.coverUrlMiddle] placeholderImage:[UIImage imageNamed:@"icon_defaultuser"]];
                 [_imgv_background sd_setImageWithURL:[NSURL URLWithString:_album_xima.coverUrlMiddle] placeholderImage:[UIImage imageNamed:@"icon_defaultuser"]];
                 _lb_title.text = _album_xima.albumTitle;

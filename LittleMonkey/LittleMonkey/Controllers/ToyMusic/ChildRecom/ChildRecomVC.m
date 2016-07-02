@@ -394,7 +394,12 @@
         if(!error){
             
             NSArray *data = [self showReceivedData:result className:@"XMTrack" valuePath:@"tracks"];
-            
+            if (data.count == 0) {
+                [ShowHUD showError:@"没有找到内容" configParameter:^(ShowHUD *config) {
+                    
+                } duration:2 inView:weakSelf.view];
+                return;
+            }
             ChildAlbumDetailVC *t_vc = [[ChildAlbumDetailVC alloc] init];
             XMTrack *t_track = data[0];
             XMAlbum *album_xima = [[XMAlbum alloc] init];
