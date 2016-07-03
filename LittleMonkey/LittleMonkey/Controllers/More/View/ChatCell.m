@@ -28,11 +28,11 @@
     _imageV_myUserIcon.layer.masksToBounds = YES;
     
     
-    UIImage *image_t = [UIImage imageNamed:@"聊天框1"];
+    UIImage *image_t = [UIImage imageNamed:@"chat_feedback_other"];
     UIEdgeInsets inset = UIEdgeInsetsMake(image_t.size.height/2, 10, image_t.size.height/2, 5);
     [_imageV_otherBack setImage:[image_t resizableImageWithCapInsets:inset ]];
     
-    UIImage *image_t2 = [UIImage imageNamed:@"聊天框2"];
+    UIImage *image_t2 = [UIImage imageNamed:@"chat_feedback_my"];
     
     UIEdgeInsets inset2 = UIEdgeInsetsMake(image_t.size.height/2, 5, image_t.size.height/2, 10);
      [_imageV_myBack setImage:[image_t2 resizableImageWithCapInsets:inset2]];
@@ -143,7 +143,7 @@
             
             __weak __typeof(self) weakSelf = self;
         
-            [self.imageV_my sd_setImageWithURL:[NSURL URLWithString:_suggest.picture] placeholderImage:[UIImage imageNamed:@"micon-album"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            [self.imageV_my sd_setImageWithURL:[NSURL URLWithString:_suggest.picture] placeholderImage:[UIImage imageNamed:@"icon_defaultuser"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                 
 //                if (range.length == 0) {
 //                    NSLayoutConstraint * t_width = [NSLayoutConstraint constraintWithItem:weakSelf.imageV_my attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:150.0f];

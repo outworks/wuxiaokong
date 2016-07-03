@@ -14,6 +14,7 @@
 #import "WXApi.h"
 #import "ToyChoice.h"
 #import "NDUserAPI.h"
+#import "NDSystemAPI.h"
 #import "MessageListVC.h"
 #import "NDGroupAPI.h"
 #import "ExplainVC.h"
@@ -33,8 +34,7 @@
 
 @property (strong,nonatomic) NSMutableArray         *mArr_data;
 @property(nonatomic,strong)  NSMutableArray *pushLogs;
-
-
+@property(nonatomic,assign) BOOL hasNewRepleat;//是否有新回复
 @end
 
 @implementation ToyMoreVC
@@ -66,6 +66,7 @@
     [self initUI];
     self.navigationController.navigationBarHidden = NO;
     [self loadData];
+    [self checkRepleat];
     
 }
 
@@ -203,6 +204,16 @@
     }];
 }
 
+-(void)checkRepleat{
+    NDSystemCheckReplyParams *params = [[NDSystemCheckReplyParams alloc]init];
+    [NDSystemAPI systemCheckReplayWithParams:params completionBlockWithSuccess:^(BOOL hasNews) {
+        _hasNewRepleat = hasNews;
+        [ApplicationDelegate reloadTabBar];
+        [_tableView reloadData];
+    } Fail:^(int code, NSString *failDescript) {
+        NSLog(@"%@",failDescript);
+    }];
+}
 #pragma mark - Notification
 
 -(void)reciveApply:(NSNotification *)note{
@@ -363,7 +374,14 @@
         }
         
     }else{
-        t_imagePoint.hidden = YES;
+        
+        if (indexPath.row == 3) {
+            t_imagePoint.hidden = !_hasNewRepleat;
+        }else{
+            t_imagePoint.hidden = YES;
+        }
+        
+        
     }
     
     
@@ -527,7 +545,7 @@
 
 //消息提醒
 -(BOOL)showMask{
-    return _unreadMsgCount >0 || ![ShareValue sharedShareValue].groupDetail;
+    return _unreadMsgCount >0 || ![ShareValue sharedShareValue].groupDetail || _hasNewRepleat;
 }
 
 #pragma mark -dealloc
