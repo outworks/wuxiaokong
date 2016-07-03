@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "HideTabSuperVC.h"
 
-@interface DownloadingVC : HideTabSuperVC
+@interface DownloadingVC : UIViewController
 
 @property(nonatomic,weak) UIViewController *ownerVC;
 

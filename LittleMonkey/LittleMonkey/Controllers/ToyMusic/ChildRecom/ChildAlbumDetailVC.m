@@ -28,6 +28,8 @@
 #import "ChildMediaBatVC.h"
 #import "TranceiverDescriptVC.h"
 #import "UIAlertView+BlocksKit.h"
+#import "UIActionSheet+BlocksKit.h"
+
 
 @interface ChildAlbumDetailVC(){
     ShowHUD *_hud;
@@ -85,7 +87,9 @@
     if ( self = [super init]) {
         [NotificationCenter addObserver:self selector:@selector(collectionNotication:) name:NOTIFCATION_COLLECTION object:nil];
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadPlayDown:) name:@"播放完刷新" object:nil];
-        [NotificationCenter addObserver:self selector:@selector(removeMedia:) name:@"移除媒体通知" object:nil];
+       [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeMedia:) name:@"删除玩具媒体之后的通知" object:nil];
+//        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(showRightButton) name:@"NOTIFCATION_SHOWDOWNLOAD" object:nil];
+         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(downloadStatusAction:) name:NOTIFCATION_DOWNLOADSTATUSARR object:nil];
     }
     return self;
 }
@@ -93,16 +97,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-//    if (![ShareValue sharedShareValue].mArr_collections) {
-//        
-//        [ChildMusicVC loadCollections];
-//        
-//    }else{
-//        
-//        _mArr_Collection = [ShareValue sharedShareValue].mArr_collections;
-//        
-//    }
     
     [_tb_content triggerPullScrolling];
 }
@@ -113,83 +107,48 @@
      _v_info.hidden = YES;
     self.arr_currentData = [NSMutableArray array];
     self.mArr_downloadData = [NSMutableArray array];
-     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(downloadStatusAction:) name:NOTIFCATION_DOWNLOADSTATUSARR object:nil];
     
     if (![ShareValue sharedShareValue].toyDetail.toy_id) {
         [_btn_batDownload setHidden:YES];
-    }else{
-        [self showRightBarButtonItemWithTitle:@"下载" target:self action:@selector(btnDownloadListentAction:)];
     }
     
     self.blurView.blurRadius = 30.0;
     _page_album = 1;
     _index_page = _page_album;
     
-    
-    
     if (_albumInfo && _albumInfo.source.intValue != 100) {
+        [self renderAlbumDetail];
         
-        [self.btn_batPlay setHidden:YES];
-//        self.navigationItem.title = _albumInfo.name;
-
-        [_imgv_icon sd_setImageWithURL:[NSURL URLWithString:_albumInfo.icon] placeholderImage:[UIImage imageNamed:@"icon_defaultuser"]];
-        [_imgv_background sd_setImageWithURL:[NSURL URLWithString:_albumInfo.icon] placeholderImage:[UIImage imageNamed:@"icon_defaultuser"]];
-        _lb_title.text = _albumInfo.name;
-        _lb_desc.text = _albumInfo.desc;
-        if ([_albumInfo.desc length] == 0) {
-            _imgv_arrow.hidden = YES;
-        }
-        _lb_musicNumber.text = [NSString stringWithFormat:@"共%d条声音",[_albumInfo.number integerValue]];
+    }else if(_album_xima || _albumInfo.source.intValue == 100){
         
         __weak typeof(self) weakSelf = self;
         
-        [_tb_content addPullScrollingWithActionHandler:^{
-            weakSelf.isReload = YES;
-            weakSelf.page_album = weakSelf.index_page;
-            
-            [weakSelf loadAblumDetail];
-        }];
-        
-        [_tb_content addInfiniteScrollingWithActionHandler:^{
-             weakSelf.isReload = NO;
-            [weakSelf loadAblumDetail];
-            
-        }];
-        
-        
-    
-    }else if(_album_xima|| _albumInfo.source.intValue == 100){
-        
-        __weak typeof(self) weakSelf = self;
         
         [self.btn_batPlay setHidden:YES];
-       
+        
         if (_albumInfo.source.intValue == 100) {
-//            self.navigationItem.title = _albumInfo.name;
+            self.navigationItem.title = _albumInfo.name;
             [_imgv_icon sd_setImageWithURL:[NSURL URLWithString:_albumInfo.icon] placeholderImage:[UIImage imageNamed:@"icon_defaultuser"]];
             [_imgv_background sd_setImageWithURL:[NSURL URLWithString:_albumInfo.icon] placeholderImage:[UIImage imageNamed:@"icon_defaultuser"]];
             _lb_title.text = _albumInfo.name;
             _lb_desc.text = _albumInfo.desc;
         }else{
-//            self.navigationItem.title = _album_xima.albumTitle;
+            self.navigationItem.title = _album_xima.albumTitle;
             [_imgv_icon sd_setImageWithURL:[NSURL URLWithString:_album_xima.coverUrlMiddle] placeholderImage:[UIImage imageNamed:@"icon_defaultuser"]];
             [_imgv_background sd_setImageWithURL:[NSURL URLWithString:_album_xima.coverUrlMiddle] placeholderImage:[UIImage imageNamed:@"icon_defaultuser"]];
             _lb_title.text = _album_xima.albumTitle;
             _lb_desc.text = _album_xima.albumIntro;
         }
-
         if ([_album_xima.albumIntro length] == 0) {
             _imgv_arrow.hidden = YES;
         }
-        _lb_musicNumber.text = [NSString stringWithFormat:@"共%d条声音",_album_xima.includeTrackCount];
-        
+        _lb_musicNumber.text = [NSString stringWithFormat:@"共%ld条声音",_album_xima.includeTrackCount];
         _isReload = YES;
         _isAlbumLastPage = NO;
         
         [_tb_content addPullScrollingWithActionHandler:^{
             weakSelf.isReload = YES;
             weakSelf.page_album = weakSelf.index_page;
-            
             [weakSelf loadXimalayaAlbum];
         }];
         
@@ -206,11 +165,10 @@
         self.layout_play.constant = 10;
         [self.btn_batDownload setHidden:YES];
         
-//        self.navigationItem.title = _downloadAlbumInfo.name;
+        self.navigationItem.title = _downloadAlbumInfo.name;
         
         [self showRightBarButtonItemWithTitle:@"添加" target:self action:@selector(btnBatchDownloadAction:)];
-        UIButton *btn = self.navigationItem.rightBarButtonItem.customView;
-        [btn setTitleColor:UIColorFromRGB(0xff6948) forState:UIControlStateNormal];
+        
         [_imgv_icon sd_setImageWithURL:[NSURL URLWithString:_downloadAlbumInfo.icon] placeholderImage:[UIImage imageNamed:@"icon_defaultuser"]];
         [_imgv_background sd_setImageWithURL:[NSURL URLWithString:_downloadAlbumInfo.icon] placeholderImage:[UIImage imageNamed:@"icon_defaultuser"]];
         _lb_title.text = _downloadAlbumInfo.name;
@@ -219,7 +177,7 @@
             _imgv_arrow.hidden = YES;
         }
         
-        _lb_musicNumber.text = [NSString stringWithFormat:@"%d条声音",[_downloadAlbumInfo.download_count integerValue]];
+        _lb_musicNumber.text = [NSString stringWithFormat:@"%ld条声音",[_downloadAlbumInfo.download_count integerValue]];
         
         [_tb_content addPullScrollingWithActionHandler:^{
             weakSelf.isReload = YES;
@@ -233,9 +191,9 @@
             [weakSelf loadDownloadAblumDatail];
         }];
         
+    } else if(self.albumId) {
+        [self queryAlbumInfoById:self.albumId];
     }
-    self.title = @"专辑详情";
-    
 }
 
 -(void)queryToyDownloadInfo{
@@ -251,6 +209,15 @@
 
 #pragma mark - private
 
+-(void)showRightButton{
+
+    if ([ShareValue sharedShareValue].toyDetail.toy_id) {
+        [self showRightBarButtonItemWithTitle:@"下载中..." target:self action:@selector(btnDownloadListentAction:)];
+        UIButton *button = self.navigationItem.rightBarButtonItem.customView;
+        [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    }
+}
+
 -(void)toyMediaDeleteRequest:(NSNumber *)media_id;{
 
     NDToyMediaDeleteParams *params = [[NDToyMediaDeleteParams alloc] init];
@@ -262,7 +229,11 @@
         } duration:1.5f inView:self.view];
 
         [_tb_content triggerPullScrolling];
-        
+        if (_downloadAlbumInfo) {
+            _downloadAlbumInfo.download_count = @(_downloadAlbumInfo.download_count.integerValue - 1);
+            _lb_musicNumber.text = [NSString stringWithFormat:@"%ld条声音",[_downloadAlbumInfo.download_count integerValue]];
+        }
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"删除玩具媒体之后的通知" object:nil];
     } Fail:^(int code, NSString *failDescript) {
         
         [ShowHUD showError:failDescript configParameter:^(ShowHUD *config) {
@@ -283,7 +254,7 @@
         
         if (_page_album == 1) {
             
-            _hud = [ShowHUD showText:NSLocalizedString(@"请求中...", nil) configParameter:^(ShowHUD *config) {
+            _hud = [ShowHUD showText:NSLocalizedString(@"Requesting", nil) configParameter:^(ShowHUD *config) {
             } inView:self.view];
             
         }
@@ -345,7 +316,7 @@
         
         if (_page_album == 1) {
             
-            _hud = [ShowHUD showText:NSLocalizedString(@"请求中...", nil) configParameter:^(ShowHUD *config) {
+            _hud = [ShowHUD showText:NSLocalizedString(@"Requesting", nil) configParameter:^(ShowHUD *config) {
             } inView:self.view];
             
         }
@@ -412,12 +383,9 @@
 - (void)loadXimalayaAlbum{
 
      __weak typeof(self) weakSelf = self;
-    
     if (_page_album == 1) {
-        
-        _hud = [ShowHUD showText:NSLocalizedString(@"请求中...", nil) configParameter:^(ShowHUD *config) {
+        _hud = [ShowHUD showText:NSLocalizedString(@"Requesting", nil) configParameter:^(ShowHUD *config) {
         } inView:self.view];
-        
     }
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
@@ -426,7 +394,7 @@
     }else{
         [params setObject:@(_album_xima.albumId) forKey:@"album_id"];
     }
-
+    
     [params setObject:@20 forKey:@"count"];
     [params setObject:[NSNumber numberWithInteger:_page_album] forKey:@"page"];
     [params setObject:@"desc" forKey:@"sort"];
@@ -434,12 +402,11 @@
     [[XMReqMgr sharedInstance] requestXMData:XMReqType_AlbumsBrowse params:params withCompletionHander:^(id result, XMErrorModel *error) {
         
         if(!error){
-            
             if (!_album_xima && _albumInfo.source.intValue == 100) {
                 NSDictionary *dict = result;
                 _album_xima = [[XMAlbum alloc] initWithDictionary:result];
                 _album_xima.albumId = _albumInfo.third_id.intValue;
-//                self.navigationItem.title = _album_xima.albumTitle;
+                self.navigationItem.title = _album_xima.albumTitle;
                 [_imgv_icon sd_setImageWithURL:[NSURL URLWithString:_album_xima.coverUrlMiddle] placeholderImage:[UIImage imageNamed:@"icon_defaultuser"]];
                 [_imgv_background sd_setImageWithURL:[NSURL URLWithString:_album_xima.coverUrlMiddle] placeholderImage:[UIImage imageNamed:@"icon_defaultuser"]];
                 _lb_title.text = _album_xima.albumTitle;
@@ -452,7 +419,6 @@
                 _lb_musicNumber.text = [NSString stringWithFormat:@"共%ld条声音",_album_xima.includeTrackCount];
             }
             NSArray *data = [self showReceivedData:result className:@"XMTrack" valuePath:@"tracks"];
-
             if (_hud) [_hud hide];
             [weakSelf.tb_content.infiniteScrollingView stopAnimating];
             [weakSelf.tb_content.pullScrollingView stopAnimating];
@@ -478,10 +444,8 @@
             }
             
             [weakSelf loadAlbumStatus:data];
-           
             weakSelf.tb_content.showsInfiniteScrolling = !weakSelf.isAlbumLastPage;
             [weakSelf.tb_content reloadData];
-            
             weakSelf.page_album ++;
             
         }else{
@@ -569,7 +533,7 @@
     NDQueryMediaStatusParams *params = [[NDQueryMediaStatusParams alloc]init];
     
     params.toy_id = [ShareValue sharedShareValue].toyDetail.toy_id;
-    params.medialist = [self gainMediaList:(NSMutableArray *)data];
+    params.medialist = [self gainMediaList:data];
     params.album_id  = _albumInfo.album_id;
     
     [NDAlbumAPI mediaStatusQueryWithParams:params completionBlockWithSuccess:^(NSArray *data) {
@@ -666,7 +630,7 @@
             DownloadAlbumInfo *downloadAlbumInfo = data[0];
             weakSelf.downloadAlbumInfo.number =downloadAlbumInfo.number;
             weakSelf.downloadAlbumInfo.download_count = downloadAlbumInfo.download_count;
-            weakSelf.lb_musicNumber.text = [NSString stringWithFormat:@"%d条声音",[weakSelf.downloadAlbumInfo.download_count integerValue]];
+            weakSelf.lb_musicNumber.text = [NSString stringWithFormat:@"%ld条声音",[weakSelf.downloadAlbumInfo.download_count integerValue]];
             
             [[NSNotificationCenter defaultCenter] postNotificationName:@"刷新下载SB列表" object:nil userInfo:nil];
             
@@ -680,6 +644,56 @@
 
 }
 
+- (void)queryAlbumInfoById:(NSNumber *)albumId{
+    
+    __weak __typeof(self) weakSelf = self;
+    
+    if (![ShareValue sharedShareValue].toyDetail.toy_id) {
+        return;
+    }
+    
+    
+    NDAlbumInfoByIdParams *params = [[NDAlbumInfoByIdParams alloc]init];
+    params.album_id  = albumId;
+    
+    [NDAlbumAPI albumInfoByIdWithParams:params completionBlockWithSuccess:^(AlbumInfo *data) {
+        weakSelf.albumInfo = data;
+        [self renderAlbumDetail];
+        [_tb_content triggerPullScrolling];
+        
+    } Fail:^(int code, NSString *failDescript) {
+        [ShowHUD showError:@"请求专辑详情失败" configParameter:^(ShowHUD *config) {
+        } duration:1.5f inView:weakSelf.view];
+    }];
+}
+
+- (void)renderAlbumDetail {
+    [self.btn_batPlay setHidden:YES];
+    self.navigationItem.title = _albumInfo.name;
+    
+    [_imgv_icon sd_setImageWithURL:[NSURL URLWithString:_albumInfo.icon] placeholderImage:[UIImage imageNamed:@"icon_default_info"]];
+    [_imgv_background sd_setImageWithURL:[NSURL URLWithString:_albumInfo.icon] placeholderImage:[UIImage imageNamed:@"icon_default_info"]];
+    _lb_title.text = _albumInfo.name;
+    _lb_desc.text = _albumInfo.desc;
+    if ([_albumInfo.desc length] == 0) {
+        _imgv_arrow.hidden = YES;
+    }
+    _lb_musicNumber.text = [NSString stringWithFormat:@"共%ld条声音",[_albumInfo.number integerValue]];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [_tb_content addPullScrollingWithActionHandler:^{
+        weakSelf.isReload = YES;
+        weakSelf.page_album = weakSelf.index_page;
+        
+        [weakSelf loadAblumDetail];
+    }];
+    
+    [_tb_content addInfiniteScrollingWithActionHandler:^{
+        weakSelf.isReload = NO;
+        [weakSelf loadAblumDetail];
+    }];
+}
 
 #pragma mark - buttonAction
 
@@ -697,13 +711,12 @@
     }
     TranceiverDescriptVC *vc = [[TranceiverDescriptVC alloc]init];
     if (_album_xima){
-        vc.desc = _album_xima.albumIntro;
+       vc.desc = _album_xima.albumIntro;
     }else if (_downloadAlbumInfo){
         vc.desc = _downloadAlbumInfo.desc;
     }else if (_albumInfo) {
         vc.desc = _albumInfo.desc;
     }
-    
     [self.navigationController pushViewController:vc animated:YES];
     
     
@@ -734,10 +747,10 @@
     [self.childSelectView autoPinEdgeToSuperviewEdge:ALEdgeTrailing];
     [self.childSelectView layoutIfNeeded];
     
-    if(_album_xima){
-        [self.childSelectView setUpLabels:_album_xima.includeTrackCount WithIndex:_index_page];
+     if(_album_xima){
+         [self.childSelectView setUpLabels:_album_xima.includeTrackCount WithIndex:_index_page];
     }else if(_downloadAlbumInfo){
-        [self.childSelectView setUpLabels:[_downloadAlbumInfo.download_count integerValue]WithIndex:_index_page];
+         [self.childSelectView setUpLabels:[_downloadAlbumInfo.download_count integerValue]WithIndex:_index_page];
     }else if (_albumInfo && _albumInfo.source.intValue != 100) {
         [self.childSelectView setUpLabels:[_albumInfo.number integerValue] WithIndex:_index_page];
     }
@@ -750,7 +763,7 @@
         
         weakSelf.page_album = weakSelf.index_page;
         
-        if(weakSelf.album_xima){
+       if(weakSelf.album_xima){
             
             [weakSelf loadXimalayaAlbum];
             
@@ -762,7 +775,6 @@
             [weakSelf loadAblumDetail];
             
         }
-
         
         
         [weakSelf.childSelectView hide];
@@ -850,8 +862,8 @@
 - (IBAction)btnDownloadListentAction:(id)sender{
     
     DownloadedVC *t_vc = [[DownloadedVC alloc] init];
+    t_vc.index = 2;
     [self.navigationController pushViewController:t_vc animated:YES];
-    
 
 }
 
@@ -872,7 +884,7 @@
                 
                 _v_info.hidden = NO;
                 
-                _lb_info.text = NSLocalizedString(@"当前专辑暂无歌曲", nil);
+                _lb_info.text = NSLocalizedString(@"CurrentAlbumNotSongs", nil);
                 
             }else{
                 _v_info.hidden = YES;
@@ -918,9 +930,7 @@
         AlbumMedia *albumMedia = [t_dic objectForKey:@"AlbumMedia"];
         MediaDownloadStatus *downloadStatus = [t_dic objectForKey:@"MediaDownloadStatus"];
         cell.albumMedia = albumMedia;
-        if ([_albumInfo.source isEqualToNumber:@1]) {
-            cell.albumInfo = _albumInfo;
-        }
+        cell.albumInfo = _albumInfo;
         
         
         if (downloadStatus) {
@@ -975,7 +985,6 @@
     }else if(_downloadAlbumInfo){
         
         cell.downloadMediaInfo = _arr_currentData[indexPath.row];
-        
         cell.block_more = ^(ChildCommonCell *cell){
             [weakSelf handleDownBtnActionInCell:cell];
         };
@@ -993,6 +1002,12 @@
     
     ChildCommonCell *cell = (ChildCommonCell *)[self.tb_content cellForRowAtIndexPath:indexPath];
     
+    if (![ShareValue sharedShareValue].toyDetail) {
+        [self playMedia:cell atIndex:indexPath];
+        return;
+    }
+    
+    
     if(_album_xima){
         
         NSMutableDictionary *t_dic;
@@ -1002,9 +1017,100 @@
             t_dic = _arr_currentData[indexPath.row];
         }
         XMTrack *track = [t_dic objectForKey:@"Track"];
+    
+        if ([cell.playMediaId isEqualToNumber:@(track.trackId)] && cell.isPlay) {
+            [cell btnTryListen:_playMediaId WithUrl:track.playUrl32];
+            _playMediaId = nil;
+            return;
+        }
         
-        if (!_playMediaId) {
+    }else if(_downloadAlbumInfo){
+        
+        if ([cell.playMediaId isEqualToNumber:cell.downloadMediaInfo.media_id] && cell.isPlay) {
+            [cell btnTryListen:_playMediaId WithUrl:cell.downloadMediaInfo.url];
+            _playMediaId = nil;
+            return;
+        }
+        
+    }else if (_albumInfo) {
+        
+        NSMutableDictionary *t_dic = _arr_currentData[indexPath.row];
+        AlbumMedia *albumMedia = [t_dic objectForKey:@"AlbumMedia"];
+        
+        if ([cell.playMediaId isEqualToNumber:albumMedia.media_id] && cell.isPlay) {
+            [cell btnTryListen:_playMediaId WithUrl:albumMedia.url];
+            _playMediaId = nil;
+            return;
+        }
+    
+    }
+
+    if (cell.downloadStatus.download.integerValue == 1 || cell.downloadMediaInfo.download.integerValue == 1) {
+        __weak typeof(self)weakself = self;
+        UIActionSheet *sheet = [UIActionSheet bk_actionSheetWithTitle:@"请选择"];
+        [sheet bk_addButtonWithTitle:@"手机播放" handler:^{
+            [weakself playMedia:cell atIndex:indexPath];
+        }];
+        [sheet bk_addButtonWithTitle:@"玩具播放" handler:^{
+            NDToyPlayMediaParams *params = [[NDToyPlayMediaParams alloc]init];
+            params.toy_id = [ShareValue sharedShareValue].toyDetail.toy_id;
+            if (cell.downloadMediaInfo) {
+                params.media_id = cell.downloadMediaInfo.media_id;
+            }else if(cell.downloadStatus){
+                params.media_id = cell.downloadStatus.media_id;
+            }
+            [NDToyAPI toyPlayMediaWithParams:params completionBlockWithSuccess:^{
+                [ShowHUD showSuccess:NSLocalizedString(@"玩具点播成功", nil) configParameter:^(ShowHUD *config) {
+                } duration:2.0f inView:ApplicationDelegate.window];
+            } Fail:^(int code, NSString *failDescript) {
+                [ShowHUD showSuccess:failDescript configParameter:^(ShowHUD *config) {
+                } duration:2.0f inView:ApplicationDelegate.window];
+            }];
+        }];
+        [sheet bk_setCancelButtonWithTitle:@"取消" handler:^{
             
+        }];
+        [sheet showInView:self.view];
+        return;
+    }else if (cell.downloadStatus.download.integerValue == 2 ||cell.downloadMediaInfo.download.integerValue == 2){
+        [self playMedia:cell atIndex:indexPath];
+    }else if (cell.downloadStatus.download.integerValue == 0 ||cell.downloadMediaInfo.download.integerValue == 0){
+        __weak typeof(self)weakself = self;
+        UIActionSheet *sheet = [UIActionSheet bk_actionSheetWithTitle:@"请选择"];
+        [sheet bk_addButtonWithTitle:@"手机播放" handler:^{
+            [weakself playMedia:cell atIndex:indexPath];
+        }];
+        [sheet bk_addButtonWithTitle:@"下载到玩具" handler:^{
+            
+            if([ShareValue sharedShareValue].toyDetail == nil){
+                
+                [ShowHUD showError:@"当前无玩具" configParameter:^(ShowHUD *config) {
+                } duration:1.5f inView:self.view];
+                
+            }else{
+                
+                [weakself handleDownBtnActionInCell:cell];
+                
+            }
+            
+//            [weakself handleDownBtnActionInCell:cell];
+        }];
+        [sheet bk_setCancelButtonWithTitle:@"取消" handler:^{
+            
+        }];
+        [sheet showInView:self.view];
+        return;
+
+    }
+    
+    
+    
+}
+
+-(void)playMedia:(ChildCommonCell *)cell atIndex:(NSIndexPath *)indexPath {
+    if(cell.album_xima){
+        XMTrack *track = cell.album_xima;
+        if (!_playMediaId) {
             [cell btnTryListen:_playMediaId WithUrl:track.playUrl32];
             _playMediaId = @(track.trackId);
             
@@ -1024,9 +1130,7 @@
             
         }
         
-    }else if(_downloadAlbumInfo){
-        
-        cell.downloadMediaInfo = _arr_currentData[indexPath.row];
+    }else if(cell.downloadMediaInfo){
         if (!_playMediaId) {
             
             [cell btnTryListen:_playMediaId WithUrl:cell.downloadMediaInfo.url];
@@ -1046,15 +1150,34 @@
                 
             }
         }
-    }else if (_albumInfo) {
-        NSMutableDictionary *t_dic = _arr_currentData[indexPath.row];
-        AlbumMedia *albumMedia = [t_dic objectForKey:@"AlbumMedia"];
+    }else if(cell.toyPlay){
+        if (!_playMediaId) {
+            
+            [cell btnTryListen:_playMediaId WithUrl:cell.toyPlay.url];
+            _playMediaId = cell.toyPlay.media_id;
+            
+        }else{
+            
+            [cell btnTryListen:_playMediaId WithUrl:cell.toyPlay.url];
+            
+            if ([_playMediaId isEqualToNumber:cell.toyPlay.media_id]) {
+                
+                _playMediaId = nil;
+                
+            }else{
+                
+                _playMediaId = cell.toyPlay.media_id;
+                
+            }
+        }
+    }else if (cell.albumMedia) {
+        AlbumMedia *albumMedia = cell.albumMedia;
         
         if (!_playMediaId) {
             
             [cell btnTryListen:_playMediaId WithUrl:albumMedia.url];
-            _playMediaId = albumMedia.media_id;
             
+            _playMediaId = albumMedia.media_id;
         }else{
             
             [cell btnTryListen:_playMediaId WithUrl:albumMedia.url];
@@ -1072,7 +1195,7 @@
         }
         
     }
-
+    
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -1081,26 +1204,26 @@
     
     if (cell.downloadStatus) {
         
-        if ([cell.downloadStatus.download isEqualToNumber:@0]) {
+        if ([cell.downloadStatus.download isEqualToNumber:@1]) {
             
-            return NO;
+            return YES;
             
             
         }else{
             
-            return YES;
+            return NO;
             
         }
     }else if (cell.downloadMediaInfo){
         
-        if ([cell.downloadMediaInfo.status isEqualToNumber:@0]) {
+        if ([cell.downloadMediaInfo.download isEqualToNumber:@1]) {
             
-            return NO;
+            return YES;
             
             
         }else{
             
-            return YES;
+            return NO;
             
         }
 
@@ -1121,7 +1244,7 @@
 /*改变删除按钮的title*/
 -(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return NSLocalizedString(@"删除", nil);
+    return NSLocalizedString(@"Delete", nil);
 }
 
 /*删除用到的函数*/
@@ -1136,9 +1259,8 @@
         ChildCommonCell *cell = (ChildCommonCell *)[self.tb_content cellForRowAtIndexPath:indexPath];
         
         
-        [ChooseView showChooseViewInMiddleWithTitle:PROGRAMNAME andPrimitiveText:nil andChooseList:@[[NSString stringWithFormat:NSLocalizedString(@"从玩具中删除", nil)]] andCancelButtonTitle:NSLocalizedString(@"取消", nil) andConfirmButtonTitle:NSLocalizedString(@"确定", nil) andChooseCompleteBlock:^(NSInteger row) {
+        [ChooseView showChooseViewInMiddleWithTitle:PROGRAMNAME andPrimitiveText:nil andChooseList:@[[NSString stringWithFormat:NSLocalizedString(@"从玩具中删除", nil)]] andCancelButtonTitle:NSLocalizedString(@"Cancle", nil) andConfirmButtonTitle:NSLocalizedString(@"Sure", nil) andChooseCompleteBlock:^(NSInteger row) {
             if (cell.downloadStatus) {
-                
                 [weakSelf toyMediaDeleteRequest:cell.downloadStatus.media_id];
             }else if (cell.downloadMediaInfo){
                 [weakSelf toyMediaDeleteRequest:cell.downloadMediaInfo.media_id];
@@ -1182,19 +1304,21 @@
             cell.downloadStatus.download = mediaDownloadStatus.download;
             [_tb_content reloadData];
             if (([ShareValue sharedShareValue].cur_toyState == ToyStateUnKnowState) || ([ShareValue sharedShareValue].cur_toyState == ToyStateUnOnlineState) || ([ShareValue sharedShareValue].cur_toyState == ToyStateDormancyState)) {
-                [ShowHUD showSuccess:NSLocalizedString(@"玩具不在线，唤醒后切换至对讲模式开始下载", nil) configParameter:^(ShowHUD *config) {
+                [ShowHUD showSuccess:NSLocalizedString(@"AddDownloadQueue1", nil) configParameter:^(ShowHUD *config) {
                 } duration:3.0f inView:ApplicationDelegate.window];
             }else{
                 if ([ShareValue sharedShareValue].cur_toyState == ToyStateMusicState || [ShareValue sharedShareValue].cur_toyState == ToyStateStoryState) {
-                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:NSLocalizedString(@"已添加到下载队列，切换至对讲模式开始下载，是否马上切换？", nil) delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"忽略", nil];
+                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:NSLocalizedString(@"AddDownloadQueue2", nil) delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"忽略", nil];
                     alert.tag = 11;
                     [alert show];
                 }else{
-                    [ShowHUD showSuccess:NSLocalizedString(@"已添加到下载队列", nil) configParameter:^(ShowHUD *config) {
+                    [ShowHUD showSuccess:NSLocalizedString(@"AddDownloadQueue", nil) configParameter:^(ShowHUD *config) {
                     } duration:2.0f inView:ApplicationDelegate.window];
                 }
             }
-
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"媒体下载到玩具的通知" object:nil];
+            
         } Fail:^(int code, NSString *failDescript) {
             [ShowHUD showSuccess:failDescript configParameter:^(ShowHUD *config) {
             } duration:2.0f inView:ApplicationDelegate.window];
@@ -1212,18 +1336,21 @@
             cell.downloadStatus.download = @2;
             [_tb_content reloadData];
             if (([ShareValue sharedShareValue].cur_toyState == ToyStateUnKnowState) || ([ShareValue sharedShareValue].cur_toyState == ToyStateUnOnlineState) || ([ShareValue sharedShareValue].cur_toyState == ToyStateDormancyState)) {
-                [ShowHUD showSuccess:NSLocalizedString(@"玩具不在线，唤醒后切换至对讲模式开始下载", nil) configParameter:^(ShowHUD *config) {
+                [ShowHUD showSuccess:NSLocalizedString(@"AddDownloadQueue1", nil) configParameter:^(ShowHUD *config) {
                 } duration:3.0f inView:ApplicationDelegate.window];
             }else{
                 if ([ShareValue sharedShareValue].cur_toyState == ToyStateMusicState || [ShareValue sharedShareValue].cur_toyState == ToyStateStoryState) {
-                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:NSLocalizedString(@"已添加到下载队列，切换至对讲模式开始下载，是否马上切换？", nil) delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"忽略", nil];
+                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:NSLocalizedString(@"AddDownloadQueue2", nil) delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"忽略", nil];
                     alert.tag = 11;
                     [alert show];
                 }else{
-                    [ShowHUD showSuccess:NSLocalizedString(@"已添加到下载队列", nil) configParameter:^(ShowHUD *config) {
+                    [ShowHUD showSuccess:NSLocalizedString(@"AddDownloadQueue", nil) configParameter:^(ShowHUD *config) {
                     } duration:2.0f inView:ApplicationDelegate.window];
                 }
             }
+            
+             [[NSNotificationCenter defaultCenter] postNotificationName:@"媒体下载到玩具的通知" object:nil];
+            
         } Fail:^(int code, NSString *failDescript) {
             [ShowHUD showSuccess:failDescript configParameter:^(ShowHUD *config) {
             } duration:2.0f inView:ApplicationDelegate.window];
@@ -1337,16 +1464,16 @@
         [NDToyAPI toyChangeModeWithParams:params completionBlockWithSuccess:^(NDToyChangeModeResult *result) {
             if (result.isonline) {
                 if ([result.isonline boolValue]) {
-                    [ShowHUD showSuccess:NSLocalizedString(@"切换成功", nil) configParameter:^(ShowHUD *config) {
+                    [ShowHUD showSuccess:NSLocalizedString(@"ChangeSuccessful", nil) configParameter:^(ShowHUD *config) {
                     } duration:1.5f inView:self.view];
                 }else{
-                    [ShowHUD showSuccess:NSLocalizedString(@"设备不在线，五分钟内生效", nil)
+                    [ShowHUD showSuccess:NSLocalizedString(@"EquipmentNotOnlineFiveMinuteEffect", nil)
                          configParameter:^(ShowHUD *config) {
                          } duration:1.5f inView:self.view];
                 }
                 return ;
             }
-            [ShowHUD showSuccess:NSLocalizedString(@"切换成功", nil) configParameter:^(ShowHUD *config) {
+            [ShowHUD showSuccess:NSLocalizedString(@"ChangeSuccessful", nil) configParameter:^(ShowHUD *config) {
             } duration:1.5f inView:self.view];
         } Fail:^(int code, NSString *failDescript) {
             [ShowHUD showError:failDescript configParameter:^(ShowHUD *config) {
@@ -1354,5 +1481,6 @@
         }];
     }
 }
+
 
 @end

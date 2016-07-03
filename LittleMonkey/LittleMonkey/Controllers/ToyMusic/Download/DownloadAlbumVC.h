@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "HideTabSuperVC.h"
 
-@interface DownloadAlbumVC : HideTabSuperVC
+@interface DownloadAlbumVC : UIViewController
 
 @property(nonatomic,weak) UIViewController *ownerVC;
 

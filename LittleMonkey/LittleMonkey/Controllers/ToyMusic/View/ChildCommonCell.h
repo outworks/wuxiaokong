@@ -42,8 +42,6 @@ static FSAudioController * audioController_cell;
 @property(nonatomic,assign) BOOL isPlay;
 @property(nonatomic,assign) BOOL isGedan; //是不是歌单
 
-
-
 @property (weak, nonatomic) IBOutlet UIButton *btn_status;
 
 @property(nonatomic,strong) NSNumber *playMediaId;

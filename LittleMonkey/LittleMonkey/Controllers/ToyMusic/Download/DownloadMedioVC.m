@@ -13,8 +13,7 @@
 #import "NDMediaAPI.h"
 #import "ChildCommonCell.h"
 #import "PureLayout.h"
-
-
+#import "BlocksKit+UIKit.h"
 #import "ChooseView.h"
 
 @interface DownloadMedioVC ()
@@ -38,8 +37,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeMedia:) name:@"删除玩具媒体之后的通知" object:nil];
     [self initView];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadDatas) name:NOTIFICATION_REMOTE_DOWNLOAD object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -76,10 +75,6 @@
     
 }
 
--(void)dealloc{
-    [[NSNotificationCenter defaultCenter]removeObserver:self];
-}
-
 /*
  #pragma mark - Navigation
  
@@ -94,33 +89,49 @@
 /***    请求儿歌专辑列表    ***/
 
 - (void)loadDownloadMedia{
-    __weak typeof(self) weakSelf = self;
-    NDMediaQueryDownloadParams *params = [[NDMediaQueryDownloadParams alloc] init];
-    params.toy_id = [ShareValue sharedShareValue].toyDetail.toy_id;
-    params.download = 1;
-    params.page = weakSelf.page;
-    params.rows = 20;
-    [NDMediaAPI queryDownloadWithParams:params completionBlockWithSuccess:^(NSArray *data) {
-        [weakSelf.tableView.pullScrollingView stopAnimating];
-        [weakSelf.tableView.infiniteScrollingView stopAnimating];
-        if (_page == 1) {
-            [_dataList removeAllObjects];
-            [_tableView.infiniteScrollingView setEnabled:YES];
-        }
-        if (data.count == 20) {
-            _page ++;
-        }else{
-            [_tableView.infiniteScrollingView setEnabled:NO];
-        }
-        [_dataList addObjectsFromArray:data];
-        [weakSelf.tableView reloadData];
-    } Fail:^(int code, NSString *failDescript) {
-        [weakSelf.tableView.pullScrollingView stopAnimating];
-        [weakSelf.tableView.infiniteScrollingView stopAnimating];
-        [ShowHUD showError:failDescript configParameter:^(ShowHUD *config) {
-        } duration:1.5f inView:weakSelf.view];
-    }];
     
+    if([ShareValue sharedShareValue].toyDetail){
+        
+        __weak typeof(self) weakSelf = self;
+        NDMediaQueryDownloadParams *params = [[NDMediaQueryDownloadParams alloc] init];
+        params.toy_id = [ShareValue sharedShareValue].toyDetail.toy_id;
+        params.download = 1;
+        params.page = weakSelf.page;
+        params.rows = 20;
+        [NDMediaAPI queryDownloadWithParams:params completionBlockWithSuccess:^(NSArray *data) {
+            [weakSelf.tableView.pullScrollingView stopAnimating];
+            [weakSelf.tableView.infiniteScrollingView stopAnimating];
+            if (_page == 1) {
+                [_dataList removeAllObjects];
+                [_tableView.infiniteScrollingView setEnabled:YES];
+            }
+            if (data.count == 20) {
+                _page ++;
+            }else{
+                [_tableView.infiniteScrollingView setEnabled:NO];
+            }
+            [_dataList addObjectsFromArray:data];
+            [weakSelf.tableView reloadData];
+            if (_dataList.count == 0) {
+                [_v_info setHidden:NO];
+            }else{
+                [_v_info setHidden:YES];
+            }
+        } Fail:^(int code, NSString *failDescript) {
+            [weakSelf.tableView.pullScrollingView stopAnimating];
+            [weakSelf.tableView.infiniteScrollingView stopAnimating];
+            [ShowHUD showError:failDescript configParameter:^(ShowHUD *config) {
+            } duration:1.5f inView:weakSelf.view];
+        }];
+        
+    }else{
+        
+        [_v_info setHidden:NO];
+        [self.tableView.pullScrollingView stopAnimating];
+        [self.tableView.infiniteScrollingView stopAnimating];
+
+    }
+
 }
 
 #pragma mark - private
@@ -134,9 +145,8 @@
         
         [ShowHUD showSuccess:@"从玩具中删除成功" configParameter:^(ShowHUD *config) {
         } duration:1.5f inView:self.view];
-        
         [_tableView triggerPullScrolling];
-        
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"删除玩具媒体之后的通知" object:nil];
     } Fail:^(int code, NSString *failDescript) {
         
         [ShowHUD showError:failDescript configParameter:^(ShowHUD *config) {
@@ -151,16 +161,7 @@
 #pragma mark - UITableViewDelegate
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-    if (_dataList.count == 0) {
-        _v_info.hidden = NO;
-    }else{
-        _v_info.hidden = YES;
-    }
-    
     return [_dataList count];
-    
-    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -193,26 +194,84 @@
     
     AlbumMedia *albumMedia = _dataList[indexPath.row];
     
-    if (!_playMediaId) {
-        
+    if ([cell.playMediaId isEqual:albumMedia.media_id] && cell.isPlay) {
+        [cell btnTryListen:_playMediaId WithUrl:albumMedia.url];
+        _playMediaId = nil;
+        return;
+    }
+    if (![ShareValue sharedShareValue].toyDetail) {
         [cell btnTryListen:_playMediaId WithUrl:albumMedia.url];
         _playMediaId = albumMedia.media_id;
+        return;
+    }
+
+    
+    UIActionSheet *sheet = [UIActionSheet bk_actionSheetWithTitle:@"请选择"];
+    [sheet bk_addButtonWithTitle:@"手机播放" handler:^{
         
-    }else{
-        
-        [cell btnTryListen:_playMediaId WithUrl:albumMedia.url];
-        
-        if ([_playMediaId isEqualToNumber:albumMedia.media_id]) {
+        if (!_playMediaId) {
             
-            _playMediaId = nil;
+            [cell btnTryListen:_playMediaId WithUrl:albumMedia.url];
+            _playMediaId = albumMedia.media_id;
             
         }else{
             
-            _playMediaId = albumMedia.media_id;
+            [cell btnTryListen:_playMediaId WithUrl:albumMedia.url];
+            
+            if ([_playMediaId isEqualToNumber:albumMedia.media_id]) {
+                
+                _playMediaId = nil;
+                
+            }else{
+                
+                _playMediaId = albumMedia.media_id;
+                
+            }
             
         }
         
-    }
+        
+    }];
+    
+    [sheet bk_addButtonWithTitle:@"玩具播放" handler:^{
+        NDToyPlayMediaParams *params = [[NDToyPlayMediaParams alloc]init];
+        params.toy_id = [ShareValue sharedShareValue].toyDetail.toy_id;
+        params.media_id = albumMedia.media_id;
+        
+        [NDToyAPI toyPlayMediaWithParams:params completionBlockWithSuccess:^{
+            [ShowHUD showSuccess:NSLocalizedString(@"玩具点播成功", nil) configParameter:^(ShowHUD *config) {
+            } duration:2.0f inView:ApplicationDelegate.window];
+        } Fail:^(int code, NSString *failDescript) {
+            [ShowHUD showSuccess:failDescript configParameter:^(ShowHUD *config) {
+            } duration:2.0f inView:ApplicationDelegate.window];
+        }];
+    }];
+    [sheet bk_setCancelButtonWithTitle:@"取消" handler:^{
+        
+    }];
+    [sheet showInView:self.view];
+    
+    
+//    if (!_playMediaId) {
+//        
+//        [cell btnTryListen:_playMediaId WithUrl:albumMedia.url];
+//        _playMediaId = albumMedia.media_id;
+//        
+//    }else{
+//        
+//        [cell btnTryListen:_playMediaId WithUrl:albumMedia.url];
+//        
+//        if ([_playMediaId isEqualToNumber:albumMedia.media_id]) {
+//            
+//            _playMediaId = nil;
+//            
+//        }else{
+//            
+//            _playMediaId = albumMedia.media_id;
+//            
+//        }
+//        
+//    }
     
 }
 
@@ -220,16 +279,41 @@
 {
     ChildCommonCell *cell = (ChildCommonCell *)[self.tableView cellForRowAtIndexPath:indexPath];
     
-    if (cell.albumMedia) {
+    if (cell.downloadStatus) {
         
-        if ([cell.albumMedia.status isEqualToNumber:@0]) {
+        if ([cell.downloadStatus.download isEqualToNumber:@1]) {
             
-            return NO;
+            return YES;
             
             
         }else{
             
+            return NO;
+            
+        }
+    }else if (cell.downloadMediaInfo){
+        
+        if ([cell.downloadMediaInfo.download isEqualToNumber:@1]) {
+            
             return YES;
+            
+            
+        }else{
+            
+            return NO;
+            
+        }
+        
+    }else if (cell.albumMedia) {
+        
+        if ([cell.albumMedia.download isEqualToNumber:@1]) {
+            
+            return YES;
+            
+            
+        }else{
+            
+            return NO;
             
         }
     }
@@ -247,7 +331,7 @@
 /*改变删除按钮的title*/
 -(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return NSLocalizedString(@"删除", nil);
+    return NSLocalizedString(@"Delete", nil);
 }
 
 /*删除用到的函数*/
@@ -275,7 +359,10 @@
     }
 }
 
-
+- (void)removeMedia:(NSNotification *)note{
+    
+    [self.tableView triggerPullScrolling];
+}
 
 /*
 #pragma mark - Navigation

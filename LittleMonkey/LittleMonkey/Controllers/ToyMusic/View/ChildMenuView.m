@@ -48,7 +48,7 @@
 
 -(void)awakeFromNib{
     
-     _arr_view = [[NSArray alloc] initWithObjects:_btn_first,_btn_secend,_btn_third,nil];
+     _arr_view = [[NSArray alloc] initWithObjects:_btn_first,_btn_secend,nil];
     
     [_arr_view autoDistributeViewsAlongAxis:ALAxisHorizontal alignedTo:ALAttributeHorizontal withFixedSpacing:20.0 insetSpacing:YES matchedSizes:YES];
     _layout_bottom.constant = -165;

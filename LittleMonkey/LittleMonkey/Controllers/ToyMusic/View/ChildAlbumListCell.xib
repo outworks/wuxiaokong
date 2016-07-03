@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1713" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -23,7 +23,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="儿童故事专栏" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PId-TR-Boy">
-                        <rect key="frame" x="86" y="13" width="184" height="20"/>
+                        <rect key="frame" x="86" y="13" width="184" height="19.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -34,17 +34,20 @@
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="child_number" translatesAutoresizingMaskIntoConstraints="NO" id="ffy-Oj-XDq">
+                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="child_playNumber" translatesAutoresizingMaskIntoConstraints="NO" id="ooK-df-3q7">
+                        <rect key="frame" x="86" y="58" width="10" height="10"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="child_number" translatesAutoresizingMaskIntoConstraints="NO" id="ffy-Oj-XDq">
                         <rect key="frame" x="144" y="58" width="10" height="10"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1024" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PwP-1t-Kco">
-                        <rect key="frame" x="101" y="56" width="28" height="15"/>
+                        <rect key="frame" x="101" y="56" width="28" height="14.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="1024" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DaJ-Ns-apG">
-                        <rect key="frame" x="159" y="56" width="28" height="15"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1024" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DaJ-Ns-apG">
+                        <rect key="frame" x="159" y="56" width="28" height="14.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -52,8 +55,8 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="k52-Pb-qeZ">
                         <rect key="frame" x="287" y="28" width="25" height="25"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="25" id="8EW-OZ-Dh8"/>
-                            <constraint firstAttribute="width" constant="25" id="be4-90-BrN"/>
+                            <constraint firstAttribute="width" constant="25" id="F0j-6d-OwG"/>
+                            <constraint firstAttribute="height" constant="25" id="WCF-na-7EZ"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="86K-Sv-uw1">
@@ -62,9 +65,6 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="WdY-5T-RSA"/>
                         </constraints>
-                    </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="child_playNumber" translatesAutoresizingMaskIntoConstraints="NO" id="ooK-df-3q7">
-                        <rect key="frame" x="86" y="58" width="10" height="10"/>
                     </imageView>
                 </subviews>
                 <constraints>
@@ -96,6 +96,7 @@
                 <outlet property="imgV_icon" destination="w4M-RV-Yi6" id="NH9-tw-hLN"/>
                 <outlet property="imgV_number" destination="ffy-Oj-XDq" id="nUC-lR-vWD"/>
                 <outlet property="imgV_playNumber" destination="ooK-df-3q7" id="9Gq-Kv-SGC"/>
+                <outlet property="layout_number" destination="UDV-pw-C7Y" id="VX7-wJ-Q6t"/>
                 <outlet property="lb_content" destination="daO-L0-meZ" id="cAc-JO-hEf"/>
                 <outlet property="lb_likeCount" destination="DaJ-Ns-apG" id="Tgu-iP-W4r"/>
                 <outlet property="lb_playCount" destination="PwP-1t-Kco" id="EJp-vI-IVF"/>

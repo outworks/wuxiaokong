@@ -25,7 +25,7 @@
 #import "ChildMediaBatVC.h"
 #import "ChildCustomizeAddVC.h"
 #import "PureLayout.h"
-
+#import "UIActionSheet+BlocksKit.h"
 #import "ChildCommonCell.h"
 
 #define  NickName_MaxLen 16
@@ -790,8 +790,15 @@
             
             cell.downloadStatus = downloadStatus;
         }
-    
+        
     }
+    
+    cell.block_down = ^(ChildCommonCell *cell){
+        
+        [weakSelf handleDownBtnActionInCell:cell];
+        
+    };
+    
     [cell setPlayMediaId:_playMediaId];
     
     return cell;
@@ -801,18 +808,198 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+    __weak typeof(self) weakSelf = self;
     ChildCommonCell *cell = (ChildCommonCell *)[self.tb_content cellForRowAtIndexPath:indexPath];
+    
+    if (![ShareValue sharedShareValue].toyDetail) {
+        [self playMedia:cell atIndex:indexPath];
+        return;
+    }
+    
     
     if (_albumInfo) {
         NSMutableDictionary *t_dic = _arr_currentData[indexPath.row];
         AlbumMedia *albumMedia = [t_dic objectForKey:@"AlbumMedia"];
         
+        if ([cell.playMediaId isEqual:albumMedia.media_id] && cell.isPlay) {
+            [cell btnTryListen:_playMediaId WithUrl:albumMedia.url];
+            _playMediaId = nil;
+            return;
+        }
+        
+    }
+    
+
+    if (cell.downloadStatus.download.integerValue == 1 || cell.downloadMediaInfo.download.integerValue == 1) {
+        __weak typeof(self)weakself = self;
+        UIActionSheet *sheet = [UIActionSheet bk_actionSheetWithTitle:@"请选择"];
+        [sheet bk_addButtonWithTitle:@"手机播放" handler:^{
+            [weakself playMedia:cell atIndex:indexPath];
+        }];
+        [sheet bk_addButtonWithTitle:@"玩具播放" handler:^{
+            NDToyPlayMediaParams *params = [[NDToyPlayMediaParams alloc]init];
+            params.toy_id = [ShareValue sharedShareValue].toyDetail.toy_id;
+            if (cell.downloadMediaInfo) {
+                params.media_id = cell.downloadMediaInfo.media_id;
+            }else if(cell.downloadStatus){
+                params.media_id = cell.downloadStatus.media_id;
+            }
+            [NDToyAPI toyPlayMediaWithParams:params completionBlockWithSuccess:^{
+                [ShowHUD showSuccess:NSLocalizedString(@"玩具点播成功", nil) configParameter:^(ShowHUD *config) {
+                } duration:2.0f inView:ApplicationDelegate.window];
+            } Fail:^(int code, NSString *failDescript) {
+                [ShowHUD showSuccess:failDescript configParameter:^(ShowHUD *config) {
+                } duration:2.0f inView:ApplicationDelegate.window];
+            }];
+        }];
+        [sheet bk_setCancelButtonWithTitle:@"取消" handler:^{
+            
+        }];
+        [sheet showInView:self.view];
+        return;
+    }else if (cell.downloadStatus.download.integerValue == 2 ||cell.downloadMediaInfo.download.integerValue == 2){
+        [self playMedia:cell atIndex:indexPath];
+    }else if (cell.downloadStatus.download.integerValue == 0 ||cell.downloadMediaInfo.download.integerValue == 0){
+        __weak typeof(self)weakself = self;
+        UIActionSheet *sheet = [UIActionSheet bk_actionSheetWithTitle:@"请选择"];
+        [sheet bk_addButtonWithTitle:@"手机播放" handler:^{
+            [weakself playMedia:cell atIndex:indexPath];
+        }];
+        [sheet bk_addButtonWithTitle:@"下载到玩具" handler:^{
+            
+            if([ShareValue sharedShareValue].toyDetail == nil){
+                
+                [ShowHUD showError:@"当前无玩具" configParameter:^(ShowHUD *config) {
+                } duration:1.5f inView:self.view];
+                
+            }else{
+                
+                [weakself handleDownBtnActionInCell:cell];
+                
+            }
+            
+            
+        }];
+        [sheet bk_setCancelButtonWithTitle:@"取消" handler:^{
+            
+        }];
+        [sheet showInView:self.view];
+        return;
+        
+    }
+}
+
+- (void)handleDownBtnActionInCell:(ChildCommonCell *)cell{
+    
+    __weak typeof(self) weakself = self;
+    if (_albumInfo){
+        NDMediaDownloadParams *params = [[NDMediaDownloadParams alloc] init];
+        params.toy_id = [ShareValue sharedShareValue].toyDetail.toy_id;
+        params.media_id = cell.albumMedia.media_id;
+        params.album_id = _albumInfo.album_id;
+        
+        [NDAlbumAPI mediaDownloadWithParams:params completionBlockWithSuccess:^{
+            cell.downloadStatus.download = @2;
+            [_tb_content reloadData];
+            if (([ShareValue sharedShareValue].cur_toyState == ToyStateUnKnowState) || ([ShareValue sharedShareValue].cur_toyState == ToyStateUnOnlineState) || ([ShareValue sharedShareValue].cur_toyState == ToyStateDormancyState)) {
+                [ShowHUD showSuccess:NSLocalizedString(@"AddDownloadQueue1", nil) configParameter:^(ShowHUD *config) {
+                } duration:3.0f inView:ApplicationDelegate.window];
+            }else{
+                if ([ShareValue sharedShareValue].cur_toyState == ToyStateMusicState || [ShareValue sharedShareValue].cur_toyState == ToyStateStoryState) {
+                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:NSLocalizedString(@"AddDownloadQueue2", nil) delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"忽略", nil];
+                    alert.tag = 11;
+                    [alert show];
+                }else{
+                    [ShowHUD showSuccess:NSLocalizedString(@"AddDownloadQueue", nil) configParameter:^(ShowHUD *config) {
+                    } duration:2.0f inView:ApplicationDelegate.window];
+                }
+            }
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"媒体下载到玩具的通知" object:nil];
+            
+        } Fail:^(int code, NSString *failDescript) {
+            [ShowHUD showSuccess:failDescript configParameter:^(ShowHUD *config) {
+            } duration:2.0f inView:ApplicationDelegate.window];
+        }];
+        
+        
+    }
+    
+}
+
+
+-(void)playMedia:(ChildCommonCell *)cell atIndex:(NSIndexPath *)indexPath {
+    if(cell.album_xima){
+        XMTrack *track = cell.album_xima;
+        if (!_playMediaId) {
+            
+            [cell btnTryListen:_playMediaId WithUrl:track.playUrl32];
+            _playMediaId = @(track.trackId);
+            
+        }else{
+            
+            [cell btnTryListen:_playMediaId WithUrl:track.playUrl32];
+            
+            if ([_playMediaId isEqualToNumber:@(track.trackId)]) {
+                
+                _playMediaId = nil;
+                
+            }else{
+                
+                _playMediaId = @(track.trackId);
+                
+            }
+            
+        }
+        
+    }else if(cell.downloadMediaInfo){
+        if (!_playMediaId) {
+            
+            [cell btnTryListen:_playMediaId WithUrl:cell.downloadMediaInfo.url];
+            _playMediaId = cell.downloadMediaInfo.media_id;
+            
+        }else{
+            
+            [cell btnTryListen:_playMediaId WithUrl:cell.downloadMediaInfo.url];
+            
+            if ([_playMediaId isEqualToNumber:cell.downloadMediaInfo.media_id]) {
+                
+                _playMediaId = nil;
+                
+            }else{
+                
+                _playMediaId = cell.downloadMediaInfo.media_id;
+                
+            }
+        }
+    }else if(cell.toyPlay){
+        if (!_playMediaId) {
+            
+            [cell btnTryListen:_playMediaId WithUrl:cell.toyPlay.url];
+            _playMediaId = cell.toyPlay.media_id;
+            
+        }else{
+            
+            [cell btnTryListen:_playMediaId WithUrl:cell.toyPlay.url];
+            
+            if ([_playMediaId isEqualToNumber:cell.toyPlay.media_id]) {
+                
+                _playMediaId = nil;
+                
+            }else{
+                
+                _playMediaId = cell.toyPlay.media_id;
+                
+            }
+        }
+    }else if (cell.albumMedia) {
+        AlbumMedia *albumMedia = cell.albumMedia;
+        
         if (!_playMediaId) {
             
             [cell btnTryListen:_playMediaId WithUrl:albumMedia.url];
-            _playMediaId = albumMedia.media_id;
             
+            _playMediaId = albumMedia.media_id;
         }else{
             
             [cell btnTryListen:_playMediaId WithUrl:albumMedia.url];
@@ -832,6 +1019,7 @@
     }
     
 }
+
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {

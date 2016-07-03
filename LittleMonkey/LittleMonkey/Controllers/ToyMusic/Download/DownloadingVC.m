@@ -30,15 +30,46 @@
 
 @property (nonatomic,strong) NSNumber *playMediaId;
 
+@property(nonatomic,strong) Toy *toyDetail;
+
 @end
 
 @implementation DownloadingVC
 
+- (id)init{
+    
+    if (self = [super init]) {
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeMedia:) name:@"删除玩具媒体之后的通知" object:nil];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(removeMedia:) name:@"媒体下载到玩具的通知" object:nil];
+        
+    }
+    
+    return self;
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    _toyDetail = [ShareValue sharedShareValue].toyDetail;
     [self initView];
 }
+
+- (void)viewWillAppear:(BOOL)animated{
+    
+    if (_toyDetail) {
+        if (![_toyDetail.toy_id isEqualToNumber:[ShareValue sharedShareValue].toyDetail.toy_id]) {
+            
+            _toyDetail = [ShareValue sharedShareValue].toyDetail;
+            
+            [_tableView triggerPullScrolling];
+        }
+        
+    }
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -50,7 +81,6 @@
     _page = 1;
     _dataList = [[NSMutableArray alloc]init];
     __weak typeof(self) weakSelf = self;
-    
     [_tableView addPullScrollingWithActionHandler:^{
         [weakSelf reloadDatas];
     }];
@@ -81,37 +111,52 @@
 /***    请求儿歌专辑列表    ***/
 
 - (void)loadDownloadMedia{
-    [_v_info setHidden:YES];
-    __weak typeof(self) weakSelf = self;
-    NDMediaQueryDownloadParams *params = [[NDMediaQueryDownloadParams alloc] init];
-    params.toy_id = [ShareValue sharedShareValue].toyDetail.toy_id;
-    params.download = 2;
-    params.page = weakSelf.page;
-    params.rows = 20;
-    [NDMediaAPI queryDownloadWithParams:params completionBlockWithSuccess:^(NSArray *data) {
-        [weakSelf.tableView.pullScrollingView stopAnimating];
-        [weakSelf.tableView.infiniteScrollingView stopAnimating];
-        if (_page == 1) {
-            [_dataList removeAllObjects];
-            [_tableView.infiniteScrollingView setEnabled:YES];
-        }
-        if (data.count == 20) {
-            _page ++;
-        }else{
-            [_tableView.infiniteScrollingView setEnabled:NO];
-        }
-        [_dataList addObjectsFromArray:data];
-        [weakSelf.tableView reloadData];
-        if (_dataList.count == 0) {
-            [_v_info setHidden:NO];
-        }
-    } Fail:^(int code, NSString *failDescript) {
-        [weakSelf.tableView.pullScrollingView stopAnimating];
-        [weakSelf.tableView.infiniteScrollingView stopAnimating];
-        [ShowHUD showError:failDescript configParameter:^(ShowHUD *config) {
-        } duration:1.5f inView:weakSelf.view];
-    }];
     
+    if([ShareValue sharedShareValue].toyDetail){
+    
+        __weak typeof(self) weakSelf = self;
+        NDMediaQueryDownloadParams *params = [[NDMediaQueryDownloadParams alloc] init];
+        params.toy_id = [ShareValue sharedShareValue].toyDetail.toy_id;
+        params.download = 2;
+        params.page = weakSelf.page;
+        params.rows = 20;
+        [NDMediaAPI queryDownloadWithParams:params completionBlockWithSuccess:^(NSArray *data) {
+            [weakSelf.tableView.pullScrollingView stopAnimating];
+            [weakSelf.tableView.infiniteScrollingView stopAnimating];
+            if (_page == 1) {
+                [_dataList removeAllObjects];
+                [_tableView.infiniteScrollingView setEnabled:YES];
+            }
+            if (data.count == 20) {
+                _page ++;
+            }else{
+                [_tableView.infiniteScrollingView setEnabled:NO];
+            }
+            [_dataList addObjectsFromArray:data];
+            [weakSelf.tableView reloadData];
+            if (_dataList.count == 0) {
+                [_v_info setHidden:NO];
+            }else{
+                [_v_info setHidden:YES];
+            }
+        } Fail:^(int code, NSString *failDescript) {
+            
+            [weakSelf.tableView.pullScrollingView stopAnimating];
+            [weakSelf.tableView.infiniteScrollingView stopAnimating];
+            [ShowHUD showError:failDescript configParameter:^(ShowHUD *config) {
+            } duration:1.5f inView:weakSelf.view];
+            
+        }];
+
+    }else{
+        
+        [_v_info setHidden:NO];
+        [self.tableView.pullScrollingView stopAnimating];
+        [self.tableView.infiniteScrollingView stopAnimating];
+
+        
+    }
+
 }
 
 #pragma mark - private
@@ -128,6 +173,7 @@
         
         [_tableView triggerPullScrolling];
         
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"删除玩具媒体之后的通知" object:nil];
     } Fail:^(int code, NSString *failDescript) {
         
         [ShowHUD showError:failDescript configParameter:^(ShowHUD *config) {
@@ -141,13 +187,6 @@
 #pragma mark - UITableViewDelegate
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-    if (_dataList.count == 0) {
-        _v_info.hidden = NO;
-    }else{
-        _v_info.hidden = YES;
-    }
-    
     return [_dataList count];
 }
 
@@ -207,18 +246,48 @@
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+//    if ([ShareFun isFeiZhuXiaVersion]) {
+//        return YES;
+//    }
+    
     ChildCommonCell *cell = (ChildCommonCell *)[self.tableView cellForRowAtIndexPath:indexPath];
     
-    if (cell.albumMedia) {
+    if (cell.downloadStatus) {
         
-        if ([cell.albumMedia.status isEqualToNumber:@0]) {
+        if ([cell.downloadStatus.download isEqualToNumber:@2]) {
             
-            return NO;
+            return YES;
             
             
         }else{
             
+            return NO;
+            
+        }
+    }else if (cell.downloadMediaInfo){
+        
+        if ([cell.downloadMediaInfo.download isEqualToNumber:@2]) {
+            
             return YES;
+            
+            
+        }else{
+            
+            return NO;
+            
+        }
+        
+    }else if (cell.albumMedia) {
+        
+        if ([cell.albumMedia.download isEqualToNumber:@2]) {
+            
+            return YES;
+            
+            
+        }else{
+            
+            return NO;
             
         }
     }
@@ -236,7 +305,7 @@
 /*改变删除按钮的title*/
 -(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return NSLocalizedString(@"删除", nil);
+    return NSLocalizedString(@"Delete", nil);
 }
 
 /*删除用到的函数*/
@@ -264,7 +333,10 @@
     }
 }
 
-
+- (void)removeMedia:(NSNotification *)note{
+    
+    [self.tableView triggerPullScrolling];
+}
 
 /*
  #pragma mark - Navigation

@@ -23,6 +23,9 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *imgV_number;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *layout_number;
+
+
 @end
 
 
@@ -49,10 +52,28 @@
         
         if (_album.playCount > 10000) {
             _lb_playCount.text = [NSString stringWithFormat:@"%.1f万",_album.playCount/10000.0];
+            _layout_number.constant = 15.f;
+            [self layoutIfNeeded];
+            
+            
         }else{
-            _lb_playCount.text = [NSString stringWithFormat:@"%d",_album.playCount];
+            
+            if (_album.playCount == 0) {
+                _imgV_playNumber.hidden = YES;
+                _lb_playCount.text = @"";
+                _lb_playCount.hidden = YES;
+                _layout_number.constant = -10.f;
+                [self layoutIfNeeded];
+                
+            }else{
+                
+                _lb_playCount.text = [NSString stringWithFormat:@"%ld",_album.playCount];
+                _layout_number.constant = 15.f;
+                [self layoutIfNeeded];
+            }
+        
         }
-        _lb_likeCount.text = [NSString stringWithFormat:@"%d首",_album.includeTrackCount];
+        _lb_likeCount.text = [NSString stringWithFormat:@"%ld首",_album.includeTrackCount];
         
     }
     
@@ -96,12 +117,30 @@
         _lb_title.text =_downloadAlbumInfo.name;
         _lb_content.text = _downloadAlbumInfo.desc;
         
-        if (_album.playCount > 10000) {
+        if ([_downloadAlbumInfo.cnt intValue]> 10000) {
             _lb_playCount.text = [NSString stringWithFormat:@"%.1f万",[_downloadAlbumInfo.cnt intValue]/10000.0];
+            _layout_number.constant = 15.f;
+            [self layoutIfNeeded];
         }else{
-            _lb_playCount.text = [NSString stringWithFormat:@"%d",[_downloadAlbumInfo.cnt integerValue]];
+            
+            if ([_downloadAlbumInfo.cnt intValue] == 0) {
+                _imgV_playNumber.hidden = YES;
+                _lb_playCount.text = @"";
+                _lb_playCount.hidden = YES;
+                _layout_number.constant = -10.f;
+                [self layoutIfNeeded];
+            }else{
+            
+                _lb_playCount.text = [NSString stringWithFormat:@"%ld",[_downloadAlbumInfo.cnt integerValue]];
+                _layout_number.constant = 15.f;
+                [self layoutIfNeeded];
+            }
+            
         }
-        _lb_likeCount.text = [NSString stringWithFormat:@"%d首",[_downloadAlbumInfo.download_count integerValue]];
+        
+        
+        
+        _lb_likeCount.text = [NSString stringWithFormat:@"%ld首",[_downloadAlbumInfo.download_count integerValue]];
     }
 
 }
@@ -121,10 +160,27 @@
         
         if (_album.playCount > 10000) {
             _lb_playCount.text = [NSString stringWithFormat:@"%.1f万",[_albumInfo.cnt intValue]/10000.0];
+            _layout_number.constant = 15.f;
+            [self layoutIfNeeded];
+
         }else{
-            _lb_playCount.text = [NSString stringWithFormat:@"%d",[_albumInfo.cnt integerValue]];
+            
+            if ([_albumInfo.cnt intValue] == 0) {
+                _imgV_playNumber.hidden = YES;
+                _lb_playCount.text = @"";
+                _lb_playCount.hidden = YES;
+                _layout_number.constant = -10.f;
+                [self layoutIfNeeded];
+            }else{
+                
+                _lb_playCount.text = [NSString stringWithFormat:@"%ld",[_albumInfo.cnt integerValue]];
+                _layout_number.constant = 15.f;
+                [self layoutIfNeeded];
+
+            }
+            
         }
-        _lb_likeCount.text = [NSString stringWithFormat:@"%d首",[_albumInfo.number integerValue]];
+        _lb_likeCount.text = [NSString stringWithFormat:@"%ld首",[_albumInfo.number integerValue]];
         
     }
     

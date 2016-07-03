@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1713" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="63"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="63.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UVv-TE-M5f">
@@ -23,16 +23,16 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6RQ-BC-5Ue">
-                        <rect key="frame" x="62" y="10" width="42" height="21"/>
+                        <rect key="frame" x="62" y="10.5" width="42" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_ arrows" translatesAutoresizingMaskIntoConstraints="NO" id="okr-tq-fgf">
-                        <rect key="frame" x="295" y="25" width="7" height="13"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="okr-tq-fgf">
+                        <rect key="frame" x="282" y="19" width="25" height="25"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="7" id="9Pr-TO-l11"/>
-                            <constraint firstAttribute="height" constant="13" id="hvt-8y-ACa"/>
+                            <constraint firstAttribute="width" constant="25" id="9Pr-TO-l11"/>
+                            <constraint firstAttribute="height" constant="25" id="hvt-8y-ACa"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zmh-JA-5gU">
@@ -63,7 +63,7 @@
                     <constraint firstAttribute="trailingMargin" secondItem="UVv-TE-M5f" secondAttribute="trailing" constant="-3" id="ZAb-pd-9Ll"/>
                     <constraint firstItem="6RQ-BC-5Ue" firstAttribute="leading" secondItem="ppQ-Gs-clW" secondAttribute="trailing" constant="8" id="dOj-NT-iAl"/>
                     <constraint firstItem="ppQ-Gs-clW" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="hOd-nE-y9e"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="okr-tq-fgf" secondAttribute="trailing" constant="10" id="kAr-Fl-OEN"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="okr-tq-fgf" secondAttribute="trailing" constant="5" id="kAr-Fl-OEN"/>
                     <constraint firstItem="zZV-xH-KsR" firstAttribute="centerY" secondItem="okr-tq-fgf" secondAttribute="centerY" id="tAk-qd-3Ac"/>
                     <constraint firstItem="UVv-TE-M5f" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-3" id="wv1-zy-zOA"/>
                 </constraints>
@@ -79,7 +79,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="icon_ arrows" width="7" height="13"/>
+        <image name="icon_arrow" width="25" height="25"/>
         <image name="选择_child" width="20" height="20"/>
     </resources>
 </document>

@@ -7,8 +7,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DownloadAlbumVC">
             <connections>
+                <outlet property="emptyView" destination="YET-dM-nIs" id="9o1-l8-aWB"/>
                 <outlet property="tableView" destination="myO-0d-1SR" id="oXk-5n-Vsc"/>
-                <outlet property="v_info" destination="YET-dM-nIs" id="Yb7-Sq-5EC"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -28,7 +28,7 @@
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YET-dM-nIs">
                     <rect key="frame" x="126" y="279" width="122" height="109"/>
                     <subviews>
-                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" image="icon_media_null" translatesAutoresizingMaskIntoConstraints="NO" id="YlE-zL-b7h">
+                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="icon_media_null" translatesAutoresizingMaskIntoConstraints="NO" id="YlE-zL-b7h">
                             <rect key="frame" x="30" y="25" width="62" height="60"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="当前无已下载专辑" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EMB-6n-SDC">

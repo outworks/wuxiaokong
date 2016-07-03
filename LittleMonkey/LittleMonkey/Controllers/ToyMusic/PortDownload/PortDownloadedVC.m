@@ -19,6 +19,7 @@
 #import "ChildMusicVC.h"
 #import "UIScrollView+EmptyDataSet.h"
 #import "ShowHUD.h"
+#import "BlocksKit+UIKit.h"
 #import "DownloadedVC.h"
 
 @interface PortDownloadedVC ()<UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
@@ -306,30 +307,93 @@
         
         if (indexPath.section == 1){
             albumMedia = _downloadedDatas[indexPath.row];
-        }else{
-            albumMedia = _downloadingDatas[indexPath.row];
-        }
-        
-        if (!_playMediaId) {
             
-            [cell btnTryListen:_playMediaId WithUrl:albumMedia.url];
-            _playMediaId = albumMedia.media_id;
-            
-        }else{
-            
-            [cell btnTryListen:_playMediaId WithUrl:albumMedia.url];
-            
-            if ([_playMediaId isEqualToNumber:albumMedia.media_id]) {
-                
+            if ([cell.playMediaId isEqual:albumMedia.media_id] && cell.isPlay) {
+                [cell btnTryListen:_playMediaId WithUrl:albumMedia.url];
                 _playMediaId = nil;
+                return;
+            }
+            if (![ShareValue sharedShareValue].toyDetail) {
+                [cell btnTryListen:_playMediaId WithUrl:albumMedia.url];
+                _playMediaId = albumMedia.media_id;
+                return;
+            }
+            
+            
+            UIActionSheet *sheet = [UIActionSheet bk_actionSheetWithTitle:@"请选择"];
+            [sheet bk_addButtonWithTitle:@"手机播放" handler:^{
+                
+                if (!_playMediaId) {
+                    
+                    [cell btnTryListen:_playMediaId WithUrl:albumMedia.url];
+                    _playMediaId = albumMedia.media_id;
+                    
+                }else{
+                    
+                    [cell btnTryListen:_playMediaId WithUrl:albumMedia.url];
+                    
+                    if ([_playMediaId isEqualToNumber:albumMedia.media_id]) {
+                        
+                        _playMediaId = nil;
+                        
+                    }else{
+                        
+                        _playMediaId = albumMedia.media_id;
+                        
+                    }
+                    
+                }
+                
+                
+            }];
+            
+            [sheet bk_addButtonWithTitle:@"玩具播放" handler:^{
+                NDToyPlayMediaParams *params = [[NDToyPlayMediaParams alloc]init];
+                params.toy_id = [ShareValue sharedShareValue].toyDetail.toy_id;
+                params.media_id = albumMedia.media_id;
+                
+                [NDToyAPI toyPlayMediaWithParams:params completionBlockWithSuccess:^{
+                    [ShowHUD showSuccess:NSLocalizedString(@"玩具点播成功", nil) configParameter:^(ShowHUD *config) {
+                    } duration:2.0f inView:ApplicationDelegate.window];
+                } Fail:^(int code, NSString *failDescript) {
+                    [ShowHUD showSuccess:failDescript configParameter:^(ShowHUD *config) {
+                    } duration:2.0f inView:ApplicationDelegate.window];
+                }];
+            }];
+            [sheet bk_setCancelButtonWithTitle:@"取消" handler:^{
+                
+            }];
+            [sheet showInView:self.view];
+            
+            return;
+            
+        }else{
+            
+            albumMedia = _downloadingDatas[indexPath.row];
+            
+            if (!_playMediaId) {
+                
+                [cell btnTryListen:_playMediaId WithUrl:albumMedia.url];
+                _playMediaId = albumMedia.media_id;
                 
             }else{
                 
-                _playMediaId = albumMedia.media_id;
+                [cell btnTryListen:_playMediaId WithUrl:albumMedia.url];
+                
+                if ([_playMediaId isEqualToNumber:albumMedia.media_id]) {
+                    
+                    _playMediaId = nil;
+                    
+                }else{
+                    
+                    _playMediaId = albumMedia.media_id;
+                    
+                }
                 
             }
-            
         }
+        
+        
         
         
     }

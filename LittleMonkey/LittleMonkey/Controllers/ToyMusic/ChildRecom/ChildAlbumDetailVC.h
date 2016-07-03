@@ -13,8 +13,12 @@
 
 @interface ChildAlbumDetailVC : HideTabSuperVC
 
+// 专辑id，用于只有id无完整专辑详情情况，由页面自行查询. － add by chenzf 20160629
+@property(nonatomic,strong) NSNumber *albumId;
+// 完整专辑详情
 @property(nonatomic,strong) AlbumInfo *albumInfo;
-@property(nonatomic,strong) XMAlbum *album_xima; //喜马拉雅的专辑
+// 喜马拉雅的专辑
+@property(nonatomic,strong) XMAlbum *album_xima;
 @property(nonatomic,strong) DownloadAlbumInfo *downloadAlbumInfo;
 
 

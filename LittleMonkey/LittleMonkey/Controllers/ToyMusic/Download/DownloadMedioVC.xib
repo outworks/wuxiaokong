@@ -28,7 +28,7 @@
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="awW-eZ-FPA">
                     <rect key="frame" x="126" y="279" width="122" height="109"/>
                     <subviews>
-                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" image="icon_media_null" translatesAutoresizingMaskIntoConstraints="NO" id="1D1-o1-Fns">
+                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="icon_media_null" translatesAutoresizingMaskIntoConstraints="NO" id="1D1-o1-Fns">
                             <rect key="frame" x="30" y="25" width="62" height="60"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="当前无已下载媒体" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="avN-BL-z1f">

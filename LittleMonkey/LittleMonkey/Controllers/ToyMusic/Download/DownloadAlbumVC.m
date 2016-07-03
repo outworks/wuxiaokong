@@ -20,22 +20,55 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+@property (weak, nonatomic) IBOutlet UIView *emptyView;
+
 @property(nonatomic,strong) NSMutableArray *dataList;
 
 @property(nonatomic,assign) int page;
-@property (weak, nonatomic) IBOutlet UIView *v_info;
+
+@property(nonatomic,strong) Toy *toyDetail;
 
 @end
 
 @implementation DownloadAlbumVC
 
+- (id)init{
+    
+    if (self = [super init]) {
+        
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadPlayDown:) name:@"刷新下载SB列表" object:nil];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadDatas) name:@"删除玩具媒体之后的通知" object:nil];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadDatas) name:@"媒体下载到玩具的通知" object:nil];
+        
+    }
+
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadPlayDown:) name:@"刷新下载SB列表" object:nil];
     // Do any additional setup after loading the view from its nib.
     [self initView];
+    
+    _toyDetail = [ShareValue sharedShareValue].toyDetail;
+    
 }
+
+- (void)viewWillAppear:(BOOL)animated{
+
+    if (_toyDetail) {
+        if (![_toyDetail.toy_id isEqualToNumber:[ShareValue sharedShareValue].toyDetail.toy_id]) {
+            
+            _toyDetail = [ShareValue sharedShareValue].toyDetail;
+            
+            [_tableView triggerPullScrolling];
+        }
+        
+    }
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -83,44 +116,53 @@
 /***    请求儿歌专辑列表    ***/
 
 - (void)loadDownloadAlbum{
-    __weak DownloadAlbumVC * weakSelf = self;
-    NDToyQueryDownloadAlbumParams *params = [[NDToyQueryDownloadAlbumParams alloc] init];
-    params.toy_id = [ShareValue sharedShareValue].toyDetail.toy_id;
-    params.page = weakSelf.page;
-    params.rows = 20;
-    [NDToyAPI toyQueryDownloadAlbumWithParams:params completionBlockWithSuccess:^(NSArray *data) {
-        [weakSelf.tableView.pullScrollingView stopAnimating];
-        [weakSelf.tableView.infiniteScrollingView stopAnimating];
-        if (weakSelf.page == 1) {
-            [weakSelf.dataList removeAllObjects];
-            [weakSelf.tableView.infiniteScrollingView setEnabled:YES];
-        }
-        if (data.count == 20) {
-            weakSelf.page ++;
-        }else{
-            [weakSelf.tableView.infiniteScrollingView setEnabled:NO];
-        }
-        [weakSelf.dataList addObjectsFromArray:data];
-        [weakSelf.tableView reloadData];
-    } Fail:^(int code, NSString *failDescript) {
-        [weakSelf.tableView.pullScrollingView stopAnimating];
-        [weakSelf.tableView.infiniteScrollingView stopAnimating];
-        [ShowHUD showError:failDescript configParameter:^(ShowHUD *config) {
-        } duration:1.5f inView:weakSelf.view];
-    }];
+    
+    if([ShareValue sharedShareValue].toyDetail){
+    
+        __weak DownloadAlbumVC * weakSelf = self;
+        NDToyQueryDownloadAlbumParams *params = [[NDToyQueryDownloadAlbumParams alloc] init];
+        params.toy_id = [ShareValue sharedShareValue].toyDetail.toy_id;
+        params.page = weakSelf.page;
+        params.rows = 20;
+        [NDToyAPI toyQueryDownloadAlbumWithParams:params completionBlockWithSuccess:^(NSArray *data) {
+            [weakSelf.tableView.pullScrollingView stopAnimating];
+            [weakSelf.tableView.infiniteScrollingView stopAnimating];
+            if (weakSelf.page == 1) {
+                [weakSelf.dataList removeAllObjects];
+                [weakSelf.tableView.infiniteScrollingView setEnabled:YES];
+            }
+            if (data.count == 20) {
+                weakSelf.page ++;
+            }else{
+                [weakSelf.tableView.infiniteScrollingView setEnabled:NO];
+            }
+            [weakSelf.dataList addObjectsFromArray:data];
+            [weakSelf.tableView reloadData];
+            if (_dataList.count == 0) {
+                [_emptyView setHidden:NO];
+            }else{
+                [_emptyView setHidden:YES];
+            }
+        } Fail:^(int code, NSString *failDescript) {
+            [weakSelf.tableView.pullScrollingView stopAnimating];
+            [weakSelf.tableView.infiniteScrollingView stopAnimating];
+            [ShowHUD showError:failDescript configParameter:^(ShowHUD *config) {
+            } duration:1.5f inView:weakSelf.view];
+        }];
+    
+    }else{
+    
+        [_emptyView setHidden:NO];
+        [self.tableView.pullScrollingView stopAnimating];
+        [self.tableView.infiniteScrollingView stopAnimating];
+        
+    }
     
 }
 
 #pragma mark - UITableViewDelegate
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-    if (_dataList.count == 0) {
-        _v_info.hidden = NO;
-    }else{
-        _v_info.hidden = YES;
-    }
-    
     return [_dataList count];
 }
 
@@ -137,12 +179,10 @@
         cell = [tableView dequeueReusableCellWithIdentifier:@"ChildAlbumListCell"];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
     DownloadAlbumInfo *album = _dataList[indexPath.row];
     cell.downloadAlbumInfo = album;
     return cell;
 }
-
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -155,9 +195,5 @@
         [self.navigationController pushViewController:t_vc animated:YES];
     }
 }
-
-
-
-
 
 @end

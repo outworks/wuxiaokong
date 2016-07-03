@@ -12,5 +12,6 @@
 
 @property(nonatomic,assign) BOOL isAlbum;
 @property(nonatomic,strong) NSString *str_search;
+@property(nonatomic,assign) BOOL isNdMedia;
 
 @end

@@ -40,7 +40,7 @@
     self = [super initWithCoder:code];
     
     if (self) {
-          [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(downloadStatusChangeAction:) name:NOTIFICATION_REMOTE_DOWNLOAD object:nil];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(downloadStatusChangeAction:) name:NOTIFICATION_REMOTE_DOWNLOAD object:nil];
     
     }
 
@@ -59,13 +59,11 @@
         audioController_cell.onStateChange = ^(FSAudioStreamState state) {
             switch (state) {
                 case kFsAudioStreamRetrievingURL:{
-                    
                     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
                     NSLog(@"kFsAudioStreamRetrievingURL");
                     break;
                 }
                 case kFsAudioStreamStopped:{
-                    
                     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                     NSLog(@"kFsAudioStreamStopped");
                     break;
@@ -151,9 +149,9 @@
     _layout_download.constant = 0.0f;
     [self layoutIfNeeded];
     [self updateConstraints];
-    self.isGedan = NO;
-
     
+    self.isGedan = NO;
+  
 //    self.imgV_icon.layer.cornerRadius = 44/2;
 //    self.imgV_icon.layer.masksToBounds = YES;
 //    self.imgV_icon.layer.borderWidth = 1.0f;
@@ -184,7 +182,7 @@
         });
     }
     if ([_downloadMediaInfo.media_id isEqualToNumber:media_id]) {
-        _downloadMediaInfo.status = @1;
+        _downloadMediaInfo.download = @1;
         [self setDownloadMediaInfo:_downloadMediaInfo];
         [self.lb_title setTextColor:[UIColor redColor]];
         __weak typeof(self) weakself = self;
@@ -324,9 +322,9 @@
 
 - (void)setAlbum_xima:(XMTrack *)album_xima{
 
-    if (album_xima) {
+    _album_xima = album_xima;
     
-        _album_xima = album_xima;
+    if (album_xima) {
     
         [_imgV_icon setImageWithURL:[NSURL URLWithString:_album_xima.coverUrlMiddle] placeholderImage:[UIImage imageNamed:@"icon_defaultuser"]];
         _lb_title.text = _album_xima.trackTitle;
@@ -338,9 +336,11 @@
 
 - (void)setDownloadStatus:(MediaDownloadStatus *)downloadStatus{
 
+    _downloadStatus = downloadStatus;
+    
     if (downloadStatus) {
      
-        _downloadStatus = downloadStatus;
+        
         
         if ([_downloadStatus.download isEqualToNumber:@0]) {
             
@@ -348,14 +348,17 @@
             
             [_btn_status setImage:[UIImage imageNamed:@"child_下载"] forState:UIControlStateNormal];
             [_btn_status setTitle:@"下载到玩具" forState:UIControlStateNormal];
+            
             _btn_status.userInteractionEnabled = YES;
             
             
         }else if ([_downloadStatus.download isEqualToNumber:@1]){
         
             _isLocal = YES;
+            
             [_btn_status setImage:[UIImage imageNamed:@"child_功能菜单"] forState:UIControlStateNormal];
             [_btn_status setTitle:@"功能选择" forState:UIControlStateNormal];
+            
             _btn_status.userInteractionEnabled = YES;
             
         }else{
@@ -364,6 +367,7 @@
             
             [_btn_status setImage:[UIImage imageNamed:@"child_下载中"] forState:UIControlStateNormal];
             [_btn_status setTitle:@"玩具下载中" forState:UIControlStateNormal];
+            
             _btn_status.userInteractionEnabled = NO;
             
         }
@@ -375,17 +379,21 @@
 
 - (void)setAlbumMedia:(AlbumMedia *)albumMedia{
 
+    _albumMedia = albumMedia;
+    
     if (albumMedia) {
         
-        _albumMedia = albumMedia;
+        
         [_imgV_icon setImageWithURL:[NSURL URLWithString:_albumMedia.icon] placeholderImage:[UIImage imageNamed:@"icon_defaultuser"]];
         _lb_title.text = _albumMedia.name;
         
 
         switch (albumMedia.download.intValue) {
             case 0:
+                
                 [_btn_status setImage:[UIImage imageNamed:@"child_下载"] forState:UIControlStateNormal];
-                 [_btn_status setTitle:@"下载到玩具" forState:UIControlStateNormal];
+                [_btn_status setTitle:@"下载到玩具" forState:UIControlStateNormal];
+
                 _btn_status.userInteractionEnabled = YES;
                 
                 break;
@@ -396,6 +404,7 @@
                 
                 break;
             case 2:
+                
                 [_btn_status setImage:[UIImage imageNamed:@"child_下载中"] forState:UIControlStateNormal];
                 [_btn_status setTitle:@"玩具下载中" forState:UIControlStateNormal];
                 _btn_status.userInteractionEnabled = NO;
@@ -430,9 +439,11 @@
 
 - (void)setDownloadMediaInfo:(DownloadMediaInfo *)downloadMediaInfo{
     
+    _downloadMediaInfo = downloadMediaInfo;
+    
     if (downloadMediaInfo) {
 
-        _downloadMediaInfo = downloadMediaInfo;
+        
         
         [_imgV_icon setImageWithURL:[NSURL URLWithString:_downloadMediaInfo.icon] placeholderImage:[UIImage imageNamed:@"icon_defaultuser"]];
         _lb_title.text = _downloadMediaInfo.name;
@@ -443,6 +454,7 @@
             
             [_btn_status setImage:[UIImage imageNamed:@"child_功能菜单"] forState:UIControlStateNormal];
             [_btn_status setTitle:@"功能选择" forState:UIControlStateNormal];
+            
             _btn_status.userInteractionEnabled = YES;
             
             _isLocal = YES;
@@ -451,6 +463,7 @@
         
             [_btn_status setImage:[UIImage imageNamed:@"child_下载中"] forState:UIControlStateNormal];
             [_btn_status setTitle:@"玩具下载中" forState:UIControlStateNormal];
+            
             _btn_status.userInteractionEnabled = NO;
             
             _isLocal = NO;
@@ -497,8 +510,8 @@
             }
             
             ChildMoreView *childMoreView = [ChildMoreView initCustomView];
+            
             childMoreView.isGedan = weakSelf.isGedan;
-
             if (weakSelf.albumInfo) {
                 childMoreView.albumInfo = weakSelf.albumInfo;
             }
@@ -555,10 +568,9 @@
 }
 
 - (void)dealloc{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
     [audioController_cell stop];
     audioController_cell = nil;
-    
 }
 
 
