@@ -197,12 +197,17 @@
 
 #pragma mark - 推送相关
 
+-(void)application:(UIApplication *)application didRegisterUserNotificationSettings:(nonnull UIUserNotificationSettings *)notificationSettings{
+    [application registerForRemoteNotifications];
+}
+
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     // Required
     //    [APService registerDeviceToken:deviceToken];
-    NSString *token = [[NSString alloc] initWithData:deviceToken encoding:NSUTF8StringEncoding];
-    NSLog(@"apntoken:%@",token);
     [MiPushSDK bindDeviceToken:deviceToken];
+//    NSString *token = [[NSString alloc] initWithData:deviceToken encoding:NSUTF8StringEncoding];
+//    NSLog(@"apntoken:%@",token);
+//    [MiPushSDK bindDeviceToken:deviceToken];
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
