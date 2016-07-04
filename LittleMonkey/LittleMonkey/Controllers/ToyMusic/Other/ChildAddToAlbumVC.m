@@ -51,6 +51,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"添加到歌单";
+    [self showRightBarButtonItemWithImage:@"btn_toyHome_add.png" target:self action:@selector(showAddView)];
     [self initUI];
 }
 
