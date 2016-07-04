@@ -144,8 +144,6 @@
         [MiPushSDK setAlias:[[ShareValue sharedShareValue].user_id stringValue]];
         NDUserSetJPushIdParams *params = [[NDUserSetJPushIdParams alloc] init];
         params.jpush_id = jpushid;
-        params.channel = 3;
-        
         [NDUserAPI userSetJPushIdWithParams:params completionBlockWithSuccess:^{
             
             NSLog(@"JPushID请求或者更新成功");

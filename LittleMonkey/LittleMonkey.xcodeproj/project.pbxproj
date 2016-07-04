@@ -8,6 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		4738167720B96B2840EC112D /* Pods_LittleMonkey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA0B581428229F7F6864252F /* Pods_LittleMonkey.framework */; };
+		AC4285861D2A0A5D00E79C5E /* FeedBackVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AC4285841D2A0A5D00E79C5E /* FeedBackVC.m */; };
+		AC4285871D2A0A5D00E79C5E /* FeedBackVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC4285851D2A0A5D00E79C5E /* FeedBackVC.xib */; };
+		AC42858E1D2A0A8A00E79C5E /* ChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC4285881D2A0A8A00E79C5E /* ChatCell.xib */; };
+		AC42858F1D2A0A8A00E79C5E /* InputView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC42858A1D2A0A8A00E79C5E /* InputView.m */; };
+		AC4285901D2A0A8A00E79C5E /* InputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC42858B1D2A0A8A00E79C5E /* InputView.xib */; };
+		AC4285911D2A0A8A00E79C5E /* LRImageAvatarBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC42858D1D2A0A8A00E79C5E /* LRImageAvatarBrowser.m */; };
+		AC4285941D2A0ABD00E79C5E /* ChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC4285931D2A0ABD00E79C5E /* ChatCell.m */; };
+		AC42859A1D2A0C1800E79C5E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AC4285961D2A0C1800E79C5E /* InfoPlist.strings */; };
+		AC42859B1D2A0C1800E79C5E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AC4285981D2A0C1800E79C5E /* Localizable.strings */; };
 		ACC76BCB1D1EC4C60017FA42 /* ExplainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = ACC76BC91D1EC4C60017FA42 /* ExplainVC.m */; };
 		ACC76BCC1D1EC4C60017FA42 /* ExplainVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACC76BCA1D1EC4C60017FA42 /* ExplainVC.xib */; };
 		ACC76BCE1D1EC6610017FA42 /* instructions.plist in Resources */ = {isa = PBXBuildFile; fileRef = ACC76BCD1D1EC6610017FA42 /* instructions.plist */; };
@@ -360,6 +369,18 @@
 
 /* Begin PBXFileReference section */
 		2EAAF69CFEFD064224ECE324 /* Pods-LittleMonkey.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LittleMonkey.release.xcconfig"; path = "Pods/Target Support Files/Pods-LittleMonkey/Pods-LittleMonkey.release.xcconfig"; sourceTree = "<group>"; };
+		AC4285841D2A0A5D00E79C5E /* FeedBackVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackVC.m; sourceTree = "<group>"; };
+		AC4285851D2A0A5D00E79C5E /* FeedBackVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedBackVC.xib; sourceTree = "<group>"; };
+		AC4285881D2A0A8A00E79C5E /* ChatCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatCell.xib; sourceTree = "<group>"; };
+		AC4285891D2A0A8A00E79C5E /* InputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputView.h; sourceTree = "<group>"; };
+		AC42858A1D2A0A8A00E79C5E /* InputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputView.m; sourceTree = "<group>"; };
+		AC42858B1D2A0A8A00E79C5E /* InputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputView.xib; sourceTree = "<group>"; };
+		AC42858C1D2A0A8A00E79C5E /* LRImageAvatarBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRImageAvatarBrowser.h; sourceTree = "<group>"; };
+		AC42858D1D2A0A8A00E79C5E /* LRImageAvatarBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRImageAvatarBrowser.m; sourceTree = "<group>"; };
+		AC4285921D2A0ABD00E79C5E /* ChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatCell.h; sourceTree = "<group>"; };
+		AC4285931D2A0ABD00E79C5E /* ChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatCell.m; sourceTree = "<group>"; };
+		AC4285971D2A0C1800E79C5E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = InfoPlist.strings; sourceTree = "<group>"; };
+		AC4285991D2A0C1800E79C5E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = Localizable.strings; sourceTree = "<group>"; };
 		ACC76BC81D1EC4C60017FA42 /* ExplainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExplainVC.h; sourceTree = "<group>"; };
 		ACC76BC91D1EC4C60017FA42 /* ExplainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExplainVC.m; sourceTree = "<group>"; };
 		ACC76BCA1D1EC4C60017FA42 /* ExplainVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExplainVC.xib; sourceTree = "<group>"; };
@@ -1019,6 +1040,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AC4285951D2A0C1800E79C5E /* zh-Hans.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				AC4285961D2A0C1800E79C5E /* InfoPlist.strings */,
+				AC4285981D2A0C1800E79C5E /* Localizable.strings */,
+			);
+			path = "zh-Hans.lproj";
+			sourceTree = "<group>";
+		};
 		CE21DDD61D04254300D12E89 /* CFPickerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1032,6 +1062,7 @@
 		CE297F021D02B860009F62E0 = {
 			isa = PBXGroup;
 			children = (
+				AC4285951D2A0C1800E79C5E /* zh-Hans.lproj */,
 				CE297F0D1D02B860009F62E0 /* LittleMonkey */,
 				CE297F0C1D02B860009F62E0 /* Products */,
 				D991CD841650359DEC2D24EE /* Pods */,
@@ -1161,6 +1192,8 @@
 		CE297F621D02B97F009F62E0 /* More */ = {
 			isa = PBXGroup;
 			children = (
+				AC4285841D2A0A5D00E79C5E /* FeedBackVC.m */,
+				AC4285851D2A0A5D00E79C5E /* FeedBackVC.xib */,
 				CE297F661D02B97F009F62E0 /* ToyMoreVC.h */,
 				CE297F671D02B97F009F62E0 /* ToyMoreVC.m */,
 				CE297F681D02B97F009F62E0 /* ToyMoreVC.xib */,
@@ -1583,6 +1616,9 @@
 		CE2980731D030F57009F62E0 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				AC4285921D2A0ABD00E79C5E /* ChatCell.h */,
+				AC4285931D2A0ABD00E79C5E /* ChatCell.m */,
+				AC4285881D2A0A8A00E79C5E /* ChatCell.xib */,
 				CE29806E1D02CEDA009F62E0 /* PersonalCenterCell.h */,
 				CE29806F1D02CEDA009F62E0 /* PersonalCenterCell.m */,
 				CE2980701D02CEDA009F62E0 /* PersonalCenterCell.xib */,
@@ -2234,6 +2270,11 @@
 		CEFC6AE91D0325AC00BE2DA8 /* ToyShareView */ = {
 			isa = PBXGroup;
 			children = (
+				AC4285891D2A0A8A00E79C5E /* InputView.h */,
+				AC42858A1D2A0A8A00E79C5E /* InputView.m */,
+				AC42858B1D2A0A8A00E79C5E /* InputView.xib */,
+				AC42858C1D2A0A8A00E79C5E /* LRImageAvatarBrowser.h */,
+				AC42858D1D2A0A8A00E79C5E /* LRImageAvatarBrowser.m */,
 				CEFC6ADF1D03243F00BE2DA8 /* ToyChoice.h */,
 				CEFC6AE01D03243F00BE2DA8 /* ToyChoice.m */,
 				CEFC6AE11D03243F00BE2DA8 /* ToyChoice.xib */,
@@ -2343,6 +2384,7 @@
 				CE58718C1D16EB2B00FDD39B /* ChildSortCell.xib in Resources */,
 				CE6E94031D0492EC007B39DC /* ToyInfoVC.xib in Resources */,
 				CE4716811D168159002A3F29 /* GroupMemberItem.xib in Resources */,
+				AC42859A1D2A0C1800E79C5E /* InfoPlist.strings in Resources */,
 				CE5871601D16DCE600FDD39B /* TransceiverPublishCommentVC.xib in Resources */,
 				CEAC68221D071027007547A0 /* DataNetWorkSuperView.xib in Resources */,
 				CE5871AF1D16EE8400FDD39B /* DownloadMedioVC.xib in Resources */,
@@ -2359,6 +2401,7 @@
 				CE5871321D16D04200FDD39B /* ChildAlbumListCell.xib in Resources */,
 				CE6E933D1D04621F007B39DC /* ToyHomeVC.xib in Resources */,
 				CE5871961D16EBBF00FDD39B /* ChildHotView.xib in Resources */,
+				AC4285871D2A0A5D00E79C5E /* FeedBackVC.xib in Resources */,
 				CE5871E21D16F54600FDD39B /* ChildAddToAlbumVC.xib in Resources */,
 				CE653EB01D1BFABB00A414A5 /* ChildCustomizeAddVC.xib in Resources */,
 				CECFCA811D03453B00C241D5 /* ToyWifiThirdVC.xib in Resources */,
@@ -2380,6 +2423,7 @@
 				CE58716A1D16E0B400FDD39B /* ChildSelectView.xib in Resources */,
 				CE58717A1D16E79E00FDD39B /* ChildMediaBatCell.xib in Resources */,
 				CE47165E1D167DDC002A3F29 /* GroupMemberItemCell.xib in Resources */,
+				AC4285901D2A0A8A00E79C5E /* InputView.xib in Resources */,
 				CE5D79801D15393100F53034 /* GroupAddVC.xib in Resources */,
 				CE6E933F1D04621F007B39DC /* ToyListVC.xib in Resources */,
 				CE297F1E1D02B860009F62E0 /* LaunchScreen.storyboard in Resources */,
@@ -2392,6 +2436,7 @@
 				CE5871701D16E71F00FDD39B /* DownloadedVC.xib in Resources */,
 				ACC76BCC1D1EC4C60017FA42 /* ExplainVC.xib in Resources */,
 				CE5871A51D16EE5B00FDD39B /* PortDownloadedVC.xib in Resources */,
+				AC42859B1D2A0C1800E79C5E /* Localizable.strings in Resources */,
 				CE58717F1D16E9CE00FDD39B /* ChildMoreView.xib in Resources */,
 				CE2980661D02C721009F62E0 /* ChooseInMiddleCell.xib in Resources */,
 				CE297F421D02B934009F62E0 /* image.xcassets in Resources */,
@@ -2430,6 +2475,7 @@
 				CECFCA771D0344B400C241D5 /* ToyWifiFirstVC.xib in Resources */,
 				CE5871C91D16F12F00FDD39B /* ChildCustomizeVC.xib in Resources */,
 				CE4716991D16B27A002A3F29 /* HaloSquareVC.xib in Resources */,
+				AC42858E1D2A0A8A00E79C5E /* ChatCell.xib in Resources */,
 				CE5871241D16CE0F00FDD39B /* HaloSquareRecommendCell.xib in Resources */,
 				CE6E93DD1D0489EB007B39DC /* ToyThemeCell.xib in Resources */,
 				CE5D79841D15393100F53034 /* QRCodeVC.xib in Resources */,
@@ -2576,6 +2622,7 @@
 				CE6E93921D0486A0007B39DC /* TimerAddVCL.m in Sources */,
 				CE2980021D02B97F009F62E0 /* NDSystemAPI.m in Sources */,
 				CE2980211D02B97F009F62E0 /* GCDQueue.m in Sources */,
+				AC42858F1D2A0A8A00E79C5E /* InputView.m in Sources */,
 				CE6E938A1D0486A0007B39DC /* ALarmEventVC.m in Sources */,
 				CE80EEED1D075A11007046F3 /* FMComment.m in Sources */,
 				CE29802D1D02B97F009F62E0 /* ShareFun.m in Sources */,
@@ -2639,6 +2686,7 @@
 				CE5871E11D16F54600FDD39B /* ChildAddToAlbumVC.m in Sources */,
 				CE58713B1D16D1E000FDD39B /* HaloSquareAlbumInfoView.m in Sources */,
 				CE6E93D51D048935007B39DC /* GreetingMail.m in Sources */,
+				AC4285861D2A0A5D00E79C5E /* FeedBackVC.m in Sources */,
 				CE5871D21D16F29D00FDD39B /* LoadDownNoInfoView.m in Sources */,
 				CE2980241D02B97F009F62E0 /* UserDefaultsObject.m in Sources */,
 				CECC3BED1D03FCAB009F6DD6 /* ToyUpdate.m in Sources */,
@@ -2703,6 +2751,7 @@
 				CE29803F1D02B97F009F62E0 /* UIImage+External.m in Sources */,
 				CE5D15311D15DC1000415148 /* ToyListCell.m in Sources */,
 				CE5871901D16EB6100FDD39B /* ChildAlbumInfo.m in Sources */,
+				AC4285911D2A0A8A00E79C5E /* LRImageAvatarBrowser.m in Sources */,
 				CE24B30E1D0742F400EF83BE /* Fm.m in Sources */,
 				CE653EA61D1BFAA300A414A5 /* NDMediaAPI.m in Sources */,
 				CE47165D1D167DDC002A3F29 /* GroupMemberItemCell.m in Sources */,
@@ -2720,6 +2769,7 @@
 				CE5871A41D16EE5B00FDD39B /* PortDownloadedVC.m in Sources */,
 				CE29803E1D02B97F009F62E0 /* UIButton+Block.m in Sources */,
 				CE29803B1D02B97F009F62E0 /* LK_NSDictionary2Object.m in Sources */,
+				AC4285941D2A0ABD00E79C5E /* ChatCell.m in Sources */,
 				CE29800A1D02B97F009F62E0 /* LoginHomeVC.m in Sources */,
 				CE6E934D1D047BA0007B39DC /* ToySettingVC.m in Sources */,
 				CECFCA8F1D03596300C241D5 /* AsyncUdpSocket.m in Sources */,
@@ -2731,6 +2781,22 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		AC4285961D2A0C1800E79C5E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AC4285971D2A0C1800E79C5E /* zh-Hans */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		AC4285981D2A0C1800E79C5E /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AC4285991D2A0C1800E79C5E /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		CE297F1C1D02B860009F62E0 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -2911,7 +2977,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.histudio.wxk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8379aadf-aa84-4742-aa67-7a7fe0421fa7";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -2921,8 +2987,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2980,7 +3046,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.histudio.wxk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8379aadf-aa84-4742-aa67-7a7fe0421fa7";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

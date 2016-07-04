@@ -138,6 +138,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="icon_defaultuser" width="46" height="46"/>
+        <image name="icon_defaultuser" width="65" height="69"/>
     </resources>
 </document>

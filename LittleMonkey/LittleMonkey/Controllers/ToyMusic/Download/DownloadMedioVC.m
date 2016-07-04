@@ -50,6 +50,8 @@
 {
     if (_album) {
         [self showLeftBarButtonItemWithTitle:@"添加" target:self action:@selector(addDownloadHandler)];
+        UIButton *btn = self.navigationItem.rightBarButtonItem.customView;
+         [btn setTitleColor:UIColorFromRGB(0xff6948) forState:UIControlStateNormal];
     }
     _page = 1;
     _dataList = [[NSMutableArray alloc]init];

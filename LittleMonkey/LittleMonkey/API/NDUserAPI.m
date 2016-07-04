@@ -471,7 +471,7 @@
     if (self) {
         self.type = @"mi";
         self.platform = @"ios";
-        self.channel = 0;
+        self.channel = 3;
     }
     return self;
 }

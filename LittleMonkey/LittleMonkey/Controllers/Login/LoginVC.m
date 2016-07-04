@@ -253,7 +253,6 @@
     if (jpushid) {
         NDUserSetJPushIdParams *params = [[NDUserSetJPushIdParams alloc] init];
         params.jpush_id = jpushid;
-        params.channel = 3;
         [NDUserAPI userSetJPushIdWithParams:params completionBlockWithSuccess:^{
             NSLog(@"JPushID请求或者更新成功");
         } Fail:^(int code, NSString *failDescript) {

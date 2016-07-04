@@ -168,7 +168,8 @@
         self.navigationItem.title = _downloadAlbumInfo.name;
         
         [self showRightBarButtonItemWithTitle:@"添加" target:self action:@selector(btnBatchDownloadAction:)];
-        
+        UIButton *btn = self.navigationItem.rightBarButtonItem.customView;
+        [btn setTitleColor:UIColorFromRGB(0xff6948) forState:UIControlStateNormal];
         [_imgv_icon sd_setImageWithURL:[NSURL URLWithString:_downloadAlbumInfo.icon] placeholderImage:[UIImage imageNamed:@"icon_defaultuser"]];
         [_imgv_background sd_setImageWithURL:[NSURL URLWithString:_downloadAlbumInfo.icon] placeholderImage:[UIImage imageNamed:@"icon_defaultuser"]];
         _lb_title.text = _downloadAlbumInfo.name;
