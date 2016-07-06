@@ -240,7 +240,7 @@
     
     GroupDetail *groupDetail = [ShareValue sharedShareValue].groupDetail;
     
-    if (groupDetail.toy_list.count == 0) {
+    if (groupDetail.toy_list.count == 0 && ![ShareFun isGroupOwner]) {
         
        [self juageGroup];
         
