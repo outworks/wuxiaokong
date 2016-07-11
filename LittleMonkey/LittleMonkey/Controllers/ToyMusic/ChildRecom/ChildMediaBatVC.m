@@ -931,7 +931,7 @@
             params.album_type = self.downloadAlbumInfo.album_type;
         }else{
             params.album_id = self.albumInfo.album_id;
-            params.album_type = self.downloadAlbumInfo.album_type;
+            params.album_type = self.albumInfo.album_type;
         }
         
         
