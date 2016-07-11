@@ -478,7 +478,7 @@
         message.title = @"分享";
         message.description = @"悟小空智能故事机,史上最强的故事机,点我立即了解(必看)";
         [message setThumbImage:[UIImage imageNamed:@"Icon-Spotlight-40"]];
-        NSString* url = @"http://hello.99.com";
+        NSString* url = @"http://wuxiaokong.imich.cn/wxk";
         
         WXWebpageObject *ext = [WXWebpageObject object];
         
@@ -500,7 +500,7 @@
         message.title =  @"悟小空智能故事机,史上最强的故事机，点我立即了解(必看)";
         message.description = @"悟小空智能故事机,史上最强的故事机，点我立即了解(必看)";
         [message setThumbImage:[UIImage imageNamed:@"Icon-Spotlight-40"]];
-        NSString* url = @"http://hello.99.com";
+        NSString* url = @"http://wuxiaokong.imich.cn/wxk";
         
         WXWebpageObject *ext = [WXWebpageObject object];
         
