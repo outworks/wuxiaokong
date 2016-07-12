@@ -15,5 +15,6 @@
 @property(nonatomic,strong) NSString *icon;
 @property(nonatomic,strong) NSString *preview_url;
 @property(nonatomic,strong) NSString *localUrl;
+@property(nonatomic,strong) NSNumber *status; // -1 未下载  0 已下载  1 需更新
 
 @end

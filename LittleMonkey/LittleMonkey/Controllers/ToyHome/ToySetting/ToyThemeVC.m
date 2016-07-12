@@ -10,6 +10,7 @@
 #import "NDToyAPI.h"
 #import "UIButton+Block.h"
 #import "NDDownLoadAPI.h"
+#import "UIAlertView+BlocksKit.h"
 
 @interface ToyThemeVC ()<AVAudioPlayerDelegate>
 
@@ -186,8 +187,27 @@
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     Theme *theme = _arr_data[indexPath.row];
-    [self changeTheme:theme];
-    
+    __weak typeof(self ) weakself = self;
+    if ([theme.status isEqual:@-1]) {
+        UIAlertView *alertView = [[UIAlertView alloc]bk_initWithTitle:@"提醒" message:@"当前主题未下载，是否马上下载?"];
+        [alertView bk_setCancelButtonWithTitle:@"取消" handler:nil];
+        [alertView bk_addButtonWithTitle:@"下载" handler:^{
+            [weakself downloadTheme:theme];
+        }];
+        [alertView show];
+    }else if([theme.status isEqual:@0]){
+        [self changeTheme:theme];
+    }else if([theme.status isEqual:@1]){
+        UIAlertView *alertView = [[UIAlertView alloc]bk_initWithTitle:@"提醒" message:@"当前主题有新的更新，是否马上下载?"];
+        [alertView bk_setCancelButtonWithTitle:@"取消" handler:^{
+            [weakself changeTheme:theme];
+        }];
+        [alertView bk_addButtonWithTitle:@"下载" handler:^{
+            [weakself changeTheme:theme];
+            [weakself downloadTheme:theme];
+        }];
+        [alertView show];
+    }
     
 }
 
@@ -222,6 +242,22 @@
 
 
 #pragma mark - 下载主题
+
+-(void)downloadTheme:(Theme *)theme{
+    __weak typeof(self) weakself = self;
+    NDDownloadAddParams *params = [[NDDownloadAddParams alloc]init];
+    params.content_type = @1;
+    params.toy_id = [ShareValue sharedShareValue].toyDetail.toy_id;
+    params.content_id = theme.theme_id;
+    [NDDownLoadAPI downloadAddWithParams:params completionBlockWithSuccess:^{
+        [ShowHUD showSuccess:@"已发送下载主题指令" configParameter:^(ShowHUD *config) {
+            
+        } duration:1 inView:self.view];
+    } Fail:^(int code, NSString *failDescript) {
+        [ShowHUD showError:failDescript configParameter:^(ShowHUD *config) {
+        } duration:1.0f inView:weakself.view];
+    }];
+}
 
 -(void)downloadMail:(Theme *)theme success:(void(^)(NSURL *fileUrl))success fail:(void(^)(BOOL notReachable,NSString *desciption))fail{
     if (theme.localUrl.length>0) {
