@@ -70,6 +70,8 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(groupDismiss:) name:NOTIFICATION_REMOTE_DISMISS object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(groupQuit:) name:NOTIFICATION_REMOTE_QUIT object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(showMessage:) name:NOTIFICATION_REMOTE_DOWNLOAD object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(showThemeMessage:) name:NOTIFICATION_REMOTE_THEME object:nil];
+    
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(showApplyMessage:) name:NOTIFICATION_REMOTE_APPLY object:nil];
     
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
@@ -524,6 +526,11 @@
             };
         }
     }
+}
+
+-(void)showThemeMessage:(NSNotification *)note{
+    [self.notificationView displayNotificationWithMessage:[NSString stringWithFormat:@"玩具下载主题成功"]
+                                              forDuration:3.0f];
 }
 
 -(void)showMessage:(NSNotification *)note{

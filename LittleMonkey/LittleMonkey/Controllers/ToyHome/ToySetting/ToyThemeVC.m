@@ -31,13 +31,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.title = NSLocalizedString(@"音效主题", nil);
     _arr_data = [NSMutableArray array];
     _v_info.hidden = YES;
     [self loadThemeList];
     [self loadToyTheme];
-    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(themeDownoaded:) name:NOTIFICATION_REMOTE_THEME object:nil];
 }
 
 #pragma makr - privateMethods
@@ -80,13 +79,17 @@
 
 }
 
+-(void)themeDownoaded:(NSNotification *)notification{
+    [self loadThemeList];
+}
+
 -(void)changeTheme:(Theme *)theme{
 
     NDToyChangeThemeParams *params = [[NDToyChangeThemeParams alloc] init];
     params.toy_id = _toy_id;
     params.theme_id = theme.theme_id;
     [NDToyAPI toyChangeThemeWithParams:params completionBlockWithSuccess:^{
-        [ShowHUD showSuccess:NSLocalizedString(@"Theme切换成功", nil) configParameter:^(ShowHUD *config) {
+        [ShowHUD showSuccess:NSLocalizedString(@"主题切换成功", nil) configParameter:^(ShowHUD *config) {
         } duration:1.0f inView:self.view];
         
         _selectedTheme = theme;

@@ -98,7 +98,8 @@ remoteInfo{
         
     }else if(type && [type isEqual:@"download"]){
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_REMOTE_DOWNLOAD object:nil userInfo:remoteInfo];
-        
+    }else if(type && [type isEqual:@"theme"]){
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_REMOTE_THEME object:nil userInfo:remoteInfo];
     }
     
 }

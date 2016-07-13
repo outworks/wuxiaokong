@@ -33,6 +33,7 @@
 #define NOTIFICATION_REMOTE_GREETINGPRAISE @"NOTIFICATION_REMOTE_GREETINGPRAISE"                    //收到祝福点赞
 
 #define NOTIFICATION_REMOTE_DOWNLOAD @"NOTIFICATION_REMOTE_DOWNLOAD" //收到下载结束
+#define NOTIFICATION_REMOTE_THEME @"NOTIFICATION_REMOTE_THEME" //收到主题下载结束
 
 #define NOTIFICATION_REMOTE_BIND @"NOTIFICATION_REMOTE_BIND"                                        //玩具绑定通知，socket通知，暂时没用。
 #define NOTIFICATION_REMOTE_BIND2 @"NOTIFICATION_REMOTE_BIND2"                                      //玩具绑定成功通知，与上个区分，这个为内部通知,在用。
