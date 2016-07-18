@@ -59,18 +59,30 @@
         [weakSelf queryHotList];
     } inGroup:group];
     
-    for (NSMutableDictionary *t_dic in _mArr_tag) {
-        
-        NSString *tagName = [t_dic objectForKey:@"tag"];
-        
-        [[GCDQueue globalQueue] execute:^{
-            [weakSelf queryAlbumList:@6 withTagName:tagName];
-        } inGroup:group];
-    }
-    
+
     [[GCDQueue mainQueue] notify:^{
-        [weakSelf.tb_content.pullScrollingView stopAnimating];
-        [weakSelf.tb_content reloadData];
+        
+        GCDGroup *grouptag = [GCDGroup new];
+        
+        if ([_mArr_tag count] > 0) {
+            [_mArr_tag removeAllObjects];
+        }
+        
+        for (int index = 0; index < 6; index++) {
+            XMTag *tag = weakSelf.mArr_tagData[index];
+            [self initDicInArray:tag.tagName withIndex:@(index)];
+            
+            [[GCDQueue globalQueue] execute:^{
+                [weakSelf queryAlbumList:@6 withTagName:tag.tagName];
+            } inGroup:grouptag];
+            
+        }
+        
+        [[GCDQueue mainQueue] notify:^{
+            
+            [weakSelf.tb_content.pullScrollingView stopAnimating];
+            [weakSelf.tb_content reloadData];
+        } inGroup:grouptag];
     } inGroup:group];
 
 
@@ -81,14 +93,15 @@
 - (void) initData{
 
     _mArr_tag = [NSMutableArray new];
-    NSArray *t_data = [NSMutableArray arrayWithObjects:@"儿歌大全",@"睡前故事",@"儿童英语",@"儿童学习",@"儿童教育",@"绘本故事",nil];
-  
-    for (NSString *tagName in t_data) {
-        
-        NSNumber *index = [NSNumber numberWithInteger:[t_data indexOfObject:tagName]] ;
-        [self initDicInArray:tagName withIndex:index];
-        
-    }
+    
+//    NSArray *t_data = [NSMutableArray arrayWithObjects:@"儿歌大全",@"睡前故事",@"儿童英语",@"儿童学习",@"儿童教育",@"绘本故事",nil];
+//  
+//    for (NSString *tagName in t_data) {
+//        
+//        NSNumber *index = [NSNumber numberWithInteger:[t_data indexOfObject:tagName]] ;
+//        [self initDicInArray:tagName withIndex:index];
+//        
+//    }
  
 }
 
@@ -153,8 +166,9 @@
         if (!error) {
             
             weakSelf.mArr_tagData = [self showReceivedData:result className:@"XMTag" valuePath:nil ];
-            NSIndexPath *indexPath=[NSIndexPath indexPathForRow:0 inSection:0];
-            [weakSelf.tb_content reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
+//            NSIndexPath *indexPath=[NSIndexPath indexPathForRow:0 inSection:0];
+//            [weakSelf.tb_content reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
+             [weakSelf.tb_content reloadData];
             
         }else{
         
@@ -191,10 +205,11 @@
                 if ([t_tagName isEqualToString:tagName]) {
                     
                     [t_dic setObject:date forKey:@"albums"];
-                    NSNumber *row = [t_dic objectForKey:@"index"];
-                    
-                    NSIndexPath *indexPath=[NSIndexPath indexPathForRow:[row integerValue] inSection:0];
-                    [weakSelf.tb_content reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
+//                    NSNumber *row = [t_dic objectForKey:@"index"];
+//                    
+//                    NSIndexPath *indexPath=[NSIndexPath indexPathForRow:[row integerValue] inSection:0];
+//                    [weakSelf.tb_content reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
+                     [weakSelf.tb_content reloadData];
                     break;
                 }
             }
