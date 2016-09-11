@@ -22,6 +22,7 @@ typedef NS_ENUM(NSUInteger, ToyState) {
     ToyStateMusicState = 106,
     ToyStateBianShenState = 107,
     ToyStateKitTalkState = 108,
+    ToyStateNightLightState = 110,
 };
 
 

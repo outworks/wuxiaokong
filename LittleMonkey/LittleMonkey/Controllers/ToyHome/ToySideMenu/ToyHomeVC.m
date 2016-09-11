@@ -57,9 +57,25 @@
 @property (weak, nonatomic) IBOutlet UIView *v_music;
 
 @property (weak, nonatomic) IBOutlet UIView *v_status;
-@property (weak, nonatomic) IBOutlet UIImageView *imageV_status;
+
+@property (weak, nonatomic) IBOutlet UIButton *btn_light;
+@property (weak, nonatomic) IBOutlet UIButton *btn_playToy;
+@property (weak, nonatomic) IBOutlet UIButton *btn_talk;
+@property (weak, nonatomic) IBOutlet UIButton *btn_story;
+@property (weak, nonatomic) IBOutlet UIButton *btn_musicToy;
+
+@property (weak, nonatomic) IBOutlet UIImageView *imgV_light;
+@property (weak, nonatomic) IBOutlet UIImageView *imgV_playToy;
+@property (weak, nonatomic) IBOutlet UIImageView *imgV_talk;
+@property (weak, nonatomic) IBOutlet UIImageView *imgV_story;
+@property (weak, nonatomic) IBOutlet UIImageView *imgV_musicToy;
+
+@property (weak, nonatomic) IBOutlet UIImageView *imgV_onLine;
+
+
 @property (weak, nonatomic) IBOutlet UILabel *lb_statusLink;
 @property (weak, nonatomic) IBOutlet UILabel *lb_statusTip;
+
 
 @property (weak, nonatomic) IBOutlet UILabel *lb_status;
 @property (weak, nonatomic) IBOutlet UILabel *lb_electricity;
@@ -168,8 +184,8 @@
     _v_voice.frame = CGRectMake(0, SCREEN_HEIGHT+_v_voice.frame.size.height, [UIScreen mainScreen].bounds.size.width, _v_voice.frame.size.height);
     [((AppDelegate *)[UIApplication sharedApplication].delegate).window addSubview:_v_voice];
     
-    WCGraintCircleLayer * sub1 = [[WCGraintCircleLayer alloc] initGraintCircleWithBounds:CGRectMake(0, 0, self.v_unlinkClock.frame.size.width, self.v_unlinkClock.frame.size.height) Position:CGPointMake(self.v_unlinkClock.frame.size.width/2, self.v_unlinkClock.frame.size.height/2) FromColor:RGB(227, 227, 227) ToColor:UIColorFromRGB(0xe4ae04) LineWidth:5.0];
-    [self.v_unlinkClock.layer addSublayer:sub1];
+//    WCGraintCircleLayer * sub1 = [[WCGraintCircleLayer alloc] initGraintCircleWithBounds:CGRectMake(0, 0, self.v_unlinkClock.frame.size.width, self.v_unlinkClock.frame.size.height) Position:CGPointMake(self.v_unlinkClock.frame.size.width/2, self.v_unlinkClock.frame.size.height/2) FromColor:RGB(227, 227, 227) ToColor:UIColorFromRGB(0xe4ae04) LineWidth:5.0];
+//    [self.v_unlinkClock.layer addSublayer:sub1];
     
     
 }
@@ -214,9 +230,11 @@
         _v_status.hidden = NO;
         
     }else{
-       
-        _v_music.hidden = NO;
-        _v_status.hidden = YES;
+    
+        if ([self isPlayOneMedia]) {
+            _v_music.hidden = NO;
+            _v_status.hidden = YES;
+        }
     
     }
 }
@@ -231,8 +249,9 @@
             
         case ToyStateUnOnlineState:{
             
-            _v_unLink.hidden = NO;
-            [self startAnimation];
+            _v_unLink.hidden = YES;
+            //[self startAnimation];
+            [self setModelOnLine:NO withStatus:0];
             
             _lb_status.text = @"未连接";
             
@@ -263,6 +282,7 @@
             
             _v_unLink.hidden = YES;
             
+            [self setModelOnLine:YES withStatus:0];
             
             _lb_status.text = @"已连接";
             
@@ -287,8 +307,11 @@
         }
         case ToyStateDormancyState:{
             
-            _v_unLink.hidden = NO;
-            [self startAnimation];
+            _v_unLink.hidden = YES;
+            //[self startAnimation];
+            
+            [self setModelOnLine:NO withStatus:0];
+            
             
             _lb_status.text = @"未连接";
           
@@ -320,11 +343,13 @@
             
             _v_unLink.hidden = YES;
             
+            [self setModelOnLine:YES withStatus:0];
+            
             _lb_status.text = @"已连接";
             self.lb_statusLink.text = @"智能聊天模式";
             self.lb_statusTip.text = @"悟小空正处于智能聊天模式，让您的宝贝和悟小空开启智能聊天吧";
             
-            if (_toyStatus.albumid && _toyStatus.mediaid&&[_toyStatus.albumid isEqualToString:@"0"] && ![_toyStatus.mediaid isEqualToString:@"0"]) {
+            if ([self isPlayOneMedia]) {
                 
                 if(_toyStatus.status){
                     
@@ -354,10 +379,11 @@
         case ToyStateTalkState:{
             
             _v_unLink.hidden = YES;
+            [self setModelOnLine:YES withStatus:3];
             
             _lb_status.text = @"已连接";
             self.lb_statusLink.text = @"语音对讲模式";
-            self.lb_statusTip.text = @"悟小空正处于语音模式，快给小宝贝发送语音消息吧";
+            self.lb_statusTip.text = @"轻拍顶部按钮收听最近一个音频，长按顶部按钮开始对讲功能放开后发送";
            
             if ([self isPlayOneMedia]) {
                 
@@ -389,10 +415,11 @@
         case ToyStateMusicState:{
             
             _v_unLink.hidden = YES;
+            [self setModelOnLine:YES withStatus:4];
             
             _lb_status.text = @"已连接";
             self.lb_statusLink.text = @"音乐模式";
-            self.lb_statusTip.text = @"悟小空正处于音乐模式，您可以浏览音乐故事听更多的音乐哦";
+            self.lb_statusTip.text = @"轻拍顶部按钮收听下一曲，长按顶部按钮切换专辑，摇一摇暂停，在摇一摇继续播放媒体";
     
             if(_toyStatus.status){
                 
@@ -416,10 +443,10 @@
             
             _v_unLink.hidden = YES;
             
-            
+              [self setModelOnLine:YES withStatus:5];
             _lb_status.text = @"已连接";
             self.lb_statusLink.text = @"故事模式";
-            self.lb_statusTip.text = @"悟小空正处于故事模式，您可以浏览音乐故事听更多的故事哦";
+            self.lb_statusTip.text = @"轻拍顶部按钮收听下一曲，长按顶部按钮切换专辑，摇一摇暂停，在摇一摇继续播放媒体";
             
             if(_toyStatus.status){
                 
@@ -440,11 +467,11 @@
         case ToyStateBianShenState:{
             
             _v_unLink.hidden = YES;
-            [self stopAnimation];
-            
+            //[self stopAnimation];
+            [self setModelOnLine:YES withStatus:2];
             _lb_status.text = @"已连接";
             self.lb_statusLink.text = @"变声模式";
-            self.lb_statusTip.text = @"悟小空正处于变声模式，让您的小孩试试趣味变声吧";
+            self.lb_statusTip.text = @"轻拍顶部按钮可以收听天气 长按顶部按钮是变声功能,摇一摇，听搞怪声音";
         
             if ([self isPlayOneMedia]) {
                 
@@ -473,7 +500,7 @@
         case ToyStateKitTalkState:{
             
             _v_unLink.hidden = YES;
-            [self stopAnimation];
+            //[self stopAnimation];
             
             _lb_status.text = @"已连接";
             self.lb_statusLink.text = @"私聊模式";
@@ -507,8 +534,10 @@
         }
         case ToyStateUnKnowState:{
             
-            _v_unLink.hidden = NO;
-            [self startAnimation];
+            _v_unLink.hidden = YES;
+            //[self startAnimation];
+            
+            [self setModelOnLine:NO withStatus:0];
             
             if ([ShareValue sharedShareValue].toyDetail) {
                 
@@ -526,6 +555,60 @@
             break;
     }
     [self updataMusicPlayerBtn];
+    
+}
+
+
+- (void)setModelOnLine:(BOOL)onLine withStatus:(NSInteger)tag{
+
+    _imgV_light.hidden = YES;
+    _imgV_playToy.hidden = YES;
+    _imgV_talk.hidden = YES;
+    _imgV_musicToy.hidden = YES;
+    _imgV_story.hidden = YES;
+    
+    if (onLine) {
+        
+        [_imgV_onLine setImage:[UIImage imageNamed:@"okface"]];
+     
+        switch (tag) {
+            case 1:
+                _imgV_light.hidden = NO;
+                [self startAnimation:_imgV_light];
+                
+                break;
+            case 2:
+                _imgV_playToy.hidden = NO;
+                [self startAnimation:_imgV_playToy];
+                
+                break;
+            case 3:
+                _imgV_talk.hidden = NO;
+                [self startAnimation:_imgV_talk];
+                
+                break;
+            case 4:
+                _imgV_musicToy.hidden = NO;
+                [self startAnimation:_imgV_musicToy];
+                
+                break;
+            case 5:
+                _imgV_story.hidden = NO;
+                [self startAnimation:_imgV_story];
+                
+                break;
+                
+            default:
+                break;
+        }
+        
+        
+    }else {
+        
+        [_imgV_onLine setImage:[UIImage imageNamed:@"noface"]];
+    
+    
+    }
     
 }
 
@@ -638,7 +721,7 @@
                 
                 self.toyState = ToyStatePartnerState;
                 break;
-            case 5:
+            case 7:
                 
                 /********** 变声模式 ***********/
                 
@@ -649,6 +732,11 @@
                 /********** 密语模式 ***********/
                 
                 self.toyState = ToyStateKitTalkState;
+                break;
+            case 10:
+                /********** 夜灯模式 ***********/
+                
+                self.toyState = ToyStateNightLightState;
                 break;
             default:
                 break;
@@ -689,7 +777,7 @@
 - (void)loadMusicDetail{
     
     __weak typeof(self) weakSelf = self;
-    [weakSelf stopAnimation];
+    //[weakSelf stopAnimation];
     if ([self isPlayOneMedia]) {
         
         
@@ -729,6 +817,28 @@
         
     }
     
+}
+
+
+- (void)queryChangeModel:(NSInteger)model{
+
+    NDToyChangeModeParams *params = [[NDToyChangeModeParams alloc]init];
+    params.toy_id = [ShareValue sharedShareValue].toyDetail.toy_id;
+    params.mode = @(model);
+    [NDToyAPI toyChangeModeWithParams:params completionBlockWithSuccess:^(NDToyChangeModeResult *result) {
+        
+        [ShowHUD showSuccess:NSLocalizedString(@"ChangeSuccessful", nil) configParameter:^(ShowHUD *config) {
+        } duration:1.5f inView:self.view];
+        
+    } Fail:^(int code, NSString *failDescript) {
+        
+        [ShowHUD showError:failDescript configParameter:^(ShowHUD *config) {
+        } duration:1.5f inView:self.view];
+        
+    }];
+    
+
+
 }
 
 
@@ -886,9 +996,10 @@
     
 }
 
-- (void)startAnimation
+- (void)startAnimation:(UIImageView *)imageView
 {
     //    [_img_music.layer removeAllAnimations];
+    [self stopAnimation:imageView];
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
     animation.toValue = [NSNumber numberWithFloat: M_PI * 2.0 ];
     //执行时间
@@ -896,11 +1007,12 @@
     //执行次数
     animation.repeatCount = INT_MAX;
     animation.removedOnCompletion = NO;
-    [_v_unlinkClock.layer addAnimation:animation forKey:@"animation"];
+    [imageView.layer addAnimation:animation forKey:@"animation"];
 }
 
--(void)stopAnimation{
-    [_v_unlinkClock.layer removeAllAnimations];
+-(void)stopAnimation:(UIImageView *)imageView{
+    
+    [imageView.layer removeAllAnimations];
 }
 
 
@@ -1082,6 +1194,70 @@
 - (IBAction)handleCoverClick:(id)sender {
     [self updateNickNameViewHiddenAnimateIfNeed];
 }
+
+
+/************** 点击音乐返回 ****************/
+
+- (IBAction)handleMusicBackClick:(id)sender {
+    
+    _v_music.hidden = YES;
+    _v_status.hidden = NO;
+    
+}
+
+/************** 点击各个模式切换按钮 ****************/
+
+- (IBAction)btnModelChangeClick:(id)sender {
+    
+    
+    UIButton * btn = sender;
+    NSInteger tag = btn.tag;
+    
+    switch (tag) {
+        case 71:
+            
+            [self queryChangeModel:TOYMODE_NightLight];
+            
+            break;
+        case 72:
+            
+            [self queryChangeModel:TOYMODE_VOICE];
+            break;
+        case 73:
+            
+            [self queryChangeModel:TOYMODE_TALK];
+            break;
+        case 74:
+            
+            if (self.toyState == ToyStateMusicState) {
+                
+                _v_music.hidden = NO;
+                _v_status.hidden = YES;
+                
+            }else{
+                [self queryChangeModel:TOYMODE_MUSIC];
+            }
+            
+            break;
+        case 75:
+            
+            if (self.toyState == ToyStateStoryState) {
+                
+                _v_music.hidden = NO;
+                _v_status.hidden = YES;
+                
+            }else{
+                [self queryChangeModel:TOYMODE_STORY];
+            }
+            break;
+            
+        default:
+            break;
+    }
+    
+}
+
+
 
 
 #pragma mark - NOTIFICATION

@@ -58,7 +58,7 @@
         
         [self.imageV_icon setImage:[UIImage imageNamed:@"icon_addToy.png"]];
         
-        self.lb_title.text = @"绑定新玩具";
+        self.lb_title.text = @"绑定新设备";
         if (![ShareValue sharedShareValue].toyDetail) {
             [self.lb_title setTextColor:UIColorFromRGB(0xff6948)];
         }else{

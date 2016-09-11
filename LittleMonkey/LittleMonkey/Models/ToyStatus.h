@@ -20,6 +20,7 @@ typedef enum : NSUInteger {
     TOYMODE_SLEEP = 6,//休眠模式
     TOYMODE_VOICE = 7,//变声模式
     TOYMODE_WHISPER = 9,//私聊模式
+    TOYMODE_NightLight = 10, //夜灯模式
 } ToyChangeMode;
 
 @property(nonatomic,strong) NSNumber *toy_id;       //玩具ID
