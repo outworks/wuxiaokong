@@ -106,15 +106,15 @@
         }
             break;
         case 3:{
-            cell.textLabel.text = NSLocalizedString(@"玩伴模式", nil);
-            if ([_mode isEqual:@"3"]) {
+            cell.textLabel.text = NSLocalizedString(@"玩耍模式", nil);
+            if ([_mode isEqual:@"7"]) {
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
         }
             break;
         case 4:{
-            cell.textLabel.text = NSLocalizedString(@"变声模式", nil);
-            if ([_mode isEqual:@"7"]) {
+            cell.textLabel.text = NSLocalizedString(@"夜灯模式", nil);
+            if ([_mode isEqual:@"10"]) {
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
         }
@@ -150,11 +150,11 @@
         }
             break;
         case 3:{
-            params.mode = @3;
+            params.mode = @7;
         }
             break;
         case 4:{
-            params.mode = @7;
+            params.mode = @10;
         }
             break;
         default:

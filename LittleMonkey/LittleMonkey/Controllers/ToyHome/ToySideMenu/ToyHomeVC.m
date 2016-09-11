@@ -255,6 +255,10 @@
             
             _lb_status.text = @"未连接";
             
+            self.lb_statusLink.text = @"正在搜索悟小空...";
+            self.lb_statusTip.text = @"小提示: 小空是不是关机或者进入休眠状态了？";
+            
+            
             [ShareFun clearPlayData];
             
             if (self.timer) {
@@ -311,6 +315,9 @@
             //[self startAnimation];
             
             [self setModelOnLine:NO withStatus:0];
+            
+            self.lb_statusLink.text = @"正在搜索悟小空...";
+            self.lb_statusTip.text = @"小提示: 小空是不是关机或者进入休眠状态了？";
             
             
             _lb_status.text = @"未连接";
@@ -544,7 +551,8 @@
                 [self queryToyDataWithKeys:@[DATA_KEY_MODECHANGE]];
                 
                 _lb_status.text = @"未连接";
-                self.lb_statusLink.text = @"玩具处于未知状态";
+                self.lb_statusLink.text = @"正在搜索悟小空...";
+                self.lb_statusTip.text = @"小提示: 小空是不是关机或者进入休眠状态了？";
             
             }
             
