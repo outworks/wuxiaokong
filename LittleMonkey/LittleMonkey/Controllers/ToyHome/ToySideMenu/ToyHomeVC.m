@@ -45,9 +45,11 @@
 @property (weak, nonatomic) IBOutlet FXBlurView *v_blur;
 
 @property (weak, nonatomic) IBOutlet UIButton *btn_add;
-@property (weak, nonatomic) IBOutlet UIButton *btn_like;
+@property (weak, nonatomic) IBOutlet UIButton *btn_musicBack;
 @property (weak, nonatomic) IBOutlet UIButton *btn_alarm;
 @property (weak, nonatomic) IBOutlet UIButton *btn_shengyin;
+
+
 
 @property (strong, nonatomic) IBOutlet UIView *v_voice;
 @property (weak, nonatomic) IBOutlet UISlider *voinceSlider;
@@ -170,7 +172,7 @@
     _btn_play.layer.masksToBounds = YES;
     self.v_blur.blurRadius = 30.0;
     _imageV_bg.clipsToBounds = YES;
-    NSArray *arr_view = [[NSArray alloc] initWithObjects:_btn_add,_btn_alarm,_btn_shengyin, nil];
+    NSArray *arr_view = [[NSArray alloc] initWithObjects:_btn_musicBack, _btn_add,_btn_alarm,_btn_shengyin, nil];
     [arr_view autoDistributeViewsAlongAxis:ALAxisHorizontal alignedTo:ALAttributeHorizontal withFixedSpacing:20.0 insetSpacing:YES matchedSizes:YES];
     [self.view layoutIfNeeded];
     
