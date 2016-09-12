@@ -352,11 +352,11 @@
             
             _v_unLink.hidden = YES;
             
-            [self setModelOnLine:YES withStatus:0];
+            [self setModelOnLine:YES withStatus:2];
             
             _lb_status.text = @"已连接";
-            self.lb_statusLink.text = @"智能聊天模式";
-            self.lb_statusTip.text = @"悟小空正处于智能聊天模式，让您的宝贝和悟小空开启智能聊天吧";
+            self.lb_statusLink.text = @"玩耍模式";
+            self.lb_statusTip.text = @"轻拍顶部按钮可以收听天气 长按顶部按钮是变声功能,摇一摇，听搞怪声音";
             
             if ([self isPlayOneMedia]) {
                 
@@ -479,7 +479,7 @@
             //[self stopAnimation];
             [self setModelOnLine:YES withStatus:2];
             _lb_status.text = @"已连接";
-            self.lb_statusLink.text = @"变声模式";
+            self.lb_statusLink.text = @"玩耍模式";
             self.lb_statusTip.text = @"轻拍顶部按钮可以收听天气 长按顶部按钮是变声功能,摇一摇，听搞怪声音";
         
             if ([self isPlayOneMedia]) {
@@ -1231,7 +1231,7 @@
             break;
         case 72:
             
-            [self queryChangeModel:TOYMODE_VOICE];
+            [self queryChangeModel:TOYMODE_JOY];
             break;
         case 73:
             

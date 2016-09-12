@@ -107,7 +107,7 @@
             break;
         case 3:{
             cell.textLabel.text = NSLocalizedString(@"玩耍模式", nil);
-            if ([_mode isEqual:@"7"]) {
+            if ([_mode isEqual:@"3"]) {
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
         }
@@ -150,7 +150,7 @@
         }
             break;
         case 3:{
-            params.mode = @7;
+            params.mode = @3;
         }
             break;
         case 4:{
