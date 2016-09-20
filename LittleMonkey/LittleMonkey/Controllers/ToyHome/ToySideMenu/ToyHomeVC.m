@@ -561,6 +561,43 @@
             break;
         }
             
+        case ToyStateNightLightState:{
+            
+            _v_unLink.hidden = YES;
+            
+            [self setModelOnLine:YES withStatus:1];
+            
+            _lb_status.text = @"已连接";
+            self.lb_statusLink.text = @"夜灯模式";
+            self.lb_statusTip.text = @"轻拍顶部按钮可开关灯，长按顶部按钮变换灯的颜色";
+            
+            if ([self isPlayOneMedia]) {
+                
+                if(_toyStatus.status){
+                    
+                    if ([_toyStatus.status isEqualToString:@"1"]) {
+                        
+                        self.playState = PlayStatePlayState;
+                        
+                    }else{
+                        
+                        self.playState = PlayStateStopState;
+                        
+                    }
+                    
+                }
+                
+            }else{
+                
+                self.playState = PlayStateUnKnowState;
+                
+            }
+            [self loadMusicDetail];
+            
+            
+        
+        }
+            break;
         default:
             break;
     }
